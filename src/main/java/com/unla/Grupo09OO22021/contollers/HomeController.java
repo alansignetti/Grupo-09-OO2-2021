@@ -16,7 +16,7 @@ import com.unla.Grupo09OO22021.helpers.ViewRouteHelper;
 import com.unla.Grupo09OO22021.services.IPersonService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/") 
 public class HomeController {
 	
 	@Autowired
