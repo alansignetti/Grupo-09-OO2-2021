@@ -9,38 +9,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.perfildetails.Perfil;
+import org.springframework.security.core.perfildetails.PerfilDetails;
+import org.springframework.security.core.perfildetails.PerfilDetailsService;
+import org.springframework.security.core.perfildetails.PerfilnameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.unla.Grupo09OO22021.entities.UserRole;
-import com.unla.Grupo09OO22021.repositories.IUserRepository;
+import com.unla.Grupo09OO22021.entities.PerfilRole;
+import com.unla.Grupo09OO22021.repositories.IPerfilRepository;
 
-@Service("userService")
-public class UserService implements UserDetailsService {
+@Service("perfilService")
+public class PerfilService implements PerfilDetailsService {
 
 	@Autowired
-	@Qualifier("userRepository")
-	private IUserRepository userRepository;
+	@Qualifier("perfilRepository")
+	private IPerfilRepository perfilRepository;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		com.unla.Grupo09OO22021.entities.User user = userRepository.findByUsernameAndFetchUserRolesEagerly(username);
-		return buildUser(user, buildGrantedAuthorities(user.getUserRoles()));
+	public PerfilDetails loadPerfilByPerfilname(String perfilname) throws PerfilnameNotFoundException {
+		com.unla.Grupo09OO22021.entities.Perfil perfil = perfilRepository.findByPerfilnameAndFetchPerfilRolesEagerly(perfilname);
+		return buildPerfil(perfil, buildGrantedAuthorities(perfil.getPerfilRoles()));
 	}
 	
-	private User buildUser(com.unla.Grupo09OO22021.entities.User user, List<GrantedAuthority> grantedAuthorities) {
-		return new User(user.getUsername(), user.getPassword(), user.isEnabled(),
+	private Perfil buildPerfil(com.unla.Grupo09OO22021.entities.Perfil perfil, List<GrantedAuthority> grantedAuthorities) {
+		return new Perfil(perfil.getPerfilname(), perfil.getPassword(), perfil.isEnabled(),
 						true, true, true, //accountNonExpired, credentialsNonExpired, accountNonLocked,
 						grantedAuthorities);
 	}
 	
-	private List<GrantedAuthority> buildGrantedAuthorities(Set<UserRole> userRoles) {
+	private List<GrantedAuthority> buildGrantedAuthorities(Set<PerfilRole> perfils) {
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
-		for(UserRole userRole: userRoles) {
-			grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getRole()));
+		for(PerfilRole perfil: perfils) {
+			grantedAuthorities.add(new SimpleGrantedAuthority(perfil.getRole()));
 		}
 		return new ArrayList<GrantedAuthority>(grantedAuthorities);
 	}

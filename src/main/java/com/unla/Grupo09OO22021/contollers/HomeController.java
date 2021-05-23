@@ -29,7 +29,6 @@ public class HomeController {
 		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX);
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		modelAndView.addObject("username", user.getUsername());
-		modelAndView.addObject("persons", personService.getAll());
 		return modelAndView;
 	}
 	
