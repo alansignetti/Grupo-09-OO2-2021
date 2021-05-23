@@ -12,44 +12,46 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+//import com.unla.Grupo09OO22021.entities.Usuario;
 import com.unla.Grupo09OO22021.helpers.ViewRouteHelper;
-import com.unla.Grupo09OO22021.services.IPersonService;
 
 @Controller
 @RequestMapping("/")
 public class HomeController {
 	
 	@Autowired
-	@Qualifier("personService")
-	private IPersonService personService;
 	
 	//GET Example: SERVER/index
 	@GetMapping("/index")
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX);
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		modelAndView.addObject("username", user.getUsername());
+//		Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		modelAndView.addObject("username", usuario.getUsername());
 		return modelAndView;
 	}
-	
+//	
 	//GET Example: SERVER/hello?name=someName
-	@GetMapping("/hello")
-	public ModelAndView helloParams1(@RequestParam(name="name", required=false, defaultValue="null") String name) {
-		ModelAndView mV = new ModelAndView(ViewRouteHelper.HELLO);
-		mV.addObject("name", name);
-		return mV;
-	}
+//	@GetMapping("/hello")
+//	public ModelAndView helloParams1(@RequestParam(name="name", required=false, defaultValue="null") String name) {
+//		ModelAndView mV = new ModelAndView(ViewRouteHelper.HELLO);
+//		mV.addObject("name", name);
+//		return mV;
+//	}
 	
 	//GET Example: SERVER/hello/someName
-	@GetMapping("/hello/{name}")
-	public ModelAndView helloParams2(@PathVariable("name") String name) {
-		ModelAndView mV = new ModelAndView(ViewRouteHelper.HELLO);
-		mV.addObject("name", name);
-		return mV;
-	}
-	
-	@GetMapping("/")
+//	@GetMapping("/hello/{name}")
+//	public ModelAndView helloParams2(@PathVariable("name") String name) {
+//		ModelAndView mV = new ModelAndView(ViewRouteHelper.HELLO);
+//		mV.addObject("name", name);
+//		return mV;
+//	}
+	// pantalla de login
+//	@GetMapping("/")
+//	public RedirectView redirectToHomeIndex() {
+//		return new RedirectView(ViewRouteHelper.ROUTE);
+//	}
+	@GetMapping("/hello")
 	public RedirectView redirectToHomeIndex() {
-		return new RedirectView(ViewRouteHelper.ROUTE);
+		return new RedirectView(ViewRouteHelper.HELLO);
 	}
 }
