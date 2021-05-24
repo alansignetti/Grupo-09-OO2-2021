@@ -18,7 +18,7 @@ public interface IPerfilRepository extends JpaRepository<Perfil, Serializable> {
 //	@Query("SELECT u FROM Perfil u WHERE u.idPerfil = (:idPerfil)")
 //	public abstract Perfil findByIdPerfil(@Param("idPerfil") String idPerfil);
 	
-	public abstract Perfil findByPerfil(@Param("tipoPerfil") String tipoPerfil);
+	public abstract Perfil findByTipoPerfil(@Param("tipoPerfil") String tipoPerfil);
 
 	public abstract Perfil findById(@Param("id") int id);
 	

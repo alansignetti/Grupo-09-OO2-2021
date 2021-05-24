@@ -12,6 +12,7 @@ import com.unla.Grupo09OO22021.models.PerfilModel;
 import com.unla.Grupo09OO22021.repositories.IPerfilRepository;
 import com.unla.Grupo09OO22021.services.IPerfilService;
 
+
 @Service("perfilService")
 public class PerfilService implements IPerfilService {
 
@@ -23,8 +24,8 @@ public class PerfilService implements IPerfilService {
 	@Qualifier("perfilModel")
 	private PerfilConverter perfilModel;
 
-	public Perfil findByPerfil(String perfil) {
-		return perfilRepository.findByPerfil(perfil);
+	public Perfil findByTipoPerfil(String tipoPerfil) {
+		return perfilRepository.findByTipoPerfil(tipoPerfil);
 	}
 
 	public Perfil findById(int id) {

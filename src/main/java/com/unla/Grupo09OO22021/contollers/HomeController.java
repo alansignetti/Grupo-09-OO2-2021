@@ -20,9 +20,9 @@ import com.unla.Grupo09OO22021.services.IUsuarioService;
 @RequestMapping("/") 
 public class HomeController {
 	
-	@Autowired
-	@Qualifier("usuarioService")
-	private IUsuarioService usuarioService; 
+//	@Autowired
+//	@Qualifier("usuarioService")
+//	private IUsuarioService usuarioService; 
 	
 	//GET Example: SERVER/index
 //	@GetMapping("/index")

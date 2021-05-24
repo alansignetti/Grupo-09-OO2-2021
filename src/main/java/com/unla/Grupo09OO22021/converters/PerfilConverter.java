@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.unla.Grupo09OO22021.entities.Perfil;
 import com.unla.Grupo09OO22021.models.PerfilModel;
 
-@Component("perfilConverter")
+@Component("perfilModel")
 public class PerfilConverter {
 
 	public PerfilModel entityToModel(Perfil perfil) {

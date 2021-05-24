@@ -22,6 +22,8 @@ public class UsuarioService implements IUsuarioService {
 	@Autowired
 	@Qualifier("usuarioModel")
 	private UsuarioConverter usuarioModel;
+	
+	
 
 	public void altaUsuario(UsuarioModel usuario) throws Exception {
 		try {

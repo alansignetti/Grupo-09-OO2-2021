@@ -23,7 +23,7 @@ public class Perfil {
 
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private int idPerfil;
+		private int id;
 		
 		@Column(name="tipoPerfil", unique=false, nullable=false, length=30)
 		private String tipoPerfil;
@@ -45,22 +45,22 @@ public class Perfil {
 
 
 		
-		public Perfil(int idPerfil,String tipoPerfil) {
+		public Perfil(int id,String tipoPerfil) {
 			super();
-			this.idPerfil = idPerfil;
+			this.id = id;
 			this.tipoPerfil = tipoPerfil;
 		}
 
 
 
 		public int getIdPerfil() {
-			return idPerfil;
+			return id;
 		}
 
 
 
-		public void setIdPerfil(int idPerfil) {
-			this.idPerfil = idPerfil;
+		public void setIdPerfil(int id) {
+			this.id = id;
 		}
 
 
