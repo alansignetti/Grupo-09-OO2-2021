@@ -12,26 +12,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.unla.Grupo09OO22021.entities.Usuario;
 import com.unla.Grupo09OO22021.helpers.ViewRouteHelper;
-import com.unla.Grupo09OO22021.services.IPersonService;
+import com.unla.Grupo09OO22021.services.IUsuarioService;
 
 @Controller
 @RequestMapping("/") 
 public class HomeController {
 	
 	@Autowired
-	@Qualifier("personService")
-	private IPersonService personService;
+	@Qualifier("usuarioService")
+	private IUsuarioService usuarioService; 
 	
 	//GET Example: SERVER/index
-	@GetMapping("/index")
-	public ModelAndView index() {
-		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX);
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		modelAndView.addObject("username", user.getUsername());
-		modelAndView.addObject("persons", personService.getAll());
-		return modelAndView;
-	}
+//	@GetMapping("/index")
+//	public ModelAndView index() {
+//		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX);
+//		Usuario user = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		modelAndView.addObject("username", user.getUsername());
+//		return modelAndView;
+//	}
 	
 	//GET Example: SERVER/hello?name=someName
 	@GetMapping("/hello")
