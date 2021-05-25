@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.unla.Grupo09OO22021ABM.entities.Perfil;
 import com.unla.Grupo09OO22021ABM.entities.Usuario;
+import com.unla.Grupo09OO22021ABM.helpers.ViewRouteHelper;
 import com.unla.Grupo09OO22021ABM.services.IPerfilService;
 import com.unla.Grupo09OO22021ABM.services.IUsuarioService;
 
@@ -62,6 +64,25 @@ public class UsuarioController {
 	public String delete(Model model, @PathVariable int id) {
 		service.delete(id);
 		return "redirect:/listar";
+	}
+	
+	@GetMapping("/login")
+	public String login(Model model,
+						@RequestParam(name="error",required=false) String error,
+						@RequestParam(name="logout", required=false) String logout) {
+		model.addAttribute("error", error);
+		model.addAttribute("logout", logout);
+		return ViewRouteHelper.USER_LOGIN;
+	}
+	
+	@GetMapping("/logout")
+	public String logout(Model model) {
+		return ViewRouteHelper.USER_LOGOUT;
+	}
+	
+	@GetMapping("/loginsuccess")
+	public String loginCheck() {
+		return "redirect:/home";
 	}
 
 }

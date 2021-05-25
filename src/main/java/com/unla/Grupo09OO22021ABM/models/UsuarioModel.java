@@ -5,7 +5,7 @@ public class UsuarioModel {
 	private int id_usuario;
 	private String nombre;
 	private String apellido;
-	private int tipo_dni;
+	private String tipo_dni;
 	private long dni;
 	private String email;
 	private String username;
@@ -15,7 +15,7 @@ public class UsuarioModel {
 	
 	public UsuarioModel() {}
 
-	public UsuarioModel(int id_usuario, String nombre, String apellido, int tipo_dni, long dni, String email,
+	public UsuarioModel(int id_usuario, String nombre, String apellido, String tipo_dni, long dni, String email,
 			String username, String password,  PerfilModel perfilModel) {
 		super();
 		this.id_usuario = id_usuario;
@@ -54,11 +54,13 @@ public class UsuarioModel {
 		this.apellido = apellido;
 	}
 
-	public int getTipo_dni() {
+	
+
+	public String getTipo_dni() {
 		return tipo_dni;
 	}
 
-	public void setTipo_dni(int tipo_dni) {
+	public void setTipo_dni(String tipo_dni) {
 		this.tipo_dni = tipo_dni;
 	}
 

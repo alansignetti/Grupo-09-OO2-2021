@@ -16,7 +16,7 @@
 						<h3>Usuario</h3>
 					</div>
 					<div class="card-body"></div>
-						<div class="form-group">
+						<div class="form-group" style="display:none">
 							<label>ID:</label>
 							<input th:field="*{id_usuario}" type="text" class="form-control"/>
 						</div>
@@ -30,7 +30,15 @@
 						</div>
 						<div class="form-group">
 							<label>Tipo Dni:</label>
-							<input th:field="*{tipo_dni}" type="text" class="form-control"/>
+							<select class="form-select"
+							aria-label="Default select example" name="tipo_Dni" th:field="*{tipo_dni}">
+							<option value="tipo" selected>-- Selecciona el Tipo -- </option>
+							<option value="DNI">DNI</option>
+							<option value="CI">Cedula de identidad</option>
+							<option value="LE">Libreta de Enrolamiento</option>
+							<option value="LC">Libreta Civica</option>
+						</select>
+							<!-- input th:field="*{tipo_dni}" type="text" class="form-control"/-->
 						</div>
 						<div class="form-group">
 							<label>Dni:</label>
@@ -51,7 +59,7 @@
 						<div class="form-group">
 						<label>Perfil:</label>	
 							<select class="form-control form-control-sm" th:field="*{perfil.id_perfil}">
-							 <option th:each="i : ${perfiles}" th:value="${i.id_perfil}" th:text="${i.id_perfil}">
+							 <option th:each="i : ${perfiles}" th:value="${i.id_perfil}" th:text="${i.tipo_perfil}">
                               </option>
 							</select>
 						</div>

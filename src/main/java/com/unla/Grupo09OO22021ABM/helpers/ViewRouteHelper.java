@@ -8,8 +8,8 @@ public class ViewRouteHelper {
 	
 	
 	//USER
-	public final static String USER_LOGIN = "login";
-	public final static String USER_LOGOUT = "logout";
+	public final static String USER_LOGIN = "user/login";
+	public final static String USER_LOGOUT = "user/logout";
 	
 	
 	/**** Redirects ****/

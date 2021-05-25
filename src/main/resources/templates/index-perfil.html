@@ -9,11 +9,12 @@
 
 <body>
 	<div class="container mt-4">
+	<a th:href="@{/home}" class="btn btn-secondary">Home</a>
 	<a th:href="@{/new-perfil}" class="btn btn-primary">Nuevo</a>
 		<table class="table">
 			<thead>
 				<tr>
-					<th>ID</th>
+					<th style="display:none">ID</th>
 					<th>TIPO PERFIL</th>
 					<th>ENABLED</th>
 					<th>ACCION</th>
@@ -21,7 +22,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="perfil:${perfiles}">
-					<td th:text="${perfil.id_perfil}"></td>
+					<td style="display:none"  th:text="${perfil.id_perfil}"></td>
 					<td th:text="${perfil.tipo_perfil}"></td>
 					<td th:text="${perfil.enabled}"></td>
 					<td>
