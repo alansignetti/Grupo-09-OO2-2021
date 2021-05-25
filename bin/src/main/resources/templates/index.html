@@ -21,7 +21,6 @@
 					<th>EMAIL</th>
 					<th>USERNAME</th>
 					<th>PASSWORD</th>
-					<th>PERFIL</th>
 					<th>ENABLED</th>
 					<th>ACCION</th>
 				</tr>
@@ -36,7 +35,6 @@
 					<td th:text="${usuario.email}"></td>
 					<td th:text="${usuario.username}"></td>
 					<td th:text="${usuario.password}"></td>
-					<td th:text="${usuario.perfil.tipo_perfil}"></td>
 					<td th:text="${usuario.enabled}"></td>
 					<td>
 					<a th:href="@{/editar/}+${usuario.id_usuario}" class="btn btn-warning">Editar</a>

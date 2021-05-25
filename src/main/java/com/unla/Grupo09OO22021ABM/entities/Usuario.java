@@ -4,9 +4,12 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -43,6 +46,10 @@ public class Usuario {
 	
 	@Column(name = "enabled", columnDefinition = "boolean default true")
 	private boolean enabled;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_perfil", nullable = false)
+	private Perfil perfil;
 
 	@Column(name = "createdat", updatable = false)
 	@CreationTimestamp
@@ -55,7 +62,7 @@ public class Usuario {
 	public Usuario() {}
 
 	public Usuario( String nombre, String apellido, int tipo_dni, long dni, String email,
-			String username, String password) {
+			String username, String password, Perfil perfil) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -65,6 +72,7 @@ public class Usuario {
 		this.username = username;
 		this.password = password;
 		this.enabled = true;
+		this.perfil=perfil;
 	}
 
 	public Usuario(String username, String password) {
@@ -144,6 +152,16 @@ public class Usuario {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 
 	public LocalDateTime getCreatedAt() {

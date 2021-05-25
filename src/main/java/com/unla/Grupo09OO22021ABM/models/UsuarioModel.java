@@ -11,11 +11,12 @@ public class UsuarioModel {
 	private String username;
 	private String password;
 	private boolean enabled;
+	private PerfilModel perfilModel;
 	
 	public UsuarioModel() {}
 
 	public UsuarioModel(int id_usuario, String nombre, String apellido, int tipo_dni, long dni, String email,
-			String username, String password) {
+			String username, String password,  PerfilModel perfilModel) {
 		super();
 		this.id_usuario = id_usuario;
 		this.nombre = nombre;
@@ -26,6 +27,7 @@ public class UsuarioModel {
 		this.username = username;
 		this.password = password;
 		this.enabled = true;
+		this.perfilModel = perfilModel;
 	}
 
 	public int getId_usuario() {
@@ -98,6 +100,14 @@ public class UsuarioModel {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public PerfilModel getPerfilModel() {
+		return perfilModel;
+	}
+
+	public void setPerfilModel(PerfilModel perfilModel) {
+		this.perfilModel = perfilModel;
 	}
 	
 	
