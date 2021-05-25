@@ -27,9 +27,9 @@ public class Usuario {
 	private String apellido;
 	
 	@Column(name="tipo_dni")
-	private int tipo_dni;
+	private String tipo_dni;  //Tipo DNI es un string
 	
-	@Column(name="dni", unique=true, nullable=false)
+	@Column(name="dni", unique=true, nullable=false, length=8)
 	private long dni;
 	
 	@Column(name="email", unique=true, nullable=false, length=60)
@@ -54,7 +54,7 @@ public class Usuario {
 	
 	public Usuario() {}
 
-	public Usuario( String nombre, String apellido, int tipo_dni, long dni, String email,
+	public Usuario( String nombre, String apellido, String tipo_dni, long dni, String email,
 			String username, String password) {
 		super();
 		this.nombre = nombre;
@@ -98,11 +98,13 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public int getTipo_dni() {
+	
+
+	public String getTipo_dni() {
 		return tipo_dni;
 	}
 
-	public void setTipo_dni(int tipo_dni) {
+	public void setTipo_dni(String tipo_dni) {
 		this.tipo_dni = tipo_dni;
 	}
 

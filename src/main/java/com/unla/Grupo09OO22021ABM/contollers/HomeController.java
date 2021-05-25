@@ -1,6 +1,7 @@
 package com.unla.Grupo09OO22021ABM.contollers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -19,6 +20,11 @@ public class HomeController {
 	@GetMapping("/home")
 	public String home() {
 		return ViewRouteHelper.HOME;
+	}
+	
+	@GetMapping("/index")
+	public String admin(Model model) {
+		return ViewRouteHelper.USER_ABM;
 	}
 	
 	

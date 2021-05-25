@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.unla.Grupo09OO22021ABM.entities.Usuario;
+import com.unla.Grupo09OO22021ABM.helpers.ViewRouteHelper;
 import com.unla.Grupo09OO22021ABM.services.IUsuarioService;
 
 @Controller
@@ -28,7 +29,7 @@ public class UsuarioController {
 	public String listar(Model model) {
 		List<Usuario> usuarios = service.listar();
 		model.addAttribute("usuarios", usuarios);
-		return "index";
+		return ViewRouteHelper.INDEX;
 	}
 	
 	@GetMapping("/new")
