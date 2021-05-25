@@ -9,11 +9,12 @@
 
 <body>
 	<div class="container mt-4">
-	<a th:href="@{/home}" class="btn btn-primary">HOME</a>
+	<a th:href="@{/home}" class="btn btn-secondary">HOME</a>
+	<a th:href="@{/new}" class="btn btn-primary">Nuevo Usuario</a>
 		<table class="table">
 			<thead>
 				<tr>
-					<th>ID</th>
+					<!--th>ID</th-->
 					<th>NOMBRE</th>
 					<th>APELLIDO</th>
 					<th>TIPO DNI</th>
@@ -27,7 +28,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="usuario:${usuarios}">
-					<td th:text="${usuario.id_usuario}"></td>
+					<td style="display:none" th:text="${usuario.id_usuario}"></td>
 					<td th:text="${usuario.nombre}"></td>
 					<td th:text="${usuario.apellido}"></td>
 					<td th:text="${usuario.tipo_dni}"></td>

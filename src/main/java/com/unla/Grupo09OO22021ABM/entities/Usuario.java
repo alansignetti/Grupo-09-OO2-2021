@@ -1,16 +1,23 @@
 package com.unla.Grupo09OO22021ABM.entities;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.unla.Grupo09OO22021ABM.entities.Authority;
 
 @Entity
 @Table(name = "usuario")
@@ -52,6 +59,11 @@ public class Usuario {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
+	private Set<Authority> authority;
+	
+
 	public Usuario() {}
 
 	public Usuario( String nombre, String apellido, String tipo_dni, long dni, String email,
@@ -74,6 +86,14 @@ public class Usuario {
 		this.enabled = true;
 	}
 
+	public Set<Authority> getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(Set<Authority> authority) {
+		this.authority = authority;
+	}
+	
 	public int getId_usuario() {
 		return id_usuario;
 	}
