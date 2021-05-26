@@ -21,5 +21,9 @@ public class HomeController {
 		return ViewRouteHelper.HOME;
 	}
 	
+	@GetMapping("/index")
+	public String index() {
+		return ViewRouteHelper.HOME;
+	}
 	
 }

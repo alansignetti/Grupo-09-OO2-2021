@@ -269,6 +269,10 @@ figure {
   margin: 0 0 1rem;
 }
 
+fas fa-file-pdf{
+	color:white;
+}
+
 img,
 svg {
   vertical-align: middle;

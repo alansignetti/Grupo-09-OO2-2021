@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.Grupo09OO22021ABM.entities.Perfil;
 import com.unla.Grupo09OO22021ABM.entities.Usuario;
@@ -36,7 +37,7 @@ public class UsuarioController {
 	public String listar(Model model) {
 		List<Usuario> usuarios = service.listar();
 		model.addAttribute("usuarios", usuarios);
-		return "index";
+		return ViewRouteHelper.INDEX;
 	}
 	
 	@GetMapping("/new")
@@ -44,26 +45,26 @@ public class UsuarioController {
 		List<Perfil> perfiles = service2.listar();		
 		model.addAttribute("usuario", new Usuario());
 		model.addAttribute("perfiles", perfiles);
-		return "form";
+		return ViewRouteHelper.FORM_USUARIO;
 	}
 	
 	@PostMapping("/save")
-	public String save(Model model, @Validated Usuario u) {
+	public RedirectView save(Model model, @Validated Usuario u) {
 		service.save(u);
-		return "redirect:/listar";
+		return new RedirectView(ViewRouteHelper.USUARIOS);
 	}
 	
 	@GetMapping("/editar/{id}")
 	public String editar(Model model, @PathVariable int id) {
 		Optional<Usuario> usuario = service.listarId(id);
 		model.addAttribute("usuario", usuario);
-		return "form";
+		return ViewRouteHelper.FORM_USUARIO;
 	}
 	
 	@GetMapping("/eliminar/{id}")
-	public String delete(Model model, @PathVariable int id) {
+	public RedirectView delete(Model model, @PathVariable int id) {
 		service.delete(id);
-		return "redirect:/listar";
+		return new RedirectView(ViewRouteHelper.USUARIOS);
 	}
 	
 	@GetMapping("/login")
@@ -81,8 +82,8 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/loginsuccess")
-	public String loginCheck() {
-		return "redirect:/home";
+	public RedirectView loginCheck() {
+		return new RedirectView(ViewRouteHelper.HOME);
 	}
 
 }

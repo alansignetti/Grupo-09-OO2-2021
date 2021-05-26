@@ -180,6 +180,14 @@ public class Usuario {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id_usuario=" + id_usuario + ", nombre=" + nombre + ", apellido=" + apellido + ", tipo_dni="
+				+ tipo_dni + ", dni=" + dni + ", email=" + email + ", username=" + username + ", password=" + password
+				+ ", enabled=" + enabled + ", perfil=" + perfil + ", createdAt=" + createdAt + ", updatedAt="
+				+ updatedAt + "]";
+	}
 	
 	
 
