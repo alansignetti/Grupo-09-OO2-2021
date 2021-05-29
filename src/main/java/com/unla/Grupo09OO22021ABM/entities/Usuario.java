@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name = "usuario")
@@ -144,7 +145,8 @@ public class Usuario {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+        this.password = pe.encode(password);
 	}
 
 	public boolean isEnabled() {
