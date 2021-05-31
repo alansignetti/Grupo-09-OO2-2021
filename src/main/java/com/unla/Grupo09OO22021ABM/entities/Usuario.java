@@ -45,7 +45,7 @@ public class Usuario {
 	private String password;
 	
 	@Column(name = "enabled", columnDefinition = "boolean default true")
-	private boolean enabled;
+	private boolean enabled = true;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_perfil", nullable = false)

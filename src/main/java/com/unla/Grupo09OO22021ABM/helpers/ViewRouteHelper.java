@@ -9,6 +9,7 @@ public class ViewRouteHelper {
 	
 	public final static String INDEX = "/index";
 	
+	public final static String ADMIN_LISTA_USUARIO = "/admin-lista-usuario";
 	
 	
 	//USUARIO

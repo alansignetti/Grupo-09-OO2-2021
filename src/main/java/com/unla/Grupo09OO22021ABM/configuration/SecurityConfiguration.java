@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,6 +14,7 @@ import com.unla.Grupo09OO22021ABM.services.implementations.UserDetailsServiceSec
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
  
@@ -20,11 +22,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*", "/vendor/jquery/*", "/vendor/bootstrap/js/*","/home*").permitAll()
-				.antMatchers("/new*").access("hasRole('ADMIN')") 
-				.antMatchers("/new-perfil*").access("hasRole('ADMIN')")
 				
-		        .antMatchers("/listar-perfiles*").access("hasRole('USER')")
+				.antMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*", "/vendor/jquery/*", "/vendor/bootstrap/js/*","/home*","/static/**","/static/home/*","/home/**").permitAll()
+				//.antMatchers("/listar/**").access("hasRole('AUDITOR')") 
+				//.antMatchers("/new-perfil*").access("hasRole('ADMIN')")
+				
+		        //.antMatchers("/listar-perfiles*").access("hasRole('AUDITOR') || hasRole('ADMIN')")
+		       // .antMatchers("/listar**").access("hasRole('ADMIN')")
 		        .antMatchers("/home").permitAll()
 		        //Agregar lista de user.
 				.anyRequest().authenticated()
@@ -60,4 +64,3 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());     
     }
 }
-

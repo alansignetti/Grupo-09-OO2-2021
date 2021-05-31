@@ -10,7 +10,7 @@ public class UsuarioModel {
 	private String email;
 	private String username;
 	private String password;
-	private boolean enabled;
+	private boolean enabled = true;
 	private PerfilModel perfilModel;
 	
 	public UsuarioModel() {}

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
 
@@ -18,6 +19,7 @@ import com.unla.Grupo09OO22021ABM.entities.Usuario;
 import com.unla.Grupo09OO22021ABM.helpers.ViewRouteHelper;
 import com.unla.Grupo09OO22021ABM.services.IPerfilService;
 import com.unla.Grupo09OO22021ABM.services.IUsuarioService;
+
 
 @Component(ViewRouteHelper.INDEX)
 public class ExportPDF extends AbstractPdfView{
@@ -30,6 +32,7 @@ public class ExportPDF extends AbstractPdfView{
 	@Qualifier("perfilService")
 	private IPerfilService service2;
 
+	
 	@Override
 	protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
