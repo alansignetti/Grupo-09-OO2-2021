@@ -2,41 +2,32 @@ package com.unla.Grupo09OO22021ABM.models;
 
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 public class PermisoModel {
 
-	private int idPermiso;
+	private int id_permiso;
 	private PersonaModel pedido;
 	private LocalDate fecha;
 	private Set<LugarModel> desdeHasta;
 
-	public PermisoModel() {
-	}
+	public PermisoModel() {}
 
-	public PermisoModel(int idPermiso, PersonaModel pedido, LocalDate fecha, Set<LugarModel> desdeHasta) {
+	public PermisoModel(PersonaModel pedido, LocalDate fecha) {
 		super();
-		this.idPermiso = idPermiso;
 		this.pedido = pedido;
 		this.fecha = fecha;
-		this.desdeHasta = desdeHasta;
+		this.desdeHasta = new HashSet<LugarModel>();
 	}
 	
-	
 
-	public PermisoModel(int idPermiso, PersonaModel pedido, LocalDate fecha) {
-		super();
-		this.idPermiso = idPermiso;
-		this.pedido = pedido;
-		this.fecha = fecha;
+	public int getId_permiso() {
+		return id_permiso;
 	}
 
-	public int getIdPermiso() {
-		return idPermiso;
-	}
-
-	public void setIdPermiso(int idPermiso) {
-		this.idPermiso = idPermiso;
+	public void setId_permiso(int id_permiso) {
+		this.id_permiso = id_permiso;
 	}
 
 	public PersonaModel getPedido() {

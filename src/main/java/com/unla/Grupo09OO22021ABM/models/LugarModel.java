@@ -1,39 +1,30 @@
 package com.unla.Grupo09OO22021ABM.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class LugarModel {
 
-	private int idLugar;
+	private int id_lugar;
 	private String lugar;
-	private String codigoPostal;
-	private Set<PermisoModel> permiso;
+	private String codigo_postal;
+	private Set<PermisoModel> permisos;
 
-	public LugarModel() {
-		super();
-	}
+	public LugarModel() {}
 
-	public LugarModel(int idLugar, String lugar, String codigoPostal, Set<PermisoModel> permiso) {
+	public LugarModel(String lugar, String codigo_postal) {
 		super();
-		this.idLugar = idLugar;
 		this.lugar = lugar;
-		this.codigoPostal = codigoPostal;
-		this.permiso = permiso;
-	}
-	
-	public LugarModel(int idLugar, String lugar, String codigoPostal) {
-		super();
-		this.idLugar = idLugar;
-		this.lugar = lugar;
-		this.codigoPostal = codigoPostal;
+		this.codigo_postal = codigo_postal;
+		this.permisos = new HashSet<PermisoModel>();
+	}	
+
+	public int getId_lugar() {
+		return id_lugar;
 	}
 
-	public int getIdLugar() {
-		return idLugar;
-	}
-
-	public void setIdLugar(int idLugar) {
-		this.idLugar = idLugar;
+	public void setId_lugar(int id_lugar) {
+		this.id_lugar = id_lugar;
 	}
 
 	public String getLugar() {
@@ -44,20 +35,20 @@ public class LugarModel {
 		this.lugar = lugar;
 	}
 
-	public String getCodigoPostal() {
-		return codigoPostal;
+	public String getCodigo_postal() {
+		return codigo_postal;
 	}
 
-	public void setCodigoPostal(String codigoPostal) {
-		this.codigoPostal = codigoPostal;
+	public void setCodigo_postal(String codigo_postal) {
+		this.codigo_postal = codigo_postal;
 	}
 
-	public Set<PermisoModel> getPermiso() {
-		return permiso;
+	public Set<PermisoModel> getPermisos() {
+		return permisos;
 	}
 
-	public void setPermiso(Set<PermisoModel> permiso) {
-		this.permiso = permiso;
+	public void setPermisos(Set<PermisoModel> permisos) {
+		this.permisos = permisos;
 	}
 
 	

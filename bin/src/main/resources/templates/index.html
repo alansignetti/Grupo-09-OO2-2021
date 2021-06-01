@@ -9,32 +9,44 @@
 
 <body>
 	<div class="container mt-4">
-	<a th:href="@{/new}" class="btn btn-primary">Nuevo</a>
+	<a th:href="@{/home}" class="btn btn-secondary">Home</a>
+	<a th:href="@{/new}" class="btn btn-primary">Nuevo</a> 
+	<a href="/listar/?format=pdf" class="btn btn-primary">Descargar Lista</a> 
+	
+	<br> <br>
+	<div class="alert alert-success alert-dismissable" th:if="${success != null}">
+					<label th:text="${success}"></label>
+			</div>
+		<br>
+		
+		
 		<table class="table">
 			<thead>
 				<tr>
-					<th>ID</th>
+					<th style="display:none">ID</th>
 					<th>NOMBRE</th>
 					<th>APELLIDO</th>
 					<th>TIPO DNI</th>
 					<th>DNI</th>
 					<th>EMAIL</th>
 					<th>USERNAME</th>
-					<th>PASSWORD</th>
+					<th style="display:none">PASSWORD</th>
+					<th>PERFIL</th>
 					<th>ENABLED</th>
 					<th>ACCION</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="usuario:${usuarios}">
-					<td th:text="${usuario.id_usuario}"></td>
+					<td style="display:none" th:text="${usuario.id_usuario}"></td>
 					<td th:text="${usuario.nombre}"></td>
 					<td th:text="${usuario.apellido}"></td>
 					<td th:text="${usuario.tipo_dni}"></td>
 					<td th:text="${usuario.dni}"></td>
 					<td th:text="${usuario.email}"></td>
 					<td th:text="${usuario.username}"></td>
-					<td th:text="${usuario.password}"></td>
+					<td style="display:none" th:text="${usuario.password}"></td>
+					<td th:text="${usuario.perfil.tipo_perfil}"></td>
 					<td th:text="${usuario.enabled}"></td>
 					<td>
 					<a th:href="@{/editar/}+${usuario.id_usuario}" class="btn btn-warning">Editar</a>
@@ -44,6 +56,8 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		
 
 	</div>
 <!--<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

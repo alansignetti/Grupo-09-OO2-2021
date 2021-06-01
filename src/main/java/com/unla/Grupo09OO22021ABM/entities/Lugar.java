@@ -1,62 +1,59 @@
-
 package com.unla.Grupo09OO22021ABM.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
-@Table(name = "Lugar")
+@Table(name = "lugar")
 public class Lugar {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idLugar;
+	private int id_lugar;
 
-	@Column(name = "lugar")
+	@Column(name = "lugar", nullable=false, length=100)
 	private String lugar;
-	@Column(name = "codigoPostal")
-	private String codigoPostal;
+	
+	@Column(name = "codigo_postal", nullable=false, length=45)
+	private String codigo_postal;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="permisoxlugar", 
+	joinColumns=@JoinColumn (name="id_lugar"),
+	inverseJoinColumns= @JoinColumn(name="id_permiso"))
+	private Set<Permiso> permisos;
 
-	@ManyToMany(cascade = CascadeType.MERGE)
-	@JoinTable(name = "permiso_lugar", joinColumns = { 
-			@JoinColumn(name = "id_lugar") }, inverseJoinColumns = {
-			@JoinColumn(name = "id_persona") })
-	private Set<Permiso> permiso;
+	/*@ManyToMany(mappedBy = "desdeHasta")
+    private Set<Permiso> permisos;*/
 
-	public Lugar() {
-	}
+	public Lugar() {}
 
-	public Lugar(int idLugar, String lugar, String codigoPostal, Set<Permiso> permiso) {
+	public Lugar(String lugar, String codigo_postal) {
 		super();
-		this.idLugar = idLugar;
 		this.lugar = lugar;
-		this.codigoPostal = codigoPostal;
-		this.permiso = permiso;
+		this.codigo_postal = codigo_postal;
+		this.permisos = new HashSet<Permiso>();
 	}
 
-	public Lugar(int idLugar, String lugar, String codigoPostal) {
-		super();
-		this.idLugar = idLugar;
-		this.lugar = lugar;
-		this.codigoPostal = codigoPostal;
+	
+	public int getId_lugar() {
+		return id_lugar;
 	}
 
-	public int getIdLugar() {
-		return idLugar;
-	}
-
-	public void setIdLugar(int idLugar) {
-		this.idLugar = idLugar;
+	public void setId_lugar(int id_lugar) {
+		this.id_lugar = id_lugar;
 	}
 
 	public String getLugar() {
@@ -67,105 +64,22 @@ public class Lugar {
 		this.lugar = lugar;
 	}
 
-	public String getCodigoPostal() {
-		return codigoPostal;
+	
+
+	public String getCodigo_postal() {
+		return codigo_postal;
 	}
 
-	public void setCodigoPostal(String codigoPostal) {
-		this.codigoPostal = codigoPostal;
+	public void setCodigo_postal(String codigo_postal) {
+		this.codigo_postal = codigo_postal;
 	}
 
-	public Set<Permiso> getPermiso() {
-		return permiso;
+	public Set<Permiso> getPermisos() {
+		return permisos;
 	}
 
-	public void setPermiso(Set<Permiso> permiso) {
-		this.permiso = permiso;
+	public void setPermisos(Set<Permiso> permisos) {
+		this.permisos = permisos;
 	}
 
 }
-
-//package com.unla.Grupo09OO22021ABM.entities;
-//
-//import java.util.Set;
-//
-//import javax.persistence.CascadeType;
-//import javax.persistence.Column;
-//import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.JoinTable;
-//import javax.persistence.ManyToMany;
-//import javax.persistence.Table;
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//
-//@Entity
-//@Table(name = "Lugar")
-//public class Lugar {
-//
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	private int idLugar;
-//
-//	@Column(name = "lugar")
-//	private String lugar;
-//	@Column(name = "codigoPostal")
-//	private String codigoPostal;
-//
-//	@ManyToMany(cascade = CascadeType.MERGE)
-//	@JoinTable(name = "permiso_lugar", joinColumns = { @JoinColumn(name = "id_lugar") }, inverseJoinColumns = {
-//			@JoinColumn(name = "id_persona") })
-//	private Set<Permiso> permiso;
-//
-//	public Lugar() {
-//	}
-//
-//	public Lugar(int idLugar, String lugar, String codigoPostal, Set<Permiso> permiso) {
-//		super();
-//		this.idLugar = idLugar;
-//		this.lugar = lugar;
-//		this.codigoPostal = codigoPostal;
-//		this.permiso = permiso;
-//	}
-//
-//	public Lugar(int idLugar, String lugar, String codigoPostal) {
-//		super();
-//		this.idLugar = idLugar;
-//		this.lugar = lugar;
-//		this.codigoPostal = codigoPostal;
-//	}
-//
-//	public int getIdLugar() {
-//		return idLugar;
-//	}
-//
-//	public void setIdLugar(int idLugar) {
-//		this.idLugar = idLugar;
-//	}
-//
-//	public String getLugar() {
-//		return lugar;
-//	}
-//
-//	public void setLugar(String lugar) {
-//		this.lugar = lugar;
-//	}
-//
-//	public String getCodigoPostal() {
-//		return codigoPostal;
-//	}
-//
-//	public void setCodigoPostal(String codigoPostal) {
-//		this.codigoPostal = codigoPostal;
-//	}
-//
-//	public Set<Permiso> getPermiso() {
-//		return permiso;
-//	}
-//
-//	public void setPermiso(Set<Permiso> permiso) {
-//		this.permiso = permiso;
-//	}
-//
-//}
