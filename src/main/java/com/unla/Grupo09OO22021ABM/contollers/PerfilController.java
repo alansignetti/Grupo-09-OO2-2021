@@ -29,11 +29,8 @@ public class PerfilController {
 	@Qualifier("perfilService")
 	private IPerfilService service;
 	
-<<<<<<< HEAD
+
 	@PreAuthorize("hasRole('ROLE_AUDITOR') || hasRole('ROLE_ADMIN')")
-=======
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
->>>>>>> dbcfeaa06dd269a94edac0a265c8785749275dea
 	@GetMapping("/listar-perfiles")
 	public String listar(Model model) {
 		List<Perfil> perfiles = service.listar();
