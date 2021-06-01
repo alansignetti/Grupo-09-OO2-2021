@@ -65,7 +65,7 @@ public class PermisoPeriodoController {
 		return ViewRouteHelper.FORM_PERMISO_PERIODO;
 	}
 	
-	@PostMapping("/save-permiso-diario")
+	@PostMapping("/save-permiso-periodo")
 	public RedirectView save(Model model, @Validated PermisoPeriodo pp, RedirectAttributes attribute ) {
 		servicePermisoPeriodo.save(pp);
 		attribute.addFlashAttribute("success","El Permiso se agrego con Exito");
