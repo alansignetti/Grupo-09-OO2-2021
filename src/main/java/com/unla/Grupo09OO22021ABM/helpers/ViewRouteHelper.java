@@ -1,0 +1,48 @@
+package com.unla.Grupo09OO22021ABM.helpers;
+
+import org.springframework.web.servlet.view.RedirectView;
+
+@SuppressWarnings("unused")
+public class ViewRouteHelper {
+ 
+	/**** Views ****/
+	
+	
+	//USUARIO
+	public final static String INDEX = "/index";
+	public final static String FORM_USUARIO = "/form";
+	
+	//PERFIL
+	public final static String INDEX_PERFIL = "/index-perfil";
+	public final static String FORM_PERFIL = "/form-perfil"; // return ViewRouteHelper.FORMPERFIL;
+	
+	//USER
+	public final static String USER_LOGIN = "user/login";
+	public final static String USER_LOGOUT = "user/logout";
+	
+	//PERSONA
+	public final static String FORM_PERSONA = "/form-persona";
+	public final static String INDEX_PERSONA = "/index-persona";
+	
+	//PERMISO DIARIO
+	public final static String FORM_PERMISO_DIARIO = "/form-permiso-diario";
+	public final static String INDEX_PERMISO_DIARIO = "/index-permiso-diario";
+	
+	//PERMISO PERIODO
+	public final static String FORM_PERMISO_PERIODO = "/form-permiso-periodo";
+	public final static String INDEX_PERMISO_PERIODO = "/index-permiso-periodo";
+	
+	//RODADO
+	public final static String FORM_RODADO = "/form-rodado";
+	public final static String INDEX_RODADO = "/index-rodado";
+	
+	/**** Redirects ****/
+	public final static String HOME = "/home"; // new RedirectView(ViewRouteHelper.HOME)
+	public final static String PERFILES = "/listar-perfiles"; //	new RedirectView(ViewRouteHelper.PERFILES)
+	public final static String USUARIOS = "/listar"; 
+	public final static String PERSONAS = "/listar-personas"; 
+	public final static String PERMISO_DIARIO = "/listar-permiso-diario";
+	public final static String PERMISO_PERIODO = "/listar-permiso-periodo";
+	public final static String RODADOS = "/listar-rodados";
+
+}
