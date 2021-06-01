@@ -37,13 +37,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 //				.antMatchers("/*").access("hasRole('ADMIN')")
 				.antMatchers("/new").access("hasRole('ADMIN')")//("hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')")// 
 //				.antMatchers("/new").access("hasRole('ADMIN'")
-<<<<<<< HEAD
+
 //				.antMatchers("/new-perfil").access("hasRole('ADMIN')")
 //		        .antMatchers("/listar-perfiles").access("hasRole('ADMIN')")
 //				
 //		        .antMatchers("/index").access("hasRole('ADMIN')")
 
-=======
+
 				
 				.antMatchers("/new-perfil").access("hasRole('ADMIN') || hasRole('USER')")
 		        .antMatchers("/listar-perfiles").access("hasRole('ADMIN')")
@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 //		        .antMatchers("/listar-personas").access("hasRole('ADMIN')")
 				
 		        .antMatchers("/index").access("hasRole('ADMIN')")
->>>>>>> abmPersona
+
 		        .antMatchers("/home").permitAll()
 		        //Agregar lista de user.
 //		        .anyRequest().authenticated()

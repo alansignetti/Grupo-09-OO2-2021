@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.unla.Grupo09OO22021ABM.entities;
 
 import java.time.LocalDate;
@@ -86,7 +86,7 @@ public class Permiso {
 		this.desdeHasta = desdeHasta;
 	}
 }
-=======
+
 //package com.unla.Grupo09OO22021ABM.entities;
 //
 //import java.time.LocalDate;
@@ -174,4 +174,4 @@ public class Permiso {
 //		this.desdeHasta = desdeHasta;
 //	}
 //}
->>>>>>> abmPersona
+

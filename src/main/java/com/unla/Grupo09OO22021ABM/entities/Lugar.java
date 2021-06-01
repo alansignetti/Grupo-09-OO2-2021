@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.unla.Grupo09OO22021ABM.entities;
 
 import java.util.Set;
@@ -84,7 +84,7 @@ public class Lugar {
 	}
 
 }
-=======
+
 //package com.unla.Grupo09OO22021ABM.entities;
 //
 //import java.util.Set;
@@ -169,4 +169,3 @@ public class Lugar {
 //	}
 //
 //}
->>>>>>> abmPersona
