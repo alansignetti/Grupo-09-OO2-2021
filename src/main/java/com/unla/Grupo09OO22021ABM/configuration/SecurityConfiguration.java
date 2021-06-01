@@ -22,7 +22,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-<<<<<<< HEAD
 				
 				.antMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*", "/vendor/jquery/*", "/vendor/bootstrap/js/*","/home*","/static/**","/static/home/*","/home/**").permitAll()
 				//.antMatchers("/listar/**").access("hasRole('AUDITOR')") 
@@ -30,18 +29,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				
 		        //.antMatchers("/listar-perfiles*").access("hasRole('AUDITOR') || hasRole('ADMIN')")
 		       // .antMatchers("/listar**").access("hasRole('ADMIN')")
-=======
-				.antMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*", "/vendor/jquery/*", "/vendor/bootstrap/js/*","/home","/static*").permitAll()
-//				.antMatchers("/new").access("hasRole('ADMIN')") 
-//				.antMatchers("/new-perfil").access("hasRole('ADMIN')")
-//				.antMatchers("/*").access("hasRole('ADMIN')")
-//				.antMatchers("/new").access("hasRole('ADMIN')|| hasRole('RESTRICTED')")hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')
-//				.antMatchers("/new").access("hasRole('ADMIN'")
-//				.antMatchers("/new-perfil").access("hasRole('ADMIN')")
-//		        .antMatchers("/listar-perfiles").access("hasRole('ADMIN')")
-//				
-//		        .antMatchers("/index").access("hasRole('ADMIN')")
->>>>>>> dbcfeaa06dd269a94edac0a265c8785749275dea
 		        .antMatchers("/home").permitAll()
 		        //Agregar lista de user.
 				.anyRequest().authenticated()
@@ -76,8 +63,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         // And Setting PassswordEncoder
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());     
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> dbcfeaa06dd269a94edac0a265c8785749275dea
