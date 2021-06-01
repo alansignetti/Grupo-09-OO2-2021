@@ -25,11 +25,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 				
 				.antMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*", "/vendor/jquery/*", "/vendor/bootstrap/js/*","/home*","/static/**","/static/home/*","/home/**").permitAll()
-				//.antMatchers("/listar/**").access("hasRole('AUDITOR')") 
-				//.antMatchers("/new-perfil*").access("hasRole('ADMIN')")
-				
-		        //.antMatchers("/listar-perfiles*").access("hasRole('AUDITOR') || hasRole('ADMIN')")
-		       // .antMatchers("/listar**").access("hasRole('ADMIN')")
+//				.antMatchers("/listar/**").access("hasRole('AUDITOR')") 
+//				.antMatchers("/new-perfil*").access("hasRole('ADMIN')")
+//				
+//		        .antMatchers("/listar-perfiles*").access("hasRole('AUDITOR') || hasRole('ADMIN')")
+//		        .antMatchers("/listar**").access("hasRole('ADMIN')")
 
 				.antMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*", "/vendor/jquery/*", "/vendor/bootstrap/js/*","/home","/static*").permitAll()
 //				.antMatchers("/new").access("hasRole('ADMIN')") 
@@ -44,13 +44,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 		        .antMatchers("/home").permitAll()
 		        //Agregar lista de user.
-				.anyRequest().authenticated()
+//		        .anyRequest().authenticated()
+
 			.and()
 				.formLogin().loginPage("/login").loginProcessingUrl("/loginprocess")
 				.usernameParameter("username").passwordParameter("password")
 				.defaultSuccessUrl("/loginsuccess").permitAll()
+				
 			.and()
 				.logout().logoutUrl("/logout").logoutSuccessUrl("/logout").permitAll();
+			
+			
 	}
 	
     BCryptPasswordEncoder bCryptPasswordEncoder;

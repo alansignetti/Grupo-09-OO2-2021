@@ -28,8 +28,8 @@ public class Persona {
 	@Column(name = "dni")
 	private long dni;
 //
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido")
-//	private Set<Permiso> permiso;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido")
+	private Set<Permiso> permiso;
 
 	public Persona() {
 	}
