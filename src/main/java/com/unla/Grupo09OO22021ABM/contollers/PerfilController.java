@@ -29,6 +29,7 @@ public class PerfilController {
 	@Qualifier("perfilService")
 	private IPerfilService service;
 	
+	//comentario de prueba otra vez
 
 	@PreAuthorize("hasRole('ROLE_AUDITOR') || hasRole('ROLE_ADMIN')")
 	@GetMapping("/listar-perfiles")
