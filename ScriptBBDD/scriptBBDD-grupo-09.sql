@@ -2,8 +2,6 @@
 create database `Grupo-09-BDD-OO2-2021`;
 use `Grupo-09-BDD-OO2-2021`;
 
-select * from usuario;
-select * from perfil;
 
 -- Tablas
 
@@ -59,6 +57,11 @@ VALUES ('1', 'signetti', '2021-05-28 03:20:21.369000', '11111111', 'alan@gmail.c
 INSERT INTO usuario (id_usuario, apellido, createdat, dni, email, enabled, nombre, password, tipo_dni, updatedat, username, id_perfil) 
 VALUES ('2', 'scroppo', '2021-05-28 03:20:21.369000', '22222222', 'fer@gmail.com',0b1, 'fer', '$2a$10$y2uERZ8FgyK1hX84onod5Ojq7utrVbT.LyGx3sA/hU47uvZFrbNWe', 'DNI', '2021-05-28 03:20:21.369000', 'fer', '2');
 
+-- username : lucia
+-- password : 1234
+
+INSERT INTO usuario (id_usuario, apellido, createdat, dni, email, enabled, nombre, password, tipo_dni, updatedat, username, id_perfil) 
+VALUES ('3', 'merlino', '2021-05-28 03:20:21.369000', '33333333', 'lucia@gmail.com',0b1, 'lucia', '$2a$10$y2uERZ8FgyK1hX84onod5Ojq7utrVbT.LyGx3sA/hU47uvZFrbNWe', 'DNI', '2021-05-28 03:20:21.369000', 'lucia', '1');
 
 
 

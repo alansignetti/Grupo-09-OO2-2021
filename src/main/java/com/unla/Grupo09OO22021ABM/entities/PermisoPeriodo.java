@@ -20,7 +20,7 @@ public class PermisoPeriodo extends Permiso{
 	private int cantDias;
 	
 	@Column(name = "vacaciones", nullable=false, columnDefinition = "boolean default true")
-	private boolean vacaciones = true;
+	private boolean vacaciones;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_rodado")
