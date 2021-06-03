@@ -46,11 +46,13 @@ public class Persona {
 		this.dni = dni;
 	}
 
-	public int getIdPersona() {
+	
+
+	public int getId_persona() {
 		return id_persona;
 	}
 
-	public void setIdPersona(int id_persona) {
+	public void setId_persona(int id_persona) {
 		this.id_persona = id_persona;
 	}
 
@@ -77,5 +79,15 @@ public class Persona {
 	public void setDni(long dni) {
 		this.dni = dni;
 	}
+
+	public Set<Permiso> getPermiso() {
+		return permiso;
+	}
+
+	public void setPermiso(Set<Permiso> permiso) {
+		this.permiso = permiso;
+	}
+	
+	
 
 }

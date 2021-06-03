@@ -80,7 +80,7 @@ public class PersonaController {
 	public String editar(Model model, @PathVariable int id) {
 		Optional<Persona>	persona = personaService.listarId(id);
 		model.addAttribute("persona", persona);
-		return ViewRouteHelper.FORM_USUARIO;
+		return ViewRouteHelper.FORM_PERSONA;
 	}
 	
 	@GetMapping("/eliminar-persona/{id}")

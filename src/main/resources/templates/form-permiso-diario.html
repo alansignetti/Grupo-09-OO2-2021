@@ -23,7 +23,7 @@
 						<div class="form-group">
 						<label>Persona:</label>	
 							<select class="form-control form-control-sm" th:field="*{pedido.id_persona}">
-							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.username}">
+							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.id_persona}">
                               </option>
 							</select>
 						</div>

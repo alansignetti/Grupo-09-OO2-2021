@@ -60,7 +60,7 @@ public class PermisoDiarioController {
 	public RedirectView save(Model model, @Validated PermisoDiario pd, RedirectAttributes attribute ) {
 		servicePermisoDiario.save(pd);
 		attribute.addFlashAttribute("success","El Permiso se agrego con Exito");
-		return new RedirectView(ViewRouteHelper.PERMISO_DIARIO);
+		return new RedirectView(ViewRouteHelper.HOME);
 	}
 	
 	

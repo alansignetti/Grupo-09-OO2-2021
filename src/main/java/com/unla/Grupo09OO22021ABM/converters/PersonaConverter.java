@@ -17,7 +17,7 @@ public class PersonaConverter {
 
 
 	public PersonaModel entityToModel(Persona persona) {
-		return new PersonaModel(persona.getIdPersona(), persona.getNombre(), persona.getApellido(), persona.getDni());
+		return new PersonaModel(persona.getId_persona(), persona.getNombre(), persona.getApellido(), persona.getDni());
 	}
 
 	

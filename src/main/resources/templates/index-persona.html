@@ -19,21 +19,18 @@
 					<th>NOMBRE</th>
 					<th>APELLIDO</th>
 					<th>DNI</th>
+					<th>ACCION</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="persona:${personas}">
 					<td th:text="${persona.nombre}"></td>
 					
-					<td style="display:none" th:text="${persona.id_persona}" ></td> 
+					<!--<td style="display:none" th:text="${persona.id_persona}" ></td> -->
 					
 					<td th:text="${persona.apellido}"></td>
 					<td th:text="${persona.dni}"></td>
-					<!--<td>
-						<a th:href="@{/editar-persona/}+${persona.id_persona}" class="btn btn-warning">Editar</a>
-						<a th:href="@{/eliminar-persona/}+${persona.id_persona}" class="btn btn-danger">Eliminar</a>
-						<a th:onclick="eliminar([[${persona.id_persona}]])" class="btn btn-danger">Eliminar</a>   th:text="${persona.id_persona}"
-					</td>-->
+					<a th:href="@{/editar-persona/}+${persona.id_persona}" class="btn btn-warning">Editar</a>
 				</tr>
 			</tbody>
 		</table>
