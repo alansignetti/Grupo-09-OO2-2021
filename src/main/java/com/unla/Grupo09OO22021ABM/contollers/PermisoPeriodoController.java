@@ -69,7 +69,7 @@ public class PermisoPeriodoController {
 	public RedirectView save(Model model, @Validated PermisoPeriodo pp, RedirectAttributes attribute ) {
 		servicePermisoPeriodo.save(pp);
 		attribute.addFlashAttribute("success","El Permiso se agrego con Exito");
-		return new RedirectView(ViewRouteHelper.PERMISO_PERIODO);
+		return new RedirectView(ViewRouteHelper.HOME);
 	}
 
 }
