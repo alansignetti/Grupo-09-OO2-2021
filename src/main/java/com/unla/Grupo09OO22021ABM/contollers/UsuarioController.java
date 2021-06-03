@@ -36,7 +36,7 @@ public class UsuarioController {
 	private IPerfilService service2;
 	
 	@PreAuthorize("hasRole('ROLE_AUDITOR') || hasRole('ROLE_ADMIN') ")
-	@GetMapping("/listar")
+	@GetMapping("/listar")	
 	public String listar(Model model) {
 		List<Usuario> usuarios = service.listar();
 		model.addAttribute("usuarios", usuarios);

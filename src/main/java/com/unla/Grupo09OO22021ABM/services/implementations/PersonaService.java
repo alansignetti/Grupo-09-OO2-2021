@@ -23,23 +23,57 @@ public class PersonaService implements IPersonaService{
     @Autowired
     @Qualifier("personaRepository")
     private IPersonaRepository personaRepository;
+  
     
+    @Override
+	public List<Persona> listarPersonas() {
+		return (List<Persona>)personaRepository.findAll();
+	}
+
+	@Override
+	public Optional<Persona> listarIdPersona(int id) {
+		return personaRepository.findById(id);
+	}
+
+	@Override
+	public int save(Persona u) {
+		int res=0;
+		Persona persona = personaRepository.save(u);
+		if (!persona.equals(null)) {
+			res =1;
+		}
+		return res;
+	}
+
+	@Override
+	public void delete(int id) {
+		personaRepository.deleteById(id);
+	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
     @Override
     public List<Persona> listarPersonas() {
 		return (List<Persona>)personaRepository.findAll();
 	}
 
-//    @Override
-//    public PersonaModel altaPersona(PersonaModel persona){
-//        return personaConverter.entityToModel(personaRepository.save(personaConverter.modelToEntity(persona)));
-//    }
-//    
 	
 	@Override
 	public int save(Persona p) {
 		int res=0;
-		Persona usuario = personaRepository.save(p);
-		if (!usuario.equals(null)) {
+		Persona persona = personaRepository.save(p);
+		if (!persona.equals(null)) {
 			res =1;
 		}
 		return res;
@@ -58,5 +92,5 @@ public class PersonaService implements IPersonaService{
 	public void delete(int id) {
 		personaRepository.deleteById(id);
 	}
-
+*/
 }

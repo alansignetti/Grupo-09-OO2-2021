@@ -23,29 +23,22 @@
 			</thead>
 			<tbody>
 				<tr th:each="persona:${personas}">
-					
-					
-					
-					
+					<td style="display:none" th:text="${persona.id_persona}"></td>
 					<td th:text="${persona.nombre}"></td>
-					
-					<td style="display:none" th:text="${persona.id_persona}" ></td> 
-					
 					<td th:text="${persona.apellido}"></td>
 					<td th:text="${persona.dni}"></td>
 					<td>
-						<a th:href="@{/editar-persona/}+${persona.id_persona}" class="btn btn-warning">Editar</a>
-						<a th:href="@{/eliminar-persona/}+${persona.id_persona}" class="btn btn-danger">Eliminar</a>
-						<!--<a th:onclick="eliminar([[${persona.id_persona}]])" class="btn btn-danger">Eliminar</a>   th:text="${persona.id_persona}"-->
+					<!--
+					<a th:href="@{/editar/}+${persona.id_persona}" class="btn btn-warning">Editar</a>
+					<a th:href="@{/eliminar/}+${persona.id_persona}" class="btn btn-danger">Eliminar</a>
+					 -->
 					</td>
 				</tr>
 			</tbody>
 		</table>
 
 	</div>
-	<!--<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="funciones.js"></script>-->
+
 </body>
 
 </html>

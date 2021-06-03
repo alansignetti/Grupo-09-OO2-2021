@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.Grupo09OO22021ABM.entities.Perfil;
 import com.unla.Grupo09OO22021ABM.entities.Persona;
-import com.unla.Grupo09OO22021ABM.entities.Usuario;
+import com.unla.Grupo09OO22021ABM.entities.Persona;
 import com.unla.Grupo09OO22021ABM.helpers.ViewRouteHelper;
 import com.unla.Grupo09OO22021ABM.models.PersonaModel;
 import com.unla.Grupo09OO22021ABM.services.IPersonaService;
@@ -41,11 +41,13 @@ public class PersonaController {
 
     
 	@GetMapping("/listar-personas")
-	public String listar(Model model) {
+	public String listarPersonas(Model model) {
 		List<Persona> personas = personaService.listarPersonas();
 		model.addAttribute("personas", personas);
 		return ViewRouteHelper.INDEX_PERSONA;
 	}
+	
+
     
 //	@GetMapping("/listar")
 //	public String listar(Model model) {
@@ -78,9 +80,9 @@ public class PersonaController {
 	
 	@GetMapping("/editar-persona/{id}")
 	public String editar(Model model, @PathVariable int id) {
-		Optional<Persona>	persona = personaService.listarId(id);
+		Optional<Persona>	persona = personaService.listarIdPersona(id);
 		model.addAttribute("persona", persona);
-		return ViewRouteHelper.FORM_USUARIO;
+		return ViewRouteHelper.FORM_PERSONA;
 	}
 	
 	@GetMapping("/eliminar-persona/{id}")

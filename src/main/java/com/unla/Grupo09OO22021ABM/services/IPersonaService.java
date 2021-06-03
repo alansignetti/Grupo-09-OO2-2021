@@ -14,7 +14,7 @@ public interface IPersonaService {
     
     public List<Persona> listarPersonas();
 
-	public Optional<Persona> listarId(int id);
+	public Optional<Persona> listarIdPersona(int id);
 
 	public void delete(int id);
 }

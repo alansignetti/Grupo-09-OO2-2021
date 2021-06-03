@@ -15,10 +15,11 @@ import javax.persistence.GenerationType;
 @Table(name = "persona")
 public class Persona {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_persona;
-
+	
 	@Column(name = "nombre")
 	private String nombre;
 
@@ -32,25 +33,22 @@ public class Persona {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido")
 	private Set<Permiso> permiso;
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido")
-//	private Set<Permiso> permiso;
-
 
 	public Persona() {
 	}
 
-	public Persona( String nombre, String apellido, long dni) {
+	public Persona(String nombre, String apellido, long dni) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
 	}
 
-	public int getIdPersona() {
+	public int getId_persona() {
 		return id_persona;
 	}
 
-	public void setIdPersona(int id_persona) {
+	public void setId_persona(int id_persona) {
 		this.id_persona = id_persona;
 	}
 
