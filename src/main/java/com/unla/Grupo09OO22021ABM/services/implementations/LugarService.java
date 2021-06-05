@@ -32,11 +32,6 @@ public class LugarService implements ILugarService{
 	public List<Lugar> listarLugar() {
 		return (List<Lugar>)lugarRepository.findAll();
 	}
-//	
-//	@Override
-//	public Set<Lugar> listarLugares() {
-//		return (Set<Lugar>)lugarRepository.getAll();
-//	}
 
 	@Override
 	public Optional<Lugar> listarId(int id) {

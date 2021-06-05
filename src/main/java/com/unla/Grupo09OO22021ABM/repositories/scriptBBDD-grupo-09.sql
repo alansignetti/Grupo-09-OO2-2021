@@ -36,9 +36,9 @@ INSERT INTO usuario (id_usuario, apellido, createdat, dni, email, enabled, nombr
 VALUES ('2', 'scroppo', '2021-05-28 03:20:21.369000', '22222222', 'fer@gmail.com',0b1, 'fer', '$2a$10$y2uERZ8FgyK1hX84onod5Ojq7utrVbT.LyGx3sA/hU47uvZFrbNWe', 'DNI', '2021-05-28 03:20:21.369000', 'fer', '2');
 
 
-INSERT INTO lugar (idLugar, codigo_postal, lugar) VALUES (1, '1846', 'ADROGUE');
-INSERT INTO lugar (idLugar, codigo_postal, lugar) VALUES (2, '7600', 'MAR DEL PLATA');
-INSERT INTO lugar (idLugar, codigo_postal, lugar) VALUES (3, '1416', 'CABALLITO');
+INSERT INTO lugar (id_lugar, codigo_postal, lugar) VALUES (1, '1846', 'ADROGUE');
+INSERT INTO lugar (id_lugar, codigo_postal, lugar) VALUES (2, '7600', 'MAR DEL PLATA');
+INSERT INTO lugar (id_lugar, codigo_postal, lugar) VALUES (3, '1416', 'CABALLITO');
  
 
 

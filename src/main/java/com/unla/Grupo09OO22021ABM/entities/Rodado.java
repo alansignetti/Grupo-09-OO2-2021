@@ -25,9 +25,6 @@ public class Rodado {
 	@Column(name = "vehiculo", nullable=false)
 	private String vehiculo;
 	
-	/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "rodado")
-	private Set<PermisoPeriodo> permisos_periodos;*/
-	
 	public Rodado() {}
 
 	public Rodado(String dominio, String vehiculo) {
@@ -61,16 +58,6 @@ public class Rodado {
 		this.vehiculo = vehiculo;
 	}
 
-	/*public Set<PermisoPeriodo> getPermisos_periodos() {
-		return permisos_periodos;
-	}
-
-	public void setPermisos_periodos(Set<PermisoPeriodo> permisos_periodos) {
-		this.permisos_periodos = permisos_periodos;
-	}*/
-	
-	
-	
 	
 
 }

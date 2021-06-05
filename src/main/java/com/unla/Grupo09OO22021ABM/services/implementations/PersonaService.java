@@ -51,46 +51,4 @@ public class PersonaService implements IPersonaService{
 	}
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-    @Override
-    public List<Persona> listarPersonas() {
-		return (List<Persona>)personaRepository.findAll();
-	}
-
-	
-	@Override
-	public int save(Persona p) {
-		int res=0;
-		Persona persona = personaRepository.save(p);
-		if (!persona.equals(null)) {
-			res =1;
-		}
-		return res;
-	}
-	
-
-	
-	@Override
-	public Optional<Persona> listarId(int id) {
-		return personaRepository.findById(id);
-	}
-
-	
-
-	@Override
-	public void delete(int id) {
-		personaRepository.deleteById(id);
-	}
-*/
 }

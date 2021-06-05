@@ -25,33 +25,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 				
 				.antMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*", "/vendor/jquery/*", "/vendor/bootstrap/js/*","/home*","/static/**","/static/home/*","/home/**").permitAll()
-//				.antMatchers("/listar/**").access("hasRole('AUDITOR')") 
-//				.antMatchers("/new-perfil*").access("hasRole('ADMIN')")
-//				
-//		        .antMatchers("/listar-perfiles*").access("hasRole('AUDITOR') || hasRole('ADMIN')")
-//		        .antMatchers("/listar**").access("hasRole('ADMIN')")
+
 
 				.antMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*", "/vendor/jquery/*", "/vendor/bootstrap/js/*","/home","/static*").permitAll()
 				
 				.antMatchers("/new-perfil").access("hasRole('ADMIN')")
-//				.antMatchers("/*").access("hasRole('ADMIN')")
 				.antMatchers("/new").access("hasRole('ADMIN')")//("hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')")// 
-//				.antMatchers("/new").access("hasRole('ADMIN'")
-
-//				.antMatchers("/new-perfil").access("hasRole('ADMIN')")
-//		        .antMatchers("/listar-perfiles").access("hasRole('ADMIN')")
-//				
-//		        .antMatchers("/index").access("hasRole('ADMIN')")
-
-
-				
 				.antMatchers("/new-perfil").access("hasRole('ADMIN') || hasRole('USER')")
-		        .antMatchers("/listar-perfiles").access("hasRole('ADMIN')")
-		        
-
-//				.antMatchers("/new-persona").access("hasRole('ADMIN')")
-//		        .antMatchers("/listar-personas").access("hasRole('ADMIN')")
-				
+		        .antMatchers("/listar-perfiles").access("hasRole('ADMIN')")		        
 		        .antMatchers("/index").access("hasRole('ADMIN')")
 
 		        .antMatchers("/home").permitAll()

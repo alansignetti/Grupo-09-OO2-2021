@@ -31,12 +31,6 @@ public class Lugar {
 	@Column(name = "codigo_postal", nullable=false, length=45)
 	private String codigo_postal;
 	
-//	@ManyToMany(fetch = FetchType.EAGER)
-//	@JoinTable(name="permisoxlugar", 
-//	joinColumns=@JoinColumn (name="idLugar"),
-//	inverseJoinColumns= @JoinColumn(name="id_permiso"))
-//	private Set<Permiso> permisos;
-
 	@ManyToMany(mappedBy = "desdeHasta") 
 	private Set<Permiso> permisos;
 	
@@ -46,7 +40,6 @@ public class Lugar {
 		super();
 		this.lugar = lugar;
 		this.codigo_postal = codigo_postal;
-//		this.permisos = new HashSet<Permiso>();
 	}
 
 	

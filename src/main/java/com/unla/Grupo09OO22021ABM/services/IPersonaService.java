@@ -8,8 +8,6 @@ import com.unla.Grupo09OO22021ABM.models.PersonaModel;
 
 public interface IPersonaService {
     
-//    public PersonaModel altaPersona(PersonaModel persona);
-    
     public int save(Persona p);
     
     public List<Persona> listarPersonas();

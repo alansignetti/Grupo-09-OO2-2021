@@ -22,23 +22,13 @@ public class HomeController {
 	}
 	
 
-	/*
-	@GetMapping("/home")
-	public String home() {
-		return ViewRouteHelper.HOME;
-	}
-	*/
 	
 	@RequestMapping({"/","/home"})
     public String home() {
       return ViewRouteHelper.HOME;
     }
 
-	/*@GetMapping("/home")
-	public String home() {
-		return ViewRouteHelper.HOME;
-	}*/
-		
+
 	
 	@GetMapping("/index")
 	public String index() {

@@ -32,14 +32,7 @@ public class PersonaController {
     @Qualifier("personaService")
     private IPersonaService personaService;
     
-//    @GetMapping("")
-//    public ModelAndView altaPersona(){
-//        ModelAndView mV = new ModelAndView(ViewRouteHelper.FORM_PERSONA);
-//		mV.addObject("persona", new PersonaModel());
-//		return mV;
-//    }
 
-    
 	@GetMapping("/listar-personas")
 	public String listarPersonas(Model model) {
 		List<Persona> personas = personaService.listarPersonas();
@@ -47,30 +40,14 @@ public class PersonaController {
 		return ViewRouteHelper.INDEX_PERSONA;
 	}
 	
-
     
-//	@GetMapping("/listar")
-//	public String listar(Model model) {
-//		List<Persona> personas = personaService.listarPersonas();
-//		model.addAttribute("personas", personas);
-//		return ViewRouteHelper.INDEX;
-//	}
-//	
-
     
 	@GetMapping("/new-persona")
-	public String agregar(Model model) {
-//		List<Persona> personas = personaService.listarPersonas();		
+	public String agregar(Model model) {	
 		model.addAttribute("persona", new Persona());
-//		model.addAttribute("personas", personas);
 		return ViewRouteHelper.FORM_PERSONA;
 	}
 	
-//	@PostMapping("/save-persona")
-//	public RedirectView save(Model model, @Validated PersonaModel p) {
-//		personaService.altaPersona(p);
-//		return new RedirectView(ViewRouteHelper.PERSONAS);
-//	}
 	
 	@PostMapping("/save-persona")
 	public RedirectView save(Model model, @Validated Persona p) {
