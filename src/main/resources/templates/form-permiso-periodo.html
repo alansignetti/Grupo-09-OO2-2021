@@ -23,7 +23,7 @@
 						<div class="form-group">
 						<label>Persona:</label>	
 							<select class="form-control form-control-sm" th:field="*{pedido.id_persona}">
-							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.username}">
+							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.nombre}">
                               </option>
 							</select>
 						</div>
@@ -33,14 +33,14 @@
 						</div>
 						<div class="form-group">
 						<label>Lugar Desde:</label>	
-							<select class="form-control form-control-sm" th:field="*{desdeHasta.idLugar}">
+							<select class="form-control form-control-sm" name="desde">
 							 <option th:each="i : ${lugares}" th:value="${i.idLugar}" th:text="${i.lugar}">
                               </option>
 							</select>
 						</div>
 						<div class="form-group">
 						<label>Lugar Hasta:</label>	
-							<select class="form-control form-control-sm" th:field="*{desdeHasta.idLugar}">
+							<select class="form-control form-control-sm" name="hasta">
 							 <option th:each="i : ${lugares}" th:value="${i.idLugar}" th:text="${i.lugar}">
                               </option>
 							</select>
@@ -51,7 +51,8 @@
 						</div>
 						<div class="form-group">
 							<label>Vacaciones:</label>
-							<input th:field="*{vacaciones}" type="checkbox" class="form-control"/>
+							 <input type="checkbox" name="vacaciones" value="vacaciones" th:field="*{vacaciones}"> <br>
+							<!--input type="radio" th:field="*{vacaciones}" value="true" class="form-control" /-->
 						</div>
 						<div class="form-group">
 						<label>Rodado:</label>	

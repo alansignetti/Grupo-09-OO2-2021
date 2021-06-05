@@ -1,6 +1,8 @@
 package com.unla.Grupo09OO22021ABM.contollers;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -66,10 +69,16 @@ public class PermisoPeriodoController {
 	}
 	
 	@PostMapping("/save-permiso-periodo")
-	public RedirectView save(Model model, @Validated PermisoPeriodo pp, RedirectAttributes attribute ) {
-		servicePermisoPeriodo.save(pp);
-		attribute.addFlashAttribute("success","El Permiso se agrego con Exito");
-		return new RedirectView(ViewRouteHelper.HOME);
-	}
+    public RedirectView save(Model model, @Validated PermisoPeriodo pp, RedirectAttributes attribute,
+            @RequestParam(required=false) int desde,
+            @RequestParam(required=false) int hasta) {
 
+        Set<Lugar> lugares = new HashSet<>();
+        lugares.add(serviceLugar.traerLugar(desde));
+        lugares.add(serviceLugar.traerLugar(hasta));
+        pp.setDesdeHasta(lugares);
+        servicePermisoPeriodo.save(pp);
+        attribute.addFlashAttribute("success","El Permiso se agrego con Exito");
+        return new RedirectView(ViewRouteHelper.HOME);
+    }
 }
