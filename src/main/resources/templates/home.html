@@ -44,20 +44,21 @@
 					<li class="nav-item"><a class="nav-link" href="/listar/?format=pdf" sec:authorize access="hasRole('AUDITOR')"><i class="fas fa-file-pdf"></i>
 							Exportar Usuarios PDF </a> </li>
 					<li class="nav-item"><a class="nav-link" href="/listar-perfiles">Lista de Perfiles</a></li>
-					<!--
+					
 					<li class="nav-item"><a class="nav-link" href="/listar-personas">Lista de Personas</a></li>
-					-->
+					
 					
 								
 
 					<li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
 					<li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
 					
+					<!--
+					<a class="nav-link" href="/listar/?format=pdf" sec:authorize="hasAuthority('AUDITOR')"><i class="fas fa-file-pdf"></i>AUT</a>
 					
-					
-					
+					<a class="nav-link" href="/listar/?format=pdf" sec:authorize access="hasRole('AUDITOR')"><i class="fas fa-file-pdf"></i>hasro</a>
 					<li class="nav-item"><a class="nav-link" href="/listar-personas" sec:authorize access="hasRole('ROLE_ADMIN')">PRUEBA 1</a></li>
-					
+					-->
 
 				</ul>
 			</div>
