@@ -52,7 +52,7 @@ public class PersonaController {
 	@PostMapping("/save-persona")
 	public RedirectView save(Model model, @Validated Persona p) {
 		personaService.save(p);
-		return new RedirectView(ViewRouteHelper.PERSONAS);
+		return new RedirectView(ViewRouteHelper.HOME);
 	}
 	
 	@GetMapping("/editar-persona/{id}")

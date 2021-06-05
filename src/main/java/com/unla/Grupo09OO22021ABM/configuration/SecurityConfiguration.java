@@ -17,7 +17,7 @@ import com.unla.Grupo09OO22021ABM.services.implementations.UserDetailsServiceSec
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
- 
+
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -30,7 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*", "/vendor/jquery/*", "/vendor/bootstrap/js/*","/home","/static*").permitAll()
 				
 				.antMatchers("/new-perfil").access("hasRole('ADMIN')")
-				.antMatchers("/new").access("hasRole('ADMIN')")//("hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')")// 
+				
 				.antMatchers("/new-perfil").access("hasRole('ADMIN') || hasRole('USER')")
 		        .antMatchers("/listar-perfiles").access("hasRole('ADMIN')")		        
 		        .antMatchers("/index").access("hasRole('ADMIN')")
@@ -47,16 +47,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		        .antMatchers("/home").permitAll()
 		        //Agregar lista de user.
 //		        .anyRequest().authenticated()
+		        
+		        
+		        .antMatchers("/new").access("hasRole('ADMIN')")
 
 			.and()
-				.formLogin().loginPage("/login").loginProcessingUrl("/loginprocess")
+				.formLogin().loginPage("/login").loginProcessingUrl("/loginprocess").defaultSuccessUrl("/home")
 				.usernameParameter("username").passwordParameter("password")
-				.defaultSuccessUrl("/loginsuccess").permitAll()
+				.permitAll()
+				
 				
 			.and()
-				.logout().logoutUrl("/logout").logoutSuccessUrl("/logout").permitAll();
-			
-			
+				.logout().logoutUrl("/logout").logoutSuccessUrl("/logout")
+				.clearAuthentication(true).invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID").permitAll();
+		
 	}
 	
     BCryptPasswordEncoder bCryptPasswordEncoder;

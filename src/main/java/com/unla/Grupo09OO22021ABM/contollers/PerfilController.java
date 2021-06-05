@@ -50,7 +50,7 @@ public class PerfilController {
 	public RedirectView save(Model model, @Validated Perfil p, RedirectAttributes attribute ) {
 		service.save(p);
 		attribute.addFlashAttribute("success","Perfil Agregado con Exito");
-		return new RedirectView(ViewRouteHelper.PERFILES);
+		return new RedirectView(ViewRouteHelper.HOME);
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

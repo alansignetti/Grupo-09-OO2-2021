@@ -58,7 +58,7 @@ public class UsuarioController {
 	public RedirectView save(Model model, @Validated Usuario u, RedirectAttributes attribute ) {
 		service.save(u);
 		attribute.addFlashAttribute("success","El usuario se agrego con Exito");
-		return new RedirectView(ViewRouteHelper.USUARIOS);
+		return new RedirectView(ViewRouteHelper.HOME);
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
