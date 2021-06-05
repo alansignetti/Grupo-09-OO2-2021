@@ -41,10 +41,10 @@ CREATE TABLE `usuario` (
 -- Perfiles ya precargados
 
 INSERT INTO perfil (id_perfil, tipo_perfil,enabled,createdat, updatedat)
-VALUES (1,"ADMIN",0b1,'2021-05-28 03:20:21.369000','2021-05-28 03:20:21.369000');
+VALUES (1,"ROLE_ADMIN",0b1,'2021-05-28 03:20:21.369000','2021-05-28 03:20:21.369000');
 
 INSERT INTO perfil (id_perfil, tipo_perfil,enabled,createdat, updatedat)
-VALUES (2,"AUDITOR",0b1,'2021-05-28 03:20:21.369000','2021-05-28 03:20:21.369000');
+VALUES (2,"ROLE_AUDITOR",0b1,'2021-05-28 03:20:21.369000','2021-05-28 03:20:21.369000');
 
 -- Usuarios
 
@@ -61,7 +61,17 @@ VALUES ('2', 'scroppo', '2021-05-28 03:20:21.369000', '22222222', 'fer@gmail.com
 
 
 
+insert into persona values('1', 'persona1', '1231', 'persona1');
 
+
+INSERT INTO lugar (id_lugar, codigo_postal, lugar) VALUES (1, '1846', 'ADROGUE');
+INSERT INTO lugar (id_lugar, codigo_postal, lugar) VALUES (2, '7600', 'MAR DEL PLATA');
+INSERT INTO lugar (id_lugar, codigo_postal, lugar) VALUES (3, '1416', 'CABALLITO');
+
+
+INSERT INTO rodado (id_rodado, dominio, vehiculo) VALUES ('1', 'AAA123AAA', 'citroen C3');
+INSERT INTO rodado (id_rodado, dominio, vehiculo) VALUES ('2', 'BBB456BBB', 'fiat palio');
+INSERT INTO rodado (id_rodado, dominio, vehiculo) VALUES ('3', 'CCC789CCC', 'chevrolet agile');
 
 
 
