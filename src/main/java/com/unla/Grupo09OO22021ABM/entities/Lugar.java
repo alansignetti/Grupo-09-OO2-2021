@@ -29,14 +29,14 @@ public class Lugar {
 	@Column(name = "codigo_postal", nullable=false, length=45)
 	private String codigo_postal;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name="permisoxlugar", 
-	joinColumns=@JoinColumn (name="id_lugar"),
-	inverseJoinColumns= @JoinColumn(name="id_permiso"))
-	private Set<Permiso> permisos;
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	@JoinTable(name="permisoxlugar", 
+//	joinColumns=@JoinColumn (name="id_lugar"),
+//	inverseJoinColumns= @JoinColumn(name="id_permiso"))
+//	private Set<Permiso> permisos;
 
-	/*@ManyToMany(mappedBy = "desdeHasta")
-    private Set<Permiso> permisos;*/
+	@ManyToMany(mappedBy = "desdeHasta") 
+	private Set<Permiso> permisos;
 
 	public Lugar() {}
 
@@ -44,7 +44,7 @@ public class Lugar {
 		super();
 		this.lugar = lugar;
 		this.codigo_postal = codigo_postal;
-		this.permisos = new HashSet<Permiso>();
+//		this.permisos = new HashSet<Permiso>();
 	}
 
 	
@@ -82,4 +82,28 @@ public class Lugar {
 		this.permisos = permisos;
 	}
 
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id_lugar;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Lugar other = (Lugar) obj;
+		if (id_lugar != other.id_lugar)
+			return false;
+		return true;
+	}
+	
 }

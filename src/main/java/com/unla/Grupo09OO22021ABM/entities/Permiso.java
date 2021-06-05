@@ -83,6 +83,7 @@ public class Permiso {
 	public void setDesdeHasta(Set<Lugar> desdeHasta) {
 		this.desdeHasta = desdeHasta;
 	}
+
 	
 	public void addLugarDesdeHasta(Lugar lugar) {
 		desdeHasta.add(lugar);
