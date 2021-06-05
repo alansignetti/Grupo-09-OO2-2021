@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.unla.Grupo09OO22021ABM.converters.PersonaConverter;
@@ -50,5 +51,12 @@ public class PersonaService implements IPersonaService{
 		personaRepository.deleteById(id);
 	}
     
+	
+	
+
+	@Override
+	public Persona traerPorDni(long dni) {
+		return personaRepository.findByDni(dni);
+	}
     
 }

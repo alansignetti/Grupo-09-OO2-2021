@@ -23,6 +23,7 @@ public class ViewRouteHelper {
 	//PERSONA
 	public final static String FORM_PERSONA = "/form-persona";
 	public final static String INDEX_PERSONA = "/index-persona";
+	public final static String PERSONA_DNI = "/persona-dni";
 	
 	//PERMISO DIARIO
 	public final static String FORM_PERMISO_DIARIO = "/form-permiso-diario";
@@ -36,6 +37,9 @@ public class ViewRouteHelper {
 	public final static String FORM_RODADO = "/form-rodado";
 	public final static String INDEX_RODADO = "/index-rodado";
 	
+	//PERMISO
+	public final static String PERMISO_PERSONA = "/permiso-persona";
+	
 	/**** Redirects ****/
 	public final static String HOME = "/home"; // new RedirectView(ViewRouteHelper.HOME)
 	public final static String PERFILES = "/listar-perfiles"; //	new RedirectView(ViewRouteHelper.PERFILES)
@@ -44,5 +48,5 @@ public class ViewRouteHelper {
 	public final static String PERMISO_DIARIO = "/listar-permiso-diario";
 	public final static String PERMISO_PERIODO = "/listar-permiso-periodo";
 	public final static String RODADOS = "/listar-rodados";
-
+	public final static String TRAER_PERSONA_DNI = "/traerPersonaDNI";
 }
