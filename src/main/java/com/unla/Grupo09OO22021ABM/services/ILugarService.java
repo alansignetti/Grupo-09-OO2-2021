@@ -14,5 +14,6 @@ public interface ILugarService {
 	public Set<Lugar> listarLugares();
 	public Optional<Lugar> listarId(int id);
 	public int save(Lugar l);
+	public Lugar traerLugar(int id);
 
 }

@@ -41,7 +41,7 @@ public class Permiso {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="permisoxlugar", 
 	joinColumns=@JoinColumn (name="id_permiso"),
-	inverseJoinColumns= @JoinColumn(name="id_lugar"))
+	inverseJoinColumns= @JoinColumn(name="idLugar"))
 	private Set<Lugar> desdeHasta;
 	
 

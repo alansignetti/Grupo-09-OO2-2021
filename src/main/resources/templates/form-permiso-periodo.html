@@ -33,15 +33,15 @@
 						</div>
 						<div class="form-group">
 						<label>Lugar Desde:</label>	
-							<select class="form-control form-control-sm" th:field="*{desdeHasta.id_lugar}">
-							 <option th:each="i : ${lugares}" th:value="${i.id_lugar}" th:text="${i.lugar}">
+							<select class="form-control form-control-sm" th:field="*{desdeHasta.idLugar}">
+							 <option th:each="i : ${lugares}" th:value="${i.idLugar}" th:text="${i.lugar}">
                               </option>
 							</select>
 						</div>
 						<div class="form-group">
 						<label>Lugar Hasta:</label>	
-							<select class="form-control form-control-sm" th:field="*{desdeHasta.id_lugar}">
-							 <option th:each="i : ${lugares}" th:value="${i.id_lugar}" th:text="${i.lugar}">
+							<select class="form-control form-control-sm" th:field="*{desdeHasta.idLugar}">
+							 <option th:each="i : ${lugares}" th:value="${i.idLugar}" th:text="${i.lugar}">
                               </option>
 							</select>
 						</div>

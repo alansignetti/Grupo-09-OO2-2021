@@ -64,9 +64,9 @@ VALUES ('2', 'scroppo', '2021-05-28 03:20:21.369000', '22222222', 'fer@gmail.com
 insert into persona values('1', 'persona1', '1231', 'persona1');
 
 
-INSERT INTO lugar (id_lugar, codigo_postal, lugar) VALUES (1, '1846', 'ADROGUE');
-INSERT INTO lugar (id_lugar, codigo_postal, lugar) VALUES (2, '7600', 'MAR DEL PLATA');
-INSERT INTO lugar (id_lugar, codigo_postal, lugar) VALUES (3, '1416', 'CABALLITO');
+INSERT INTO lugar (idLugar, codigo_postal, lugar) VALUES (1, '1846', 'ADROGUE');
+INSERT INTO lugar (idLugar, codigo_postal, lugar) VALUES (2, '7600', 'MAR DEL PLATA');
+INSERT INTO lugar (idLugar, codigo_postal, lugar) VALUES (3, '1416', 'CABALLITO');
 
 
 INSERT INTO rodado (id_rodado, dominio, vehiculo) VALUES ('1', 'AAA123AAA', 'citroen C3');

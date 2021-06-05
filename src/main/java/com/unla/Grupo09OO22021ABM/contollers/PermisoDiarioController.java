@@ -1,5 +1,6 @@
 package com.unla.Grupo09OO22021ABM.contollers;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -59,13 +60,15 @@ public class PermisoDiarioController {
 	}
 	
 	@PostMapping("/save-permiso-diario")
-	public RedirectView save(Model model, @Validated PermisoDiario pd, RedirectAttributes attribute ,
-			 @RequestParam(required = false) int desde,
-			   @RequestParam(required = false) int hasta) {
-		Set<Lugar> lugares = serviceLugar.listarLugares();
-//		model.addAttribute("lugares", lugares);
-		model.addAttribute("lugares", serviceLugar.listarId(1));
-		model.addAttribute("lugares", serviceLugar.listarId(3));
+	public RedirectView save(Model model, @Validated PermisoDiario pd, RedirectAttributes attribute 
+			,@RequestParam(required = false) int desde,
+			   @RequestParam(required = false) int hasta
+			) 	{
+		
+		
+		Set<Lugar> lugares = new HashSet<>();
+		lugares.add(serviceLugar.traerLugar(desde));
+		lugares.add(serviceLugar.traerLugar(hasta));
 		pd.setDesdeHasta(lugares);
 		servicePermisoDiario.save(pd);
 		attribute.addFlashAttribute("success","El Permiso se agrego con Exito");

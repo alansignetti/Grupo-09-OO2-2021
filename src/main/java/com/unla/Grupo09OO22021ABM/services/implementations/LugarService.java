@@ -62,5 +62,10 @@ public class LugarService implements ILugarService{
 		return lugares;
 	}
 
+	
+	@Override
+	public Lugar traerLugar(int id) {
+		return lugarRepository.findByIdLugar(id);
+	}
 
 }

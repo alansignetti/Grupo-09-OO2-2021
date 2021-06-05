@@ -10,5 +10,6 @@ import com.unla.Grupo09OO22021ABM.entities.Lugar;
 
 @Repository("lugarRepository")
 public interface ILugarRepository extends JpaRepository<Lugar, Serializable> {
-
+	public Lugar findByIdLugar(int idLugar);
+	
 }

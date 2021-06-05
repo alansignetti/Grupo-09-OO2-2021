@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class LugarModel {
 
-	private int id_lugar;
+	private int idLugar;
 	private String lugar;
 	private String codigo_postal;
 	private Set<PermisoModel> permisos;
@@ -19,12 +19,12 @@ public class LugarModel {
 		this.permisos = new HashSet<PermisoModel>();
 	}	
 
-	public int getId_lugar() {
-		return id_lugar;
+	public int getidLugar() {
+		return idLugar;
 	}
 
-	public void setId_lugar(int id_lugar) {
-		this.id_lugar = id_lugar;
+	public void setidLugar(int idLugar) {
+		this.idLugar = idLugar;
 	}
 
 	public String getLugar() {

@@ -23,7 +23,7 @@ public class Lugar {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_lugar;
+	private int idLugar;
 
 	@Column(name = "lugar", nullable=false, length=100)
 	private String lugar;
@@ -33,7 +33,7 @@ public class Lugar {
 	
 //	@ManyToMany(fetch = FetchType.EAGER)
 //	@JoinTable(name="permisoxlugar", 
-//	joinColumns=@JoinColumn (name="id_lugar"),
+//	joinColumns=@JoinColumn (name="idLugar"),
 //	inverseJoinColumns= @JoinColumn(name="id_permiso"))
 //	private Set<Permiso> permisos;
 
@@ -50,12 +50,12 @@ public class Lugar {
 	}
 
 	
-	public int getId_lugar() {
-		return id_lugar;
+	public int getIdLugar() {
+		return idLugar;
 	}
 
-	public void setId_lugar(int id_lugar) {
-		this.id_lugar = id_lugar;
+	public void setIdLugar(int idLugar) {
+		this.idLugar = idLugar;
 	}
 
 	public String getLugar() {
@@ -90,7 +90,7 @@ public class Lugar {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id_lugar;
+		result = prime * result + idLugar;
 		return result;
 	}
 
@@ -103,7 +103,7 @@ public class Lugar {
 		if (getClass() != obj.getClass())
 			return false;
 		Lugar other = (Lugar) obj;
-		if (id_lugar != other.id_lugar)
+		if (idLugar != other.idLugar)
 			return false;
 		return true;
 	}
