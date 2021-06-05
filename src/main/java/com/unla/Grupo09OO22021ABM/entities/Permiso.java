@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,6 +43,7 @@ public class Permiso {
 	joinColumns=@JoinColumn (name="id_permiso"),
 	inverseJoinColumns= @JoinColumn(name="id_lugar"))
 	private Set<Lugar> desdeHasta;
+	
 
 	public Permiso() {}
 

@@ -1,12 +1,15 @@
 package com.unla.Grupo09OO22021ABM.services.implementations;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.stereotype.Service;
+
 
 import com.unla.Grupo09OO22021ABM.converters.LugarConverter;
 import com.unla.Grupo09OO22021ABM.entities.Lugar;
@@ -29,6 +32,11 @@ public class LugarService implements ILugarService{
 	public List<Lugar> listarLugar() {
 		return (List<Lugar>)lugarRepository.findAll();
 	}
+//	
+//	@Override
+//	public Set<Lugar> listarLugares() {
+//		return (Set<Lugar>)lugarRepository.getAll();
+//	}
 
 	@Override
 	public Optional<Lugar> listarId(int id) {
@@ -44,5 +52,15 @@ public class LugarService implements ILugarService{
 		}
 		return res;
 	}
+	
+	@Override
+	public Set<Lugar> listarLugares() {
+		Set<Lugar> lugares = new HashSet<>();
+		for(Lugar l : lugarRepository.findAll()){
+			lugares.add(l);
+		}
+		return lugares;
+	}
+
 
 }

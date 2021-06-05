@@ -1,6 +1,7 @@
 package com.unla.Grupo09OO22021ABM.contollers;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -57,7 +59,14 @@ public class PermisoDiarioController {
 	}
 	
 	@PostMapping("/save-permiso-diario")
-	public RedirectView save(Model model, @Validated PermisoDiario pd, RedirectAttributes attribute ) {
+	public RedirectView save(Model model, @Validated PermisoDiario pd, RedirectAttributes attribute ,
+			 @RequestParam(required = false) int desde,
+			   @RequestParam(required = false) int hasta) {
+		Set<Lugar> lugares = serviceLugar.listarLugares();
+//		model.addAttribute("lugares", lugares);
+		model.addAttribute("lugares", serviceLugar.listarId(1));
+		model.addAttribute("lugares", serviceLugar.listarId(3));
+		pd.setDesdeHasta(lugares);
 		servicePermisoDiario.save(pd);
 		attribute.addFlashAttribute("success","El Permiso se agrego con Exito");
 		return new RedirectView(ViewRouteHelper.HOME);

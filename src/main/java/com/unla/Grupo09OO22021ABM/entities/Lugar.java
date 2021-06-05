@@ -1,8 +1,10 @@
 package com.unla.Grupo09OO22021ABM.entities;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -37,7 +39,7 @@ public class Lugar {
 
 	@ManyToMany(mappedBy = "desdeHasta") 
 	private Set<Permiso> permisos;
-
+	
 	public Lugar() {}
 
 	public Lugar(String lugar, String codigo_postal) {
