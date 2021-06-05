@@ -1,15 +1,14 @@
 package com.unla.Grupo09OO22021ABM.entities;
 
-import java.util.HashSet;
-import java.util.Set;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 @Entity
@@ -26,8 +25,8 @@ public class Rodado {
 	@Column(name = "vehiculo", nullable=false)
 	private String vehiculo;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rodado")
-	private Set<PermisoPeriodo> permisos_periodos;
+	/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "rodado")
+	private Set<PermisoPeriodo> permisos_periodos;*/
 	
 	public Rodado() {}
 
@@ -35,7 +34,7 @@ public class Rodado {
 		super();
 		this.dominio = dominio;
 		this.vehiculo = vehiculo;
-		this.permisos_periodos = new HashSet<PermisoPeriodo>();
+		//this.permisos_periodos = new HashSet<PermisoPeriodo>();
 	}
 
 	public int getId_rodado() {
@@ -62,13 +61,13 @@ public class Rodado {
 		this.vehiculo = vehiculo;
 	}
 
-	public Set<PermisoPeriodo> getPermisos_periodos() {
+	/*public Set<PermisoPeriodo> getPermisos_periodos() {
 		return permisos_periodos;
 	}
 
 	public void setPermisos_periodos(Set<PermisoPeriodo> permisos_periodos) {
 		this.permisos_periodos = permisos_periodos;
-	}
+	}*/
 	
 	
 	

@@ -44,7 +44,7 @@ public class RodadoController {
 	public RedirectView save(Model model, @Validated Rodado r, RedirectAttributes attribute ) {
 		serviceRodado.save(r);
 		attribute.addFlashAttribute("success","El Rodado se agrego con Exito");
-		return new RedirectView(ViewRouteHelper.RODADOS);
+		return new RedirectView(ViewRouteHelper.HOME);
 	}
 
 }
