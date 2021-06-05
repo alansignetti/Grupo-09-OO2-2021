@@ -29,11 +29,14 @@ public class Lugar {
 	@Column(name = "codigo_postal", nullable=false, length=45)
 	private String codigo_postal;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy="desdeHasta")
+	private Set<Permiso> permisos;
+	
+	/*@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="permisoxlugar", 
 	joinColumns=@JoinColumn (name="id_lugar"),
 	inverseJoinColumns= @JoinColumn(name="id_permiso"))
-	private Set<Permiso> permisos;
+	private Set<Permiso> permisos;*/
 
 	/*@ManyToMany(mappedBy = "desdeHasta")
     private Set<Permiso> permisos;*/

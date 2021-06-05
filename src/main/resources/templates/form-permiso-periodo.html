@@ -22,8 +22,8 @@
 						</div>-->
 						<div class="form-group">
 						<label>Persona:</label>	
-							<select class="form-control form-control-sm" th:field="*{pedido.id_persona}">
-							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.username}">
+							<select class="form-control form-control-sm" th:field="*{pedido}">
+							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.id_persona}">
                               </option>
 							</select>
 						</div>
@@ -33,15 +33,15 @@
 						</div>
 						<div class="form-group">
 						<label>Lugar Desde:</label>	
-							<select class="form-control form-control-sm" th:field="*{desdeHasta.id_lugar}">
-							 <option th:each="i : ${lugares}" th:value="${i.id_lugar}" th:text="${i.lugar}">
+							<select class="form-control form-control-sm" th:field="*{desdeHasta}">
+							 <option th:each="i : ${lugares}" th:value="${i.id_lugar}" th:text="${i.id_lugar}">
                               </option>
 							</select>
 						</div>
 						<div class="form-group">
 						<label>Lugar Hasta:</label>	
-							<select class="form-control form-control-sm" th:field="*{desdeHasta.id_lugar}">
-							 <option th:each="i : ${lugares}" th:value="${i.id_lugar}" th:text="${i.lugar}">
+							<select class="form-control form-control-sm" th:field="*{desdeHasta}">
+							 <option th:each="i : ${lugares}" th:value="${i.id_lugar}" th:text="${i.id_lugar}">
                               </option>
 							</select>
 						</div>
@@ -55,7 +55,7 @@
 						</div>
 						<div class="form-group">
 						<label>Rodado:</label>	
-							<select class="form-control form-control-sm" th:field="*{rodado.id_rodado}">
+							<select class="form-control form-control-sm" th:field="*{rodado}">
 							 <option th:each="i : ${rodados}" th:value="${i.id_rodado}" th:text="${i.dominio}">
                               </option>
 							</select>

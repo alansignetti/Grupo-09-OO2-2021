@@ -36,12 +36,20 @@ public class Permiso {
 	@Column(name = "fecha", nullable=false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	protected LocalDate fecha;
-
-	@ManyToMany(fetch = FetchType.EAGER)
+	
+	@ManyToMany
+	@JoinTable(
+			name ="permisoxlugar",
+			joinColumns=@JoinColumn(name = "id_permiso"),
+			inverseJoinColumns = @JoinColumn(name = "id_lugar")
+			)
+	protected Set<Lugar> desdeHasta;
+	
+	/*@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="permisoxlugar", 
 	joinColumns=@JoinColumn (name="id_permiso"),
 	inverseJoinColumns= @JoinColumn(name="id_lugar"))
-	private Set<Lugar> desdeHasta;
+	private Set<Lugar> desdeHasta;*/
 
 	public Permiso() {}
 
