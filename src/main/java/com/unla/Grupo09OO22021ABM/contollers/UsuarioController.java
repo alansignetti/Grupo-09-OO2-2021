@@ -35,7 +35,7 @@ public class UsuarioController {
 	@Qualifier("perfilService")
 	private IPerfilService service2;
 	
-	@PreAuthorize("hasRole('ROLE_AUDITOR') || hasRole('ROLE_ADMIN') ")
+	@PreAuthorize("hasRole('ROLE_AUDITOR')|| hasRole('ROLE_ADMIN')  ")//
 	@GetMapping("/listar")	
 	public String listar(Model model) {
 		List<Usuario> usuarios = service.listar();

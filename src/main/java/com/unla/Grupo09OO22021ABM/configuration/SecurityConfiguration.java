@@ -34,7 +34,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/new-perfil").access("hasRole('ADMIN') || hasRole('USER')")
 		        .antMatchers("/listar-perfiles").access("hasRole('ADMIN')")		        
 		        .antMatchers("/index").access("hasRole('ADMIN')")
-
+		        
+		        
+		        .antMatchers("/listar-personas").access("hasRole('ADMIN')")
+//		        .antMatchers("/listar-personas/**").anonymous()
+		        
+		        
+		        
+		        .antMatchers("/listar").access("hasRole('ADMIN')")			// lista usuarios
+		        .antMatchers("/listar/**").access("hasRole('AUDITOR')")		// ExportPDF
+		        
 		        .antMatchers("/home").permitAll()
 		        //Agregar lista de user.
 //		        .anyRequest().authenticated()
