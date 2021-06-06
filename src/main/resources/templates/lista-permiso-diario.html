@@ -10,33 +10,26 @@
 
 <body>
 	<div class="container mt-4">
+	
 		<a th:href="@{/home}" class="btn btn-secondary">Home</a>
+		<h3>Permisos Diario</h3>
 		<table class="table">
 			<thead>
 				<tr>
-
-					<th>NOMBRE</th>
-					<th>APELLIDO</th>
-					<th>DNI</th>
-					<th>PERMISO PERIODO</th>
-					<th>PERMISO DIARIO</th>
+					<th>PERSONA</th>
+					<th>FECHA</th>
+					<th>MOTIVO</th>
+					<th>DESDE HASTA</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="persona:${personas}">
-
-					<td th:text="${persona.nombre}"></td>
-					<td th:text="${persona.apellido}"></td>
-					<td th:text="${persona.dni}"></td>
-
-
+				<tr th:each="p:${permisosDiario}">
+					<td th:text="${p.pedido}"></td>
+					<td th:text="${p.fecha}"></td>
+					<td th:text="${p.motivo}"></td>
+					<td th:text="${p.desdeHasta}"></td>
 					<td>
-						<a th:href="@{/listar-permisoPeriodo/}+${persona.id_persona}" class="btn btn-info">Ver Permiso</a>						
 					</td>
-					<td>
-						<a th:href="@{/listar-permisoDiario/}+${persona.id_persona}" class="btn btn-info">Ver Permiso</a>						
-					</td>
-
 				</tr>
 			</tbody>
 		</table>

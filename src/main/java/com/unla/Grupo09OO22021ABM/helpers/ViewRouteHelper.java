@@ -27,11 +27,11 @@ public class ViewRouteHelper {
 	
 	//PERMISO DIARIO
 	public final static String FORM_PERMISO_DIARIO = "/form-permiso-diario";
-	public final static String INDEX_PERMISO_DIARIO = "/index-permiso-diario";
+	public final static String LISTA_PERMISO_DIARIO = "/lista-permiso-diario";
 	
 	//PERMISO PERIODO
 	public final static String FORM_PERMISO_PERIODO = "/form-permiso-periodo";
-	public final static String INDEX_PERMISO_PERIODO = "/index-permiso-periodo";
+	public final static String LISTA_PERMISO_PERIODO = "/lista-permiso-periodo";
 	
 	//RODADO
 	public final static String FORM_RODADO = "/form-rodado";

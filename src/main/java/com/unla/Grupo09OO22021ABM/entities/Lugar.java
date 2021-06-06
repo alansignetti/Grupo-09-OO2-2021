@@ -100,5 +100,15 @@ public class Lugar {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "\nLugar: " + lugar + " (" + codigo_postal+")";
+	}
+
+	
+	
+	
+	
 	
 }

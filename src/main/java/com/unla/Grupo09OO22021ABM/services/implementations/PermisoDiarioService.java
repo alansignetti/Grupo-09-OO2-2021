@@ -39,4 +39,10 @@ public class PermisoDiarioService implements IPermisoDiarioService{
 		return res;
 	}
 
+	@Override
+	public PermisoDiario traerPermisoId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
