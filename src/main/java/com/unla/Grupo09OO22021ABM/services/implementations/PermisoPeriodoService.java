@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 
@@ -38,5 +39,15 @@ public class PermisoPeriodoService implements IPermisoPeriodoService{
 		}
 		return res;
 	}
+
+	@Override
+	public PermisoPeriodo traerPemisoId(int id) {
+		return permisoPeriodoRepository.findById(id).orElse(null);
+	}
+
+	public List<PermisoPeriodo> findByIdAndFetchRodadoEagerly(@Param("id_rodado") int id_rodado){
+		return permisoPeriodoRepository.findByIdAndFetchRodadoEagerly(id_rodado);
+	}
+
 
 }

@@ -58,6 +58,10 @@ public class Rodado {
 		this.vehiculo = vehiculo;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Vehiculo: " + vehiculo+ "  ("+dominio+")";
+	}
+
 
 }
