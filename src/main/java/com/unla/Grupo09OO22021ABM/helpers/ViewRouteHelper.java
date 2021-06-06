@@ -35,6 +35,10 @@ public class ViewRouteHelper {
 	//RODADO
 	public final static String FORM_RODADO = "/form-rodado";
 	public final static String INDEX_RODADO = "/index-rodado";
+	public final static String PERMISO_PERIODO_POR_RODADO = "/BuscarPermisoPeriodoRodado";
+	public final static String LISTADO_PERMISO_RODADO = "/ListadoPermisoPeriodoRodado";
+	
+	
 	
 	/**** Redirects ****/
 	public final static String HOME = "/home"; // new RedirectView(ViewRouteHelper.HOME)
@@ -44,5 +48,7 @@ public class ViewRouteHelper {
 	public final static String PERMISO_DIARIO = "/listar-permiso-diario";
 	public final static String PERMISO_PERIODO = "/listar-permiso-periodo";
 	public final static String RODADOS = "/listar-rodados";
+	public final static String PERMISO_POR_RODADOS = "/BuscarPermisoPeriodoRodado";
+	
 
 }

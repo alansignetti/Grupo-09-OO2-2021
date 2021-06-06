@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 
@@ -29,6 +30,11 @@ public class RodadoService implements IRodadoService{
 	public Optional<Rodado> listarId(int id) {
 		return rodadoRepository.findById(id);
 	}
+	
+	@Override
+	public Rodado findByDominio(@Param("dominio") String dominio) {
+		return rodadoRepository.findByDominio(dominio);
+	};
 
 	@Override
 	public int save(Rodado r) {

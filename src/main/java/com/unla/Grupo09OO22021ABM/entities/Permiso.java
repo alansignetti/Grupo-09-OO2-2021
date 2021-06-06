@@ -42,7 +42,7 @@ public class Permiso {
 	@JoinTable(name="permisoxlugar", 
 	joinColumns=@JoinColumn (name="id_permiso"),
 	inverseJoinColumns= @JoinColumn(name="idLugar"))
-	private Set<Lugar> desdeHasta;
+	protected Set<Lugar> desdeHasta;
 	
 
 	public Permiso() {}
@@ -91,4 +91,12 @@ public class Permiso {
 		desdeHasta.add(lugar);
 		
 	}
+
+	@Override
+	public String toString() {
+		return "Permiso [id_permiso=" + id_permiso + ", pedido=" + pedido + ", fecha=" + fecha + ", desdeHasta="
+				+ desdeHasta + "]";
+	}
+	
+	
 }

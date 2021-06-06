@@ -76,4 +76,13 @@ public class Persona {
 		this.dni = dni;
 	}
 
+	@Override
+	public String toString() {
+		return "Persona [id_persona=" + id_persona + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni
+				+ "]";
+	}
+
+	
+	
+	
 }

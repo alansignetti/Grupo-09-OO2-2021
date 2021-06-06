@@ -100,5 +100,12 @@ public class Lugar {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "["+lugar+ "]";
+	}
+	
+	
 	
 }

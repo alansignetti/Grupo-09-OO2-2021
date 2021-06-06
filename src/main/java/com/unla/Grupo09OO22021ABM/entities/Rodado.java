@@ -58,6 +58,12 @@ public class Rodado {
 		this.vehiculo = vehiculo;
 	}
 
+	@Override
+	public String toString() {
+		return "Rodado [id_rodado=" + id_rodado + ", dominio=" + dominio + ", vehiculo=" + vehiculo + "]";
+	}
+
+	
 	
 
 }

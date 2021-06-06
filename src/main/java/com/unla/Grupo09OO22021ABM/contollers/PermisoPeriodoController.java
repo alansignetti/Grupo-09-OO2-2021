@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +34,7 @@ import com.unla.Grupo09OO22021ABM.services.IRodadoService;
 @RequestMapping
 public class PermisoPeriodoController {
 	
+	
 	@Autowired
 	@Qualifier("permisoPeriodoService")
 	private IPermisoPeriodoService servicePermisoPeriodo;
@@ -48,6 +50,8 @@ public class PermisoPeriodoController {
 	@Autowired
 	@Qualifier("rodadoService")
 	private IRodadoService serviceRodado;
+	
+	
 	
 	@GetMapping("/listar-permiso-periodo")
 	public String listar(Model model) {

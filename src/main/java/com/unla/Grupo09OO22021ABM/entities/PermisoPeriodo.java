@@ -65,11 +65,10 @@ public class PermisoPeriodo extends Permiso{
 	public void setRodado(Rodado rodado) {
 		this.rodado = rodado;
 	}
-	
-	
-	
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "PermisoPeriodo [cantDias=" + cantDias + ", vacaciones=" + vacaciones + ", rodado=" + rodado + "]";
+	}
+		
 }
