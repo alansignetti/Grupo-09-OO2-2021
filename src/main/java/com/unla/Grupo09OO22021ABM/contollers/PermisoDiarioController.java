@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,14 +18,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.Grupo09OO22021ABM.entities.Lugar;
-
+import com.unla.Grupo09OO22021ABM.entities.Permiso;
 import com.unla.Grupo09OO22021ABM.entities.PermisoDiario;
 import com.unla.Grupo09OO22021ABM.entities.Persona;
-
 import com.unla.Grupo09OO22021ABM.helpers.ViewRouteHelper;
 import com.unla.Grupo09OO22021ABM.services.ILugarService;
 import com.unla.Grupo09OO22021ABM.services.IPermisoDiarioService;
+import com.unla.Grupo09OO22021ABM.services.IPermisoPeriodoService;
+import com.unla.Grupo09OO22021ABM.services.IPermisoService;
 import com.unla.Grupo09OO22021ABM.services.IPersonaService;
+import com.unla.Grupo09OO22021ABM.services.IRodadoService;
 
 @Controller
 @RequestMapping
@@ -35,6 +38,10 @@ public class PermisoDiarioController {
 	private IPermisoDiarioService servicePermisoDiario;
 	
 	@Autowired
+	@Qualifier("permisoService")
+	private IPermisoService servicePermiso;
+	
+	@Autowired
 	@Qualifier("personaService")
 	private IPersonaService servicePersona;
 	
@@ -42,11 +49,15 @@ public class PermisoDiarioController {
 	@Qualifier("lugarService")
 	private ILugarService serviceLugar;
 	
+	@Autowired
+	@Qualifier("rodadoService")
+	private IRodadoService serviceRodado;
+	
 	@GetMapping("/listar-permiso-diario")
 	public String listar(Model model) {
 		List<PermisoDiario> permisosDiarios = servicePermisoDiario.listar();
 		model.addAttribute("permisosDiarios", permisosDiarios);
-		return ViewRouteHelper.INDEX_PERMISO_DIARIO;
+		return ViewRouteHelper.LISTA_PERMISO_DIARIO;
 	}
 	
 	@GetMapping("/new-permiso-diario")
@@ -74,6 +85,16 @@ public class PermisoDiarioController {
 		attribute.addFlashAttribute("success","El Permiso se agrego con Exito");
 		return new RedirectView(ViewRouteHelper.HOME);
 	}
+	
+	
+	@GetMapping("/listar-permisoDiario/{id}")
+	public String traerDiarioPersona(@PathVariable("id") int id, Model model) {
+		List<Permiso> permisos = servicePermiso.findByIdAndFetchPersonaEagerly(id);
+		List<PermisoDiario> permisosDiario = servicePermiso.listarPermisosDiario(permisos);
+		model.addAttribute("permisosDiario", permisosDiario);
+		return ViewRouteHelper.LISTA_PERMISO_DIARIO;
+	}
+
 	
 	
 

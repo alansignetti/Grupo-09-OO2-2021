@@ -1,5 +1,7 @@
 package com.unla.Grupo09OO22021ABM.services.implementations;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.unla.Grupo09OO22021ABM.converters.PermisoConverter;
 import com.unla.Grupo09OO22021ABM.entities.Permiso;
+import com.unla.Grupo09OO22021ABM.entities.PermisoDiario;
+import com.unla.Grupo09OO22021ABM.entities.PermisoPeriodo;
 import com.unla.Grupo09OO22021ABM.repositories.IPermisoRepository;
 import com.unla.Grupo09OO22021ABM.services.IPermisoService;
 
@@ -42,5 +46,71 @@ public class PermisoService implements IPermisoService{
 		}
 		return res;
 	}
+	
+	@Override
+	public Permiso traerPermisoId(int id) {
+		return permisoRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public List<PermisoDiario> listarPermisosDiario(List<Permiso> listaPermisos) {
+List<PermisoDiario> permisosDiario = new ArrayList<PermisoDiario>();
+		
+		for (Permiso p : listaPermisos) {
+			if (p instanceof PermisoDiario) {
+				permisosDiario.add((PermisoDiario) p);
+			}
+		}
+		return permisosDiario;	
+	}
+
+	@Override
+	public List<PermisoPeriodo> listarPermisosPeriodo(List<Permiso> listaPermisos) {
+		List<PermisoPeriodo> permisosDiario = new ArrayList<PermisoPeriodo>();
+		for (Permiso p : listaPermisos) {
+			if (p instanceof PermisoPeriodo) {
+				permisosDiario.add((PermisoPeriodo) p);
+			}
+		}
+		return permisosDiario;	
+	}
+
+	@Override
+	public List<PermisoPeriodo> listarFechaPermisoPeriodo(List<PermisoPeriodo> listaPermisosPeriodo, LocalDate fecha1,
+			LocalDate fecha2) {
+		List<PermisoPeriodo> permisosDiario = new ArrayList<PermisoPeriodo>();
+		for (PermisoPeriodo p : listaPermisosPeriodo) {
+			LocalDate fechaVencimiento = p.getFecha().plusDays(p.getCantDias());
+			if (fecha1.isEqual(p.getFecha()) && fecha2.isBefore(fechaVencimiento)|| fecha1.isAfter(p.getFecha())&&fecha2.isEqual(fechaVencimiento) || fecha1.isAfter(p.getFecha()) && fecha2.isBefore(fechaVencimiento)
+					|| fecha1.isEqual(p.getFecha()) && fecha2.isEqual(fechaVencimiento)) {
+				permisosDiario.add(p);
+			}
+		}
+		return permisosDiario;	
+	}
+
+	@Override
+	public List<PermisoDiario> listarFechaPermisoDiario(List<PermisoDiario> listaPermisos, LocalDate fecha) {
+		List<PermisoDiario> permisosDiario = new ArrayList<PermisoDiario>();
+		for (PermisoDiario p : listaPermisos) {
+			if (p.getFecha().isEqual(fecha)) {
+				permisosDiario.add(p);
+			}
+		}
+		return permisosDiario;	
+	}
+
+	@Override
+	public List<Permiso> findByIdAndFetchPersonaEagerly(int id_persona){
+		return permisoRepository.findByIdAndFetchPersonaEagerly(id_persona);
+	}
+	
+	@Override
+	public List<Permiso> findByIdAndFetchLugarEagerly(int idLugar){
+		return permisoRepository.findByIdAndFetchLugarEagerly(idLugar);
+	}
+	
+	
+	
 
 }

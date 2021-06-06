@@ -10,5 +10,7 @@ public interface IPermisoDiarioService {
 	public List<PermisoDiario> listar();
 	public Optional<PermisoDiario> listarId(int id);
 	public int save(PermisoDiario pd);
+	
+	public PermisoDiario traerPermisoId(int id);
 
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Grupo09-OO2-2021</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container mt-4">
+		<a th:href="@{/home}" class="btn btn-secondary">Home</a>
+		<table class="table">
+			<thead>
+				<tr>
+
+					<th>NOMBRE</th>
+					<th>APELLIDO</th>
+					<th>DNI</th>
+					<th>PERMISO PERIODO</th>
+					<th>PERMISO DIARIO</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="persona:${personas}">
+
+					<td th:text="${persona.nombre}"></td>
+					<td th:text="${persona.apellido}"></td>
+					<td th:text="${persona.dni}"></td>
+
+
+					<td>
+						<a th:href="@{/listar-permisoPeriodo/}+${persona.id_persona}" class="btn btn-info">Ver Permiso</a>						
+					</td>
+					<td>
+						<a th:href="@{/listar-permisoDiario/}+${persona.id_persona}" class="btn btn-info">Ver Permiso</a>						
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+</body>
+
+</html>

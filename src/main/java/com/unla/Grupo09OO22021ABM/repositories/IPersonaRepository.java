@@ -15,4 +15,7 @@ public interface IPersonaRepository extends JpaRepository<Persona, Serializable>
     
 //	@Query("SELECT u FROM Persona u where u.id_persona = (:id_persona)")
 //	public abstract Persona findByIdPersona(@Param("id_persona") int id_persona);
+	
+	@Query("SELECT p FROM Persona p WHERE p.dni = (:dni)")
+	public abstract Persona findByDni(@Param("dni") long dni);
 }

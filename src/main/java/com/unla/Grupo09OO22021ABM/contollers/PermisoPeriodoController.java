@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,13 +19,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.Grupo09OO22021ABM.entities.Lugar;
-
+import com.unla.Grupo09OO22021ABM.entities.Permiso;
 import com.unla.Grupo09OO22021ABM.entities.PermisoPeriodo;
 import com.unla.Grupo09OO22021ABM.entities.Persona;
 import com.unla.Grupo09OO22021ABM.entities.Rodado;
 import com.unla.Grupo09OO22021ABM.helpers.ViewRouteHelper;
 import com.unla.Grupo09OO22021ABM.services.ILugarService;
 import com.unla.Grupo09OO22021ABM.services.IPermisoPeriodoService;
+import com.unla.Grupo09OO22021ABM.services.IPermisoService;
 import com.unla.Grupo09OO22021ABM.services.IPersonaService;
 import com.unla.Grupo09OO22021ABM.services.IRodadoService;
 
@@ -38,6 +40,10 @@ public class PermisoPeriodoController {
 	@Autowired
 	@Qualifier("permisoPeriodoService")
 	private IPermisoPeriodoService servicePermisoPeriodo;
+	
+	@Autowired
+	@Qualifier("permisoService")
+	private IPermisoService servicePermiso;
 	
 	@Autowired
 	@Qualifier("personaService")
@@ -57,7 +63,7 @@ public class PermisoPeriodoController {
 	public String listar(Model model) {
 		List<PermisoPeriodo> permisosPeriodo = servicePermisoPeriodo.listar();
 		model.addAttribute("permisosPeriodo", permisosPeriodo);
-		return ViewRouteHelper.INDEX_PERMISO_PERIODO;
+		return ViewRouteHelper.LISTA_PERMISO_PERIODO;
 	}
 	
 	@GetMapping("/new-permiso-periodo")
@@ -85,4 +91,15 @@ public class PermisoPeriodoController {
         attribute.addFlashAttribute("success","El Permiso se agrego con Exito");
         return new RedirectView(ViewRouteHelper.HOME);
     }
+	
+	
+	@GetMapping("/listar-permisoPeriodo/{id}")
+	public String traerPeriodoPersona(@PathVariable("id") int id, Model model) {
+		List<Permiso> permisos = servicePermiso.findByIdAndFetchPersonaEagerly(id); // traigo la lista de permisos para despues obtener los permisos periodo
+		List<PermisoPeriodo> permisosPeriodo = servicePermiso.listarPermisosPeriodo(permisos);
+		model.addAttribute("permisosPeriodo",permisosPeriodo);
+		return ViewRouteHelper.LISTA_PERMISO_PERIODO;
+	}
+	
+
 }

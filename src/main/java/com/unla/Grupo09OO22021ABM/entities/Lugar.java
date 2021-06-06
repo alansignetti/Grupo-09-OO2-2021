@@ -102,10 +102,8 @@ public class Lugar {
 	}
 
 	@Override
-	public String toString() {
-		return "["+lugar+ "]";
+	public String toString(){
+		return "\nLugar: " + lugar + " (" + codigo_postal+")";
 	}
-	
-	
-	
+
 }

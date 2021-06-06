@@ -1,6 +1,7 @@
 package com.unla.Grupo09OO22021ABM.contollers;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.Grupo09OO22021ABM.entities.Perfil;
@@ -68,4 +71,28 @@ public class PersonaController {
 		return new RedirectView(ViewRouteHelper.PERSONAS);
 	}
 	
+	
+	
+	@GetMapping("/traerPersonaDNI")
+	public String traerPersonaDNI(Model model) {
+		return ViewRouteHelper.PERSONA_DNI;
+	}
+	
+	
+	
+	
+	@GetMapping("/traerPermisoPorPersona")
+	public String traerPermisoPorPersona(@RequestParam long dni, Model model,RedirectAttributes attribute) {
+		List<Persona> personas = new ArrayList<Persona>();
+//		model.addAttribute("titulo", "Persona");
+		Persona persona = personaService.traerPorDni(dni);
+		if(persona==null) {
+			attribute.addFlashAttribute("success","Este dni no se encuentra en la base de datos");
+			return ViewRouteHelper.TRAER_PERSONA_DNI;
+		}
+		personas.add(persona);
+		model.addAttribute("personas", personas);
+		return ViewRouteHelper.PERMISO_PERSONA;
+	}
+
 }

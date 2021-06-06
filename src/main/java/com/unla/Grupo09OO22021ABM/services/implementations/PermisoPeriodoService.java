@@ -45,4 +45,12 @@ public class PermisoPeriodoService implements IPermisoPeriodoService{
 		return res;
 	}
 
+	@Override
+	public PermisoPeriodo traerPemisoId(int id) {
+		return permisoPeriodoRepository.findById(id).orElse(null);
+	}
+
+
+
+
 }

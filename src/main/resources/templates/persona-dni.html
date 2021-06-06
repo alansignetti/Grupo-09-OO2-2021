@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Grupo09-OO2-2021</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container mt-4">
+		<div class="col -sm-6">
+			<form th:action="@{/traerPermisoPorPersona}"  method="GET"> <!-- th:object=${persona}-->
+				<div class="card">
+					<div class="card-header">
+						<h3>Persona</h3>
+					
+
+					<div class="form-group">
+						<label>Dni:</label>
+						<input  th:name="dni"  type="number" class="form-control" /><!-- th:field="*{dni}"-->
+					</div>
+
+
+					<!-- -->
+
+
+					<div class="card-footer">
+						<input type="submit" value="Buscar" class="btn btn-success" />
+						<a th:href="@{/home}" class="btn btn-secondary">Home</a>
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+</body>
+
+</html>

@@ -60,10 +60,9 @@ public class Rodado {
 
 	@Override
 	public String toString() {
-		return "Rodado [id_rodado=" + id_rodado + ", dominio=" + dominio + ", vehiculo=" + vehiculo + "]";
+		return "Vehiculo: " + vehiculo+ "  ("+dominio+")";
 	}
 
-	
-	
+
 
 }

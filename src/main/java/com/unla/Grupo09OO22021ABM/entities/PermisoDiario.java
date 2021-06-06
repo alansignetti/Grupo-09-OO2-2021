@@ -42,7 +42,7 @@ public class PermisoDiario extends Permiso{
 
 	@Override
 	public String toString() {
-		return "PermisoDiario [motivo=" + motivo + "]";
+		return "motivo:" + motivo;
 	}
 	
 	
