@@ -61,23 +61,16 @@ public class RodadoController {
 		return new RedirectView(ViewRouteHelper.HOME);
 	}
 	
-	//@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/rodado/permisos")
 	public String listarRodado(@RequestParam String dominio, Model model,RedirectAttributes attribute) {
-		// List<Rodado> rodados = new ArrayList<Rodado>();
-		//model.addAttribute("titulo", "Rodado");
 		Rodado rodado = serviceRodado.findByDominio(dominio);
-		
 		List<PermisoPeriodo> listadoDePermisos = servicePermisoPeriodo.findByIdAndFetchRodadoEagerly(rodado.getId_rodado());
-		
-
+		for (PermisoPeriodo permiso : listadoDePermisos) {
+			 System.out.println(permiso.getPedido().getNombre());
+			 System.out.println(permiso.getPedido().getApellido());
+		}
 		model.addAttribute("lista", listadoDePermisos);
 		return ViewRouteHelper.LISTADO_PERMISO_RODADO;
-		/*if(rodado1==null) {
-			attribute.addFlashAttribute("success","Este dominio no se encuentra en la base de datos");
-			return ViewRouteHelper.RODADO_SELECCIONAR_DOMINIO_REDIRECT;
-		}*/
-	
 	}
 
 }

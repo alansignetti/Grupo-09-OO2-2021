@@ -43,11 +43,6 @@ public class ViewRouteHelper {
 	
 	//PERMISO
 	public final static String PERMISO_PERSONA = "/permiso-persona";
-	public final static String RESULTADO_ENTRE_FECHAS = "/permiso/resultado-entre-fechas";
-	public final static String PERMISO_ENTRE_FECHAS = "/permiso/entre-fechas";
-	
-	
-	
 	
 	/**** Redirects ****/
 	public final static String HOME = "/home"; // new RedirectView(ViewRouteHelper.HOME)

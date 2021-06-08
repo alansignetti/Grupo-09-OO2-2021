@@ -29,36 +29,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 				.antMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*", "/vendor/jquery/*", "/vendor/bootstrap/js/*","/home","/static*").permitAll()
 				
-				// hasAnyRole('AUDITOR', 'ADMIN')
-				.antMatchers("/new").access("hasRole('ADMIN')")
 				.antMatchers("/new-perfil").access("hasRole('ADMIN')")
-		        .antMatchers("/listar-perfiles").access("hasAnyRole('AUDITOR', 'ADMIN')")   
-		        .antMatchers("/listar").access("hasAnyRole('AUDITOR', 'ADMIN')")    
-		        
-		        
+				
+				.antMatchers("/new-perfil").access("hasRole('ADMIN') || hasRole('USER')")
+		        .antMatchers("/listar-perfiles").access("hasRole('ADMIN')")		        
 		        .antMatchers("/index").access("hasRole('ADMIN')")
-		        .antMatchers("/index-perfil").access("hasRole('ADMIN')")
-		        				// lista usuarios
-		        .antMatchers("/listar/?format=pdf").access("hasRole('AUDITOR')")	// ExportPDF
-		        
-		        .antMatchers("/editar-persona").access("hasRole('ADMIN')")
-		        .antMatchers("/eliminar-persona").access("hasRole('ADMIN')")
-		        .antMatchers("/editar-persona/**").access("hasRole('ADMIN')")
-		        .antMatchers("/eliminar-persona/**").access("hasRole('ADMIN')")
-		        
-		        .antMatchers("/eliminar-perfil").access("hasRole('ADMIN')")
-		        .antMatchers("/editar-perfil").access("hasRole('ADMIN')")
-		        .antMatchers("/eliminar-perfil/**").access("hasRole('ADMIN')")
-		        .antMatchers("/editar-perfil/**").access("hasRole('ADMIN')")
 		        
 		        
-		        .antMatchers("/listar-personas").permitAll()	
+		        .antMatchers("/listar-personas").access("hasRole('ADMIN')")
+//		        .antMatchers("/listar-personas/**").anonymous()
+		        
+		        
+		        
+		        .antMatchers("/listar").access("hasRole('ADMIN')")			// lista usuarios
+		        .antMatchers("/listar/**").access("hasRole('AUDITOR')")		// ExportPDF
+		        
 		        .antMatchers("/home").permitAll()
 		        //Agregar lista de user.
 //		        .anyRequest().authenticated()
 		        
 		        
-		        
+		        .antMatchers("/new").access("hasRole('ADMIN')")
 
 			.and()
 				.formLogin().loginPage("/login").loginProcessingUrl("/loginprocess").defaultSuccessUrl("/home")

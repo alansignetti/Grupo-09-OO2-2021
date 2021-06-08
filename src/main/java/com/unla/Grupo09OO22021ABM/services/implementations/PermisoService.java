@@ -78,16 +78,15 @@ List<PermisoDiario> permisosDiario = new ArrayList<PermisoDiario>();
 	@Override
 	public List<PermisoPeriodo> listarFechaPermisoPeriodo(List<PermisoPeriodo> listaPermisosPeriodo, LocalDate fecha1,
 			LocalDate fecha2) {
-		List<PermisoPeriodo> permisosPeriodo= new ArrayList<PermisoPeriodo>();
+		List<PermisoPeriodo> permisosDiario = new ArrayList<PermisoPeriodo>();
 		for (PermisoPeriodo p : listaPermisosPeriodo) {
 			LocalDate fechaVencimiento = p.getFecha().plusDays(p.getCantDias());
 			if (fecha1.isEqual(p.getFecha()) && fecha2.isBefore(fechaVencimiento)|| fecha1.isAfter(p.getFecha())&&fecha2.isEqual(fechaVencimiento) || fecha1.isAfter(p.getFecha()) && fecha2.isBefore(fechaVencimiento)
 					|| fecha1.isEqual(p.getFecha()) && fecha2.isEqual(fechaVencimiento)) {
-				permisosPeriodo.add(p);
+				permisosDiario.add(p);
 			}
 		}
-		System.out.println("SERVICE" + permisosPeriodo);
-		return permisosPeriodo;	
+		return permisosDiario;	
 	}
 
 	@Override
