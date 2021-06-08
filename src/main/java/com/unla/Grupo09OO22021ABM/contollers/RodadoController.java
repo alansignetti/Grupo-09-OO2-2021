@@ -68,16 +68,9 @@ public class RodadoController {
 		//model.addAttribute("titulo", "Rodado");
 		Rodado rodado = serviceRodado.findByDominio(dominio);
 		
-		System.out.println(rodado);
-		
 		List<PermisoPeriodo> listadoDePermisos = servicePermisoPeriodo.findByIdAndFetchRodadoEagerly(rodado.getId_rodado());
 		
-		for (PermisoPeriodo permiso : listadoDePermisos) {
-			 System.out.println(permiso.getPedido().getNombre());
-			 System.out.println(permiso.getPedido().getApellido());
-		}
-		
-		model.addAttribute("titulo", "Permisos por periodo que solicito el dominio " + rodado.getDominio());
+
 		model.addAttribute("lista", listadoDePermisos);
 		return ViewRouteHelper.LISTADO_PERMISO_RODADO;
 		/*if(rodado1==null) {

@@ -90,6 +90,7 @@ public class PermisoDiarioController {
 	@GetMapping("/listar-permisoDiario/{id}")
 	public String traerDiarioPersona(@PathVariable("id") int id, Model model) {
 		List<Permiso> permisos = servicePermiso.findByIdAndFetchPersonaEagerly(id);
+		
 		List<PermisoDiario> permisosDiario = servicePermiso.listarPermisosDiario(permisos);
 		model.addAttribute("permisosDiario", permisosDiario);
 		return ViewRouteHelper.LISTA_PERMISO_DIARIO;

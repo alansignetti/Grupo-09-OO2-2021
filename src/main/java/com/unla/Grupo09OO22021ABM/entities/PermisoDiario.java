@@ -30,8 +30,6 @@ public class PermisoDiario extends Permiso{
 	
 	
 	
-
-	
 	public String getMotivo() {
 		return motivo;
 	}
