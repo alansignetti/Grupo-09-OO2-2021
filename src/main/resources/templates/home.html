@@ -32,37 +32,39 @@
 					class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
+					<br>
+					<li class="nav-item"><a class="nav-link" href="/new"  				sec:authorize="hasRole('ADMIN')">ABM Usuarios</a></li>
+					<li class="nav-item"><a class="nav-link" href="/new-perfil" 		sec:authorize="hasRole('ADMIN')">ABM Perfiles</a></li>
+					<li class="nav-item"><a class="nav-link" href="/listar/?format=pdf" sec:authorize="hasRole('AUDITOR')">
+							<i class="fas fa-file-pdf"> </i> Exportar Usuarios PDF </a> </li>
 
-					<li class="nav-item"><a class="nav-link" href="/new">ABM Usuarios</a></li>
-					<li class="nav-item"><a class="nav-link" href="/new-perfil">ABM Perfiles</a></li>
+					<li class="nav-item"><a class="nav-link" href="/listar" 		 sec:authorize="hasAnyRole('AUDITOR', 'ADMIN')">Lista de Usuarios</a></li>					
+					<li class="nav-item"><a class="nav-link" href="/listar-perfiles" sec:authorize="hasAnyRole('AUDITOR', 'ADMIN')">Lista de Perfiles</a></li>
+					<li class="nav-item"><a class="nav-link" href="/listar-personas" >Lista de Personas</a></li>
+
+					
+					
+					
 					<li class="nav-item"><a class="nav-link" href="/new-persona">Alta Personas</a></li>
 					<li class="nav-item"><a class="nav-link" href="/new-permiso-diario">Alta Permiso Diario</a></li>
 					<li class="nav-item"><a class="nav-link" href="/new-permiso-periodo">Alta Permiso Periodo</a></li>
 					<li class="nav-item"><a class="nav-link" href="/new-rodado">Alta Rodado</a></li>
+					
 
-					
-					<li class="nav-item"><a class="nav-link" href="/listar/?format=pdf" sec:authorize access="hasRole('AUDITOR')">
-							<i class="fas fa-file-pdf"> </i> Exportar Usuarios PDF </a> </li>
-					
-					
-					<li class="nav-item"><a class="nav-link" href="/listar">Lista de Usuarios</a> </li>
-					<li class="nav-item"><a class="nav-link" href="/listar-perfiles">Lista de Perfiles</a></li>					
-					<li class="nav-item"><a class="nav-link" href="/listar-personas">Lista de Personas</a></li>
-					
-					
+
+
 					<li class="nav-item"><a class="nav-link" href="/buscar_por_dominio">Buscar Permisos Por Dominio</a></li>
-					
-								
-
-					<li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
-					<li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-					
-					
 					<li class="nav-item"><a class="nav-link" href="/traerPersonaDNI">Traer Permiso Por Persona</a></li>
+
+
+					<li class="nav-item"><a class="nav-link" href="/login" 	sec:authorize="anonymous">Log In</a></li>
+					<li class="nav-item"><a class="nav-link" href="/logout"	sec:authorize="!anonymous">Log Out</a></li>
+
+
 					<!--
 					<a class="dropdown-item" href="/permiso/seleccionarDni">Traer Permiso Por Persona</a>
 					-->
-					
+
 					
 					<!--
 					<a class="nav-link" href="/listar/?format=pdf" sec:authorize="hasAuthority('AUDITOR')"><i class="fas fa-file-pdf"></i>AUT</a>
