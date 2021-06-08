@@ -54,7 +54,7 @@ public class PermisoService implements IPermisoService{
 
 	@Override
 	public List<PermisoDiario> listarPermisosDiario(List<Permiso> listaPermisos) {
-List<PermisoDiario> permisosDiario = new ArrayList<PermisoDiario>();
+		List<PermisoDiario> permisosDiario = new ArrayList<PermisoDiario>();
 		
 		for (Permiso p : listaPermisos) {
 			if (p instanceof PermisoDiario) {
@@ -76,25 +76,25 @@ List<PermisoDiario> permisosDiario = new ArrayList<PermisoDiario>();
 	}
 
 	@Override
-	public List<PermisoPeriodo> listarFechaPermisoPeriodo(List<PermisoPeriodo> listaPermisosPeriodo, LocalDate fecha1,
-			LocalDate fecha2) {
+	public List<PermisoPeriodo> listarFechaPermisoPeriodo(List<PermisoPeriodo> listaPermisosPeriodo, LocalDate fechaDesde, LocalDate fechaHasta) {
 		List<PermisoPeriodo> permisosPeriodo= new ArrayList<PermisoPeriodo>();
 		for (PermisoPeriodo p : listaPermisosPeriodo) {
 			LocalDate fechaVencimiento = p.getFecha().plusDays(p.getCantDias());
-			if (fecha1.isEqual(p.getFecha()) && fecha2.isBefore(fechaVencimiento)|| fecha1.isAfter(p.getFecha())&&fecha2.isEqual(fechaVencimiento) || fecha1.isAfter(p.getFecha()) && fecha2.isBefore(fechaVencimiento)
-					|| fecha1.isEqual(p.getFecha()) && fecha2.isEqual(fechaVencimiento)) {
-				permisosPeriodo.add(p);
+			if (fechaDesde.isEqual(p.getFecha()) && fechaHasta.isBefore(fechaVencimiento)
+				|| 	fechaDesde.isAfter(p.getFecha()) && fechaHasta.isEqual(fechaVencimiento)
+				|| fechaDesde.isAfter(p.getFecha()) && fechaHasta.isBefore(fechaVencimiento) 
+				|| fechaDesde.isEqual(p.getFecha()) && fechaHasta.isEqual(fechaVencimiento) ){ 
+						permisosPeriodo.add(p);
 			}
 		}
-		System.out.println("SERVICE" + permisosPeriodo);
 		return permisosPeriodo;	
 	}
 
 	@Override
-	public List<PermisoDiario> listarFechaPermisoDiario(List<PermisoDiario> listaPermisos, LocalDate fecha) {
+	public List<PermisoDiario> listarFechaPermisoDiario(List<PermisoDiario> listaPermisos, LocalDate fechaHasta) {
 		List<PermisoDiario> permisosDiario = new ArrayList<PermisoDiario>();
 		for (PermisoDiario p : listaPermisos) {
-			if (p.getFecha().isEqual(fecha)) {
+			if (p.getFecha().isEqual(fechaHasta)) {
 				permisosDiario.add(p);
 			}
 		}

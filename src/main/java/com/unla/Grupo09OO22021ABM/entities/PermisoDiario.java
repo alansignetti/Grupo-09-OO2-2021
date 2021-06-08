@@ -1,7 +1,6 @@
 package com.unla.Grupo09OO22021ABM.entities;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,8 +39,10 @@ public class PermisoDiario extends Permiso{
 
 	@Override
 	public String toString() {
-		return "motivo:" + motivo;
+		return "PermisoDiario [motivo=" + motivo + "]";
 	}
+
+	
 	
 	
 

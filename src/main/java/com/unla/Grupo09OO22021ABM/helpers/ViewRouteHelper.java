@@ -41,12 +41,14 @@ public class ViewRouteHelper {
 	
 	
 	
-	//PERMISO
+	//TRAER PERMISOS
 	public final static String PERMISO_PERSONA = "/permiso-persona";
 	public final static String RESULTADO_ENTRE_FECHAS = "/permiso/resultado-entre-fechas";
 	public final static String PERMISO_ENTRE_FECHAS = "/permiso/entre-fechas";
-	
-	
+	public final static String PERMISO_ENTRE_FECHAS_ORIGEN = "/permiso/entre-fechas-origen";
+	public final static String RESULTADO_ENTRE_FECHAS_ORIGEN = "/permiso/resultado-entre-fechas-origen";
+	public final static String PERMISO_ENTRE_FECHAS_DESTINO = "/permiso/entre-fechas-destino";
+	public final static String RESULTADO_ENTRE_FECHAS_DESTINO = "/permiso/resultado-entre-fechas-destino";
 	
 	
 	/**** Redirects ****/
