@@ -31,6 +31,18 @@
 		var apellido = getQueryVariable('apellido');
 		
 		var nombre = getQueryVariable('nombre');
+
+		var motivo = getQueryVariable('motivo');
+
+		var fecha = getQueryVariable('fecha');
+
+		var lugar = getQueryVariable('lugar');
+
+		var fecha2 = getQueryVariable('fecha2');
+
+		var rodado = getQueryVariable('rodado');
+
+		var vacaciones = getQueryVariable('vacaciones');
 		
 		
 					</script>
@@ -41,6 +53,9 @@
 									<th>DNI</th>
 									<th>NOMBRE</th>
 									<th>APELLIDO</th>
+									<th>MOTIVO</th>
+									<th>FECHA</th>
+									<th>LUGAR</th>
 									
 									
 								</tr>
@@ -56,6 +71,19 @@
 									<td >
 										<script type="text/javascript">document.write(apellido);</script>
 									</td>
+									<th >
+										<script type="text/javascript">document.write(motivo)</script>
+									</th>
+									
+									<th >
+										<script type="text/javascript">document.write(fecha)</script>
+									</th>
+									
+									<th >
+										<script type="text/javascript">document.write(lugar)</script>
+									</th>
+					
+								</tr>
 								</tr>
 							</tbody>
 						</table>
