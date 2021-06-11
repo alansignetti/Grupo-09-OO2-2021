@@ -13,5 +13,6 @@ public interface IRodadoService {
 	public Optional<Rodado> listarId(int id);
 	public int save(Rodado r);
 	public Rodado findByDominio(@Param("dominio") String dominio);
+	public boolean validarRodado(String dominio);
 	
 }

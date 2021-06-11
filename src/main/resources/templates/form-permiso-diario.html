@@ -30,6 +30,7 @@
 						<div class="form-group">
 							<label>Fecha:</label>
 							<input th:field="*{fecha}" type="date" class="form-control"/>
+							<p th:if="${#fields.hasErrors('fecha')}" style="color:red" th:errors="*{fecha}"></p>
 						</div>
 						<div class="form-group">
 						<label>Lugar Desde:</label>	
@@ -48,6 +49,7 @@
 						<div class="form-group">
 							<label>Motivo:</label>
 							<input th:field="*{motivo}" type="text" class="form-control"/>
+							<p th:if="${#fields.hasErrors('motivo')}" style="color:red" th:errors="*{motivo}"></p>
 						</div>
 					<div class="card-footer">
 						<input type="submit" value="Guardar" class="btn btn-success"/>

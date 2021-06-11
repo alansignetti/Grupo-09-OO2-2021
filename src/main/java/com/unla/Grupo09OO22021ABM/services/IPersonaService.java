@@ -10,13 +10,10 @@ import com.unla.Grupo09OO22021ABM.models.PersonaModel;
 
 public interface IPersonaService {
     
-    public int save(Persona p);
-    
+    public int save(Persona p);    
     public List<Persona> listarPersonas();
-
 	public Optional<Persona> listarIdPersona(int id);
-
 	public void delete(int id);
-
+	public Persona findByDni(long dni);
 	public Persona traerPorDni(@Param("dni") long dni);
 }

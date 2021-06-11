@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -25,24 +30,39 @@ public class Usuario {
 	private int id_usuario;
 	
 	@Column(name="nombre", nullable=false, length=45)
+	@NotEmpty
+	@Size(min=2, message="Por favor, ingrese el Nombre.")
+	@Pattern(regexp = "^[a-zA-Z]$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
 	private String nombre;
 	
 	@Column(name="apellido", nullable=false, length=45)
+	@NotEmpty
+	@Size(min=2, message="Por favor, ingrese el Apellido.")
+	@Pattern(regexp = "^[a-zA-Z]$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
 	private String apellido;
 	
 	@Column(name="tipo_dni")
+	@NotEmpty
+	@Size(min=1, message="Por favor, seleccione el Tipo de Documento.")
 	private String tipo_dni;
 	
 	@Column(name="dni", unique=true, nullable=false)
+	@NotNull
 	private long dni;
 	
 	@Column(name="email", unique=true, nullable=false, length=60)
+	@NotEmpty
+	@Email
 	private String email;
 	
 	@Column(name="username", unique=true, nullable=false, length=45)
+	@NotEmpty
+	@Size(min=2, message="Por favor, ingrese el Nombre de Usuario.")
 	private String username;
 	
 	@Column(name="password", nullable=false, length=60)
+	@NotEmpty
+	@Size(min=2, message="Por favor, ingrese la Contraseña.")
 	private String password;
 	
 	@Column(name = "enabled", columnDefinition = "boolean default true")
@@ -50,6 +70,7 @@ public class Usuario {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_perfil", nullable = false)
+	@NotNull
 	private Perfil perfil;
 
 	@Column(name = "createdat", updatable = false)
@@ -156,8 +177,6 @@ public class Usuario {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	
-	
 
 	public Perfil getPerfil() {
 		return perfil;

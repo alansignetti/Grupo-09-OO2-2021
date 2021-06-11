@@ -1,17 +1,10 @@
 package com.unla.Grupo09OO22021ABM.services.implementations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.stereotype.Service;
 
 import com.unla.Grupo09OO22021ABM.converters.UsuarioConverter;
 import com.unla.Grupo09OO22021ABM.entities.Usuario;
@@ -52,6 +45,18 @@ public class UsuarioService implements IUsuarioService{
 	@Override
 	public void delete(int id) {
 		usuarioRepository.deleteById(id);
+	}
+	
+	public Usuario findByDni(@Param("dni") long dni) {
+		return usuarioRepository.findByDni(dni);
+	}
+	
+	public Usuario findByEmail(@Param("email") String email) {
+		return usuarioRepository.findByEmail(email);
+	}
+	
+	public Usuario findByUsername(@Param("username") String username) {
+		return usuarioRepository.findByUsername(username);
 	}
 
 }

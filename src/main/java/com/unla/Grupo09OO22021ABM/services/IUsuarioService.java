@@ -9,6 +9,9 @@ public interface IUsuarioService {
 	
 	public List<Usuario> listar();
 	public Optional<Usuario> listarId(int id);
+	public Usuario findByDni(long dni);
+	public Usuario findByEmail(String email);
+	public Usuario findByUsername(String username);
 	public int save(Usuario u);
 	public void delete (int id);
 

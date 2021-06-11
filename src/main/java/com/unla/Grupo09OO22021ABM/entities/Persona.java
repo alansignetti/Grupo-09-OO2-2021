@@ -6,6 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,21 +25,27 @@ public class Persona {
 	private int id_persona;
 	
 	@Column(name = "nombre")
+	@NotEmpty
+	@Size(min=2, message="Nombre requerido")
+	@Pattern(regexp = "^[a-zA-Z]$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
 	private String nombre;
 
 	@Column(name = "apellido")
+	@NotEmpty
+	@Size(min=2, message="Apellido requerido")
+	@Pattern(regexp = "^[a-zA-Z]$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
 	private String apellido;
 
 	@Column(name = "dni")
+	@NotNull
+	//@Pattern(regexp = "^[[\\d]$", message ="Solo se permiten Digitos. Por favor, intente nuevamente.")
 	private long dni;
-//
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido")
 	private Set<Permiso> permiso;
 
 
-	public Persona() {
-	}
+	public Persona() {}
 
 	public Persona(String nombre, String apellido, long dni) {
 		super();
@@ -77,8 +87,7 @@ public class Persona {
 	}
 
 	@Override
-	public String toString() {
-		
+	public String toString() {	
 		return "DNI: " + dni +" ("+ nombre +" "+ apellido +")";
 	}
 
