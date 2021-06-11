@@ -23,6 +23,7 @@
 						<div class="form-group">
 							<label>Tipo Perfil:</label>
 							<input th:field="*{tipo_perfil}" type="text" class="form-control"/>
+							<p th:if="${#fields.hasErrors('tipo_perfil')}" style="color:red" th:errors="*{tipo_perfil}"></p>
 						</div>
 					<div class="card-footer">
 						<input type="submit" value="Guardar" class="btn btn-success"/>

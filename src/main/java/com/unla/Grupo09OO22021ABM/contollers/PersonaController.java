@@ -4,27 +4,22 @@ package com.unla.Grupo09OO22021ABM.contollers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-
-import com.unla.Grupo09OO22021ABM.entities.Perfil;
-import com.unla.Grupo09OO22021ABM.entities.Persona;
 import com.unla.Grupo09OO22021ABM.entities.Persona;
 import com.unla.Grupo09OO22021ABM.helpers.ViewRouteHelper;
-import com.unla.Grupo09OO22021ABM.models.PersonaModel;
 import com.unla.Grupo09OO22021ABM.services.IPersonaService;
 
 
@@ -42,20 +37,34 @@ public class PersonaController {
 		model.addAttribute("personas", personas);
 		return ViewRouteHelper.INDEX_PERSONA;
 	}
-	
-    
-    
+
 	@GetMapping("/new-persona")
 	public String agregar(Model model) {	
 		model.addAttribute("persona", new Persona());
 		return ViewRouteHelper.FORM_PERSONA;
 	}
 	
-	
 	@PostMapping("/save-persona")
-	public RedirectView save(Model model, @Validated Persona p) {
-		personaService.save(p);
-		return new RedirectView(ViewRouteHelper.HOME);
+	public String save(@Valid @ModelAttribute("persona") Persona p, BindingResult bindingResult) { 
+		String dni = String.valueOf(p.getDni());
+		if(p.getDni()==0) {
+			FieldError error = new FieldError("persona", "dni", "Por favor, ingrese el Nro. de Documento");
+			bindingResult.addError(error);
+		}
+		if (dni.length() != 8) {
+			FieldError error = new FieldError("persona", "dni", "Por favor, verifique la longitud del Nro. de Documento e Intente nuevamente");
+			bindingResult.addError(error);
+		}
+		if (personaService.findByDni(p.getDni())!=null ) {
+			FieldError error = new FieldError("persona", "dni", "Ya existe una Persona registrada con DNI: "+ p.getDni() + ". Intente nuevamente");
+			bindingResult.addError(error);
+		}
+		if(bindingResult.hasErrors()) {
+			return ViewRouteHelper.FORM_PERSONA;
+		}else {
+			personaService.save(p);
+			return ViewRouteHelper.HOME;
+		}		
 	}
 	
 	@GetMapping("/editar-persona/{id}")
@@ -71,20 +80,14 @@ public class PersonaController {
 		return new RedirectView(ViewRouteHelper.PERSONAS);
 	}
 	
-	
-	
 	@GetMapping("/traerPersonaDNI")
 	public String traerPersonaDNI(Model model) {
 		return ViewRouteHelper.PERSONA_DNI;
 	}
 	
-	
-	
-	
 	@GetMapping("/traerPermisoPorPersona")
 	public String traerPermisoPorPersona(@RequestParam long dni, Model model,RedirectAttributes attribute) {
 		List<Persona> personas = new ArrayList<Persona>();
-//		model.addAttribute("titulo", "Persona");
 		Persona persona = personaService.traerPorDni(dni);
 		if(persona==null) {
 			attribute.addFlashAttribute("success","Este dni no se encuentra en la base de datos");

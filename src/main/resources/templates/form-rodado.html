@@ -23,10 +23,12 @@
 						<div class="form-group">
 							<label>Dominio:</label>
 							<input th:field="*{dominio}" type="text" class="form-control"/>
+							<p th:if="${#fields.hasErrors('dominio')}" style="color:red" th:errors="*{dominio}"></p>
 						</div>
 						<div class="form-group">
 							<label>Vehiculo:</label>
 							<input th:field="*{vehiculo}" type="text" class="form-control"/>
+							<p th:if="${#fields.hasErrors('vehiculo')}" style="color:red" th:errors="*{vehiculo}"></p>
 						</div>
 					<div class="card-footer">
 						<input type="submit" value="Guardar" class="btn btn-success"/>

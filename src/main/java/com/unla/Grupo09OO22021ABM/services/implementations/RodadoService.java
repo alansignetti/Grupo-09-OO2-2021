@@ -2,6 +2,7 @@ package com.unla.Grupo09OO22021ABM.services.implementations;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -45,5 +46,19 @@ public class RodadoService implements IRodadoService{
 		}
 		return res;
 	}
-
+	
+	public boolean validarRodado(String dominio) {
+		boolean coincide = false;
+		Pattern patenteVieja = Pattern.compile("^[a-zA-Z]{3}[\\d]{3}$");   // 3 letras mayúsculas y minúsculas y 3 dígitos numéricos
+		Pattern patenteNueva = Pattern.compile("^[a-zA-Z]{2}[\\d]{3}[a-zA-Z]{2}$"); // 2 letras mayúsculas y minúsculas y 3 dígitos numéricos y 2 letras mayúsculas y minúsculas
+        if (patenteVieja.matcher(dominio).matches()) {
+            coincide = true;
+        } else {
+        	if (patenteNueva.matcher(dominio).matches()) {
+        		coincide = true;
+        	}
+        }
+        return coincide;
+	}
+	
 }

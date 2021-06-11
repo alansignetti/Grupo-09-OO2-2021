@@ -2,19 +2,24 @@ package com.unla.Grupo09OO22021ABM.contollers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
+
 
 import com.unla.Grupo09OO22021ABM.entities.PermisoPeriodo;
 import com.unla.Grupo09OO22021ABM.entities.Rodado;
@@ -54,11 +59,19 @@ public class RodadoController {
 		return ViewRouteHelper.PERMISO_PERIODO_POR_RODADO;
 	}
 	
-	@PostMapping("/save-rodado")
-	public RedirectView save(Model model, @Validated Rodado r, RedirectAttributes attribute ) {
-		serviceRodado.save(r);
-		attribute.addFlashAttribute("success","El Rodado se agrego con Exito");
-		return new RedirectView(ViewRouteHelper.HOME);
+	@PostMapping("/save-rodado") //
+	public String save(@Valid @ModelAttribute("rodado") Rodado r, BindingResult bindingResult, Model model, RedirectAttributes attribute ) {
+		if ( serviceRodado.validarRodado(r.getDominio()) == false ) {
+			FieldError error = new FieldError("rodado", "dominio", "Formatos válidos: LLL-NNN o LL-NNN-LL. Por favor, ingrese un Dominio Válido e Intente nuevamente");
+			bindingResult.addError(error);
+		}
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("rodado", r);
+			return ViewRouteHelper.FORM_RODADO;
+		}else {
+			serviceRodado.save(r);
+			return ViewRouteHelper.HOME;
+		}
 	}
 	
 	@GetMapping("/rodado/permisos")
