@@ -70,19 +70,19 @@ public class PermisoPeriodoController {
 	
 	@GetMapping("/new-permiso-periodo")
 	public String agregar(Model model) {
-		List<Persona> personas = servicePersona.listarPersonas();
 		List<Lugar> lugares = serviceLugar.listarLugar();
-		List<Rodado> rodados = serviceRodado.listar();
 		model.addAttribute("permisoPeriodo", new PermisoPeriodo());
-		model.addAttribute("personas", personas);
+		model.addAttribute("pedido", new Persona());
 		model.addAttribute("lugares", lugares);
-		model.addAttribute("rodados", rodados);
+		model.addAttribute("rodado", new Rodado());
 		return ViewRouteHelper.FORM_PERMISO_PERIODO;
 	}
 	
 	@PostMapping("/save-permiso-periodo") //,
     public String save(@Valid @ModelAttribute("permisoPeriodo") PermisoPeriodo pp, BindingResult bindingResult, 
     		Model model, @RequestParam(required=false) int desde, @RequestParam(required=false) int hasta) {
+		Persona pedido = servicePersona.findByDni(pp.getPedido().getDni());
+		Rodado rodado = serviceRodado.findByDominio(pp.getRodado().getDominio());
 		if (pp.getFecha() == null) {
 			FieldError error = new FieldError("permisoDiario", "fecha", "Por favor, ingrese una fecha e Intente nuevamente");
 			bindingResult.addError(error);
@@ -96,14 +96,18 @@ public class PermisoPeriodoController {
 			FieldError error = new FieldError("permisoDiario", "cantDias", "Por favor, ingrese la Cantidad de Dias deseados e Intente nuevamente");
 			bindingResult.addError(error);
 		}
+		if (pedido == null) {
+			FieldError error = new FieldError("permisoPeriodo", "pedido.dni", "Por favor, Dar de alta a la Persona e Intente nuevamente");
+			bindingResult.addError(error);
+		}
+		if (rodado == null) {
+			FieldError error = new FieldError("permisoPeriodo", "rodado.dominio", "Por favor, Dar de alta el Dominio e Intente nuevamente");
+			bindingResult.addError(error);
+		}
 		if (bindingResult.hasErrors()) {
-			List<Persona> personas = servicePersona.listarPersonas();
 			List<Lugar> lugares = serviceLugar.listarLugar();
-			List<Rodado> rodados = serviceRodado.listar();
 			model.addAttribute("permisoPeriodo", pp);
-			model.addAttribute("personas", personas);
 			model.addAttribute("lugares", lugares);
-			model.addAttribute("rodados", rodados);
 			return ViewRouteHelper.FORM_PERMISO_PERIODO;
 			
 		}else {
@@ -111,6 +115,8 @@ public class PermisoPeriodoController {
 		        lugares.add(serviceLugar.traerLugar(desde));
 		        lugares.add(serviceLugar.traerLugar(hasta));
 		        pp.setDesdeHasta(lugares);
+		        pp.setPedido(pedido);
+		        pp.setRodado(rodado);
 		        servicePermisoPeriodo.save(pp);
 		        return ViewRouteHelper.HOME;
 		}       

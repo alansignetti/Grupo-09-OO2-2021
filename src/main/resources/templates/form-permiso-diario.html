@@ -20,12 +20,17 @@
 							<label>ID:</label>
 							<input th:field="*{id_usuario}" type="text" class="form-control"/>
 						</div>-->
-						<div class="form-group">
+						<!--<div class="form-group">
 						<label>Persona:</label>	
 							<select class="form-control form-control-sm" th:field="*{pedido.id_persona}" >
 							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.nombre}" name = "persona">
                               </option>
 							</select>
+						</div>-->
+						<div class="form-group">
+							<label>Dni Persona:</label>
+							<input th:field="*{pedido.dni}" type="text" class="form-control" name="pedido.dni"/>
+							<p th:if="${#fields.hasErrors('pedido.dni')}" style="color:red" th:errors="*{pedido.dni}"></p>
 						</div>
 						<div class="form-group">
 							<label>Fecha:</label>
