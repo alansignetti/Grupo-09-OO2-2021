@@ -29,7 +29,7 @@
 						</div>
 						<div class="form-group">
 							<label>Fecha:</label>
-							<input th:field="*{fecha}" type="date" class="form-control"/>
+							<input th:field="*{fecha}" type="date" class="form-control" name ="fecha"/>
 							<p th:if="${#fields.hasErrors('fecha')}" style="color:red" th:errors="*{fecha}"></p>
 						</div>
 						<div class="form-group">

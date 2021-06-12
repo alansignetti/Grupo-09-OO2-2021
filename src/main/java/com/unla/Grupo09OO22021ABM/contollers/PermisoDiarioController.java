@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -78,7 +79,7 @@ public class PermisoDiarioController {
 	
 	@PostMapping("/save-permiso-diario") //
 	public String save(@Valid @ModelAttribute("permisoDiario") PermisoDiario pd, BindingResult bindingResult,
-			Model model, RedirectAttributes attribute ,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta, @RequestParam(required = false) String motivo,  @RequestParam(required = false) String persona) throws WriterException, IOException {
+			Model model, RedirectAttributes attribute , @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta, @RequestParam(required = false) String motivo,  @RequestParam(required = false) String persona) throws WriterException, IOException {
 		if (pd.getFecha() == null) {
 			FieldError error = new FieldError("permisoDiario", "fecha", "Por favor, ingrese una fecha e Intente nuevamente");
 			bindingResult.addError(error);
@@ -100,14 +101,17 @@ public class PermisoDiarioController {
 			lugares.add(serviceLugar.traerLugar(desde));
 			lugares.add(serviceLugar.traerLugar(hasta));
 			pd.setDesdeHasta(lugares);
-			String url = "alansignetti.github.io/Grupo-09-OO2-2021";
 			
+			String lugarDesde = serviceLugar.traerLugar(desde).getLugar() + "("+serviceLugar.traerLugar(hasta).getCodigo_postal()+")";
+			String lugarHasta = serviceLugar.traerLugar(hasta).getLugar() + "("+serviceLugar.traerLugar(hasta).getCodigo_postal()+")";
 			
 			// para ver la imagen del qr hay que actualizar la imagen (abrirla y cerrarla en eclipse) 
 			// Y despues recargar la pagina = http://localhost:8080/QR
 			// hardcodeado para entender como funciona
 //			String nombrePersona = persona.getNombre();
-			QRCodeGenerator.generateQRCodeImage(url+"?permiso=1&apellido="+motivo+"&dni=14444&nombre="+persona, 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
+			String url = "alansignetti.github.io/Grupo-09-OO2-2021"+"?permiso=1&apellido=harcodeado&motivo="+motivo+"&dni=14444&nombre=harcodeado&fecha="+fecha+"&desde="+lugarDesde+"&hasta="+lugarHasta;
+			
+			QRCodeGenerator.generateQRCodeImage(url.replaceAll("\\s+","%20"), 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
 			// la idea es que cuando se guarda el permiso, se guarden esos datos en la url y se genera el qr coon esa url y despues se ve en la imagen
 			//			QRCodeGenerator.generateQRCodeImage(url+"?apellido="+pd.getPedido().getApellido()+"&dni="+pd.getPedido().getDni()+"&"+pd.getPedido().getNombre(), 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
 			servicePermisoDiario.save(pd);
