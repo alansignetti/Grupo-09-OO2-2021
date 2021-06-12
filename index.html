@@ -53,11 +53,12 @@
 
 		var vacaciones = getQueryVariable('vacaciones');
 		
-		if(vacaciones == false){
+		if(vacaciones == "false"){
 			vacaciones = "NO";
 		}else{
-			vacaciones="SI";
-		}
+			if(vacaciones == "true"){
+				vacaciones="SI";}
+			}
 
 		var desde = getQueryVariable('desde');
 
@@ -77,9 +78,8 @@
 					<th>FECHA</th>
 					<th>DESDE</th>
 					<th>HASTA</th>
-
-
 				</tr>
+				
 			</thead>
 			<tbody>
 				<tr>
@@ -92,23 +92,23 @@
 					<td>
 						<script type="text/javascript">document.write(apellido.replace(/[^a-zA-Z ]/g, " "));</script>
 					</td>
-					<th>
+					<td>
 						<script type="text/javascript">document.write(motivo.replace(/[^a-zA-Z ]/g, " "))</script>
-					</th>
+					</td>
 
-					<th>
+					<td>
 						<script type="text/javascript">document.write(fecha)</script>
-					</th>
+					</td>
 
-					<th>
+					<td>
 						<script
 							type="text/javascript">document.write(desde.replace("%28", " (").replace("%29", ")").replace(/[+]/g, " "))</script>
-					</th>
+					</td>
 
-					<th>
+					<td>
 						<script
 							type="text/javascript">document.write(hasta.replace("%28", " (").replace("%29", ")").replace(/[+]/g, " "))</script>
-					</th>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -117,6 +117,7 @@
 
 		<table id="periodo" class="table">
 			<thead>
+			
 				<tr>
 					<th>DNI</th>
 					<th>NOMBRE</th>
@@ -127,8 +128,8 @@
 					<th> RODADO </th>
 					<th>DESDE</th>
 					<th>HASTA</th>
-
 				</tr>
+				
 			</thead>
 			<tbody>
 				<tr>
@@ -141,32 +142,33 @@
 					<td>
 						<script type="text/javascript">document.write(apellido.replace(/[^a-zA-Z ]/g, " "));</script>
 					</td>
-					<th>
+					<td>
 						<script type="text/javascript">document.write(cantDias)</script>
-					</th>
+					</td>
 					
-					<th>
+					<td>
 						<script type="text/javascript">document.write(vacaciones)</script>
-					</th>
+					</td>
 
-					<th>
+					<td>
 						<script type="text/javascript">document.write(fecha)</script>
-					</th>
+					</td>
 					
-					<th>
-						<script type="text/javascript">document.write(rodado)</script>
-					</th>
+					<td>
+					<script
+							type="text/javascript">document.write(rodado.replace("%28", " (").replace("%29", ")").replace(/[+]/g, " "))</script>
+					</td>
 
-					<th>
+					<td>
 							<script
 							type="text/javascript">document.write(desde.replace("%28", " (").replace("%29", ")").replace(/[+]/g, " "))</script>
-					</th>
+					</td>
 					
-					<th> 
+					<td> 
 							<script
 							type="text/javascript">document.write(hasta.replace("%28", " (").replace("%29", ")").replace(/[+]/g, " "))</script>
 						
-					</th>
+					</td>
 
 				</tr>
 				
