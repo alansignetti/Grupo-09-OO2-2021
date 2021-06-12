@@ -13,25 +13,17 @@ import com.unla.Grupo09OO22021ABM.util.QRCodeGenerator;
 
 @RestController //Rest
 public class QRCodeController {
+	// lo dejo acá asi lo encontramos facil
 	
 	private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/static/QRCode.png";
 
-//	
-//    @GetMapping(value = "/generateAndDownloadQRCode/{codeText}/{width}/{height}")
-//		public void download(
-//				@PathVariable("codeText") String codeText,
-//				@PathVariable("width") Integer width,
-//				@PathVariable("height") Integer height)
-//			    throws Exception {
-//			        QRCodeGenerator.generateQRCodeImage(codeText, width, height, QR_CODE_IMAGE_PATH);
-//			    }
-//    
+
     @GetMapping(value = "/generarQR/{url}/{grupo}") // alansignetti.github.io/Grupo-09-OO2-2021/?
 		public void download(
 				@PathVariable("url") String url
 				,@PathVariable("grupo") String grupo)
 			    throws Exception {
-			        QRCodeGenerator.generateQRCodeImage(url+"/"+grupo, 200, 200, QR_CODE_IMAGE_PATH);
+			        QRCodeGenerator.generateQRCodeImage(url+"/"+grupo+"?apellido=signetti&dni=32&nombre=alan", 200, 200, QR_CODE_IMAGE_PATH);
 			    }
 
     @GetMapping(value = "/generateQRCode/{codeText}/{width}/{height}")

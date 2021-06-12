@@ -1,5 +1,6 @@
 package com.unla.Grupo09OO22021ABM.contollers;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.zxing.WriterException;
 import com.unla.Grupo09OO22021ABM.entities.Lugar;
 import com.unla.Grupo09OO22021ABM.entities.Permiso;
 import com.unla.Grupo09OO22021ABM.entities.PermisoDiario;
@@ -31,6 +33,7 @@ import com.unla.Grupo09OO22021ABM.services.IPermisoDiarioService;
 import com.unla.Grupo09OO22021ABM.services.IPermisoService;
 import com.unla.Grupo09OO22021ABM.services.IPersonaService;
 import com.unla.Grupo09OO22021ABM.services.IRodadoService;
+import com.unla.Grupo09OO22021ABM.util.QRCodeGenerator;
 
 @Controller
 @RequestMapping
@@ -64,18 +67,18 @@ public class PermisoDiarioController {
 	}
 	
 	@GetMapping("/new-permiso-diario")
-	public String agregar(Model model) {
+	public String agregar(Model model) throws WriterException, IOException {
 		List<Persona> personas = servicePersona.listarPersonas();
 		List<Lugar> lugares = serviceLugar.listarLugar();
 		model.addAttribute("permisoDiario", new PermisoDiario());
 		model.addAttribute("personas", personas);
 		model.addAttribute("lugares", lugares);
-		return ViewRouteHelper.FORM_PERMISO_DIARIO;
+			return ViewRouteHelper.FORM_PERMISO_DIARIO;
 	}
 	
 	@PostMapping("/save-permiso-diario") //
 	public String save(@Valid @ModelAttribute("permisoDiario") PermisoDiario pd, BindingResult bindingResult,
-			Model model, RedirectAttributes attribute ,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta	) {
+			Model model, RedirectAttributes attribute ,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta	) throws WriterException, IOException {
 		if (pd.getFecha() == null) {
 			FieldError error = new FieldError("permisoDiario", "fecha", "Por favor, ingrese una fecha e Intente nuevamente");
 			bindingResult.addError(error);
@@ -97,6 +100,15 @@ public class PermisoDiarioController {
 			lugares.add(serviceLugar.traerLugar(desde));
 			lugares.add(serviceLugar.traerLugar(hasta));
 			pd.setDesdeHasta(lugares);
+			String url = "alansignetti.github.io/Grupo-09-OO2-2021";
+			
+			
+			// para ver la imagen del qr hay que actualizar la imagen (abrirla y cerrarla en eclipse) 
+			// Y despues recargar la pagina = http://localhost:8080/QR
+			// hardcodeado para entender como funciona
+			QRCodeGenerator.generateQRCodeImage(url+"?apellido=saassa&dni=14444&nombre=permisodiario", 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
+			// la idea es que cuando se guarda el permiso, se guarden esos datos en la url y se genera el qr coon esa url y despues se ve en la imagen
+			//			QRCodeGenerator.generateQRCodeImage(url+"?apellido="+pd.getPedido().getApellido()+"&dni="+pd.getPedido().getDni()+"&"+pd.getPedido().getNombre(), 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
 			servicePermisoDiario.save(pd);
 			return ViewRouteHelper.HOME;
 		}
