@@ -23,5 +23,10 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Serializable>
 	
 	@Query("SELECT u FROM Usuario u WHERE u.username = (:username)")
 	public abstract Usuario findByUsername(@Param("username") String username);
+	
+	@Query("SELECT u FROM Usuario u WHERE u.id_usuario = (:id_usuario)")
+	public abstract Usuario traerPorId(@Param("id_usuario") int id_usuario);
+	
+	
 
 }

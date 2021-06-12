@@ -25,11 +25,10 @@ public class Perfil {
 	@Column(name="tipo_perfil", unique=true, nullable=false, length=45)
 	@NotEmpty
 	@Size(min=2, message="Por favor, ingrese el Tipo de Perfil.")
-	//@Pattern(regexp = "^ROLE_[A-Z]$", message ="El formato permitido es: ROLE_TIPOPERFIL, en Mayúsculas. Por favor, intente nuevamente.")
 	private String tipo_perfil;
 	
 	@Column(name = "enabled", columnDefinition = "boolean default true")
-	private boolean enabled;
+	private boolean enabled = true;
 
 	@Column(name = "createdat", updatable = false)
 	@CreationTimestamp

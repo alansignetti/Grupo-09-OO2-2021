@@ -27,18 +27,17 @@ public class Persona {
 	@Column(name = "nombre")
 	@NotEmpty
 	@Size(min=2, message="Nombre requerido")
-	@Pattern(regexp = "^[a-zA-Z]$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
+	@Pattern(regexp = "^[a-zA-Z]*$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
 	private String nombre;
 
 	@Column(name = "apellido")
 	@NotEmpty
 	@Size(min=2, message="Apellido requerido")
-	@Pattern(regexp = "^[a-zA-Z]$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
+	@Pattern(regexp = "^[a-zA-Z]*$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
 	private String apellido;
 
 	@Column(name = "dni")
 	@NotNull
-	//@Pattern(regexp = "^[[\\d]$", message ="Solo se permiten Digitos. Por favor, intente nuevamente.")
 	private long dni;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido")

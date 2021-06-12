@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.data.repository.query.Param;
 
 import com.unla.Grupo09OO22021ABM.entities.Persona;
-import com.unla.Grupo09OO22021ABM.models.PersonaModel;
 
 public interface IPersonaService {
     

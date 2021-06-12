@@ -14,5 +14,6 @@ public interface IUsuarioService {
 	public Usuario findByUsername(String username);
 	public int save(Usuario u);
 	public void delete (int id);
+	public Usuario traerPorId(int id);
 
 }
