@@ -62,6 +62,11 @@ public class PerfilService implements IPerfilService{
 	public Perfil traerPorId(int id) {
 		return perfilRepository.traerPorId(id);
 	}
+
+	@Override
+	public Perfil traerPorTipoPerfil(String tipo_perfil) {
+		return perfilRepository.traerPorTipoPerfil(tipo_perfil);
+	}
 		
 
 }
