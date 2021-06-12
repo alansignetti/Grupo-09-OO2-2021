@@ -53,11 +53,12 @@
 
 		var vacaciones = getQueryVariable('vacaciones');
 		
-		if(vacaciones == false){
+		if(vacaciones == "false"){
 			vacaciones = "NO";
 		}else{
-			vacaciones="SI";
-		}
+			if(vacaciones == "true"){
+				vacaciones="SI";}
+			}
 
 		var desde = getQueryVariable('desde');
 
@@ -154,7 +155,8 @@
 					</th>
 					
 					<th>
-						<script type="text/javascript">document.write(rodado)</script>
+					<script
+							type="text/javascript">document.write(rodado.replace("%28", " (").replace("%29", ")").replace(/[+]/g, " "))</script>
 					</th>
 
 					<th>
