@@ -74,7 +74,9 @@ public class PerfilController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/eliminar-perfil/{id}")
 	public RedirectView delete(Model model, @PathVariable int id) {
-		service.delete(id);
+		Perfil p = service.traerPorId(id);
+		p.setEnabled(false);
+		service.save(p);
 		return new RedirectView(ViewRouteHelper.PERFILES);
 	}
 

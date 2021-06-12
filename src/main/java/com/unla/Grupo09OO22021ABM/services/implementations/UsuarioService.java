@@ -59,4 +59,9 @@ public class UsuarioService implements IUsuarioService{
 		return usuarioRepository.findByUsername(username);
 	}
 
+	@Override
+	public Usuario traerPorId(int id) {
+		return usuarioRepository.traerPorId(id);
+	}
+
 }

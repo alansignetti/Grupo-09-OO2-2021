@@ -1,5 +1,6 @@
 package com.unla.Grupo09OO22021ABM.contollers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,29 +49,37 @@ public class UsuarioController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/new")
 	public String agregar(Model model) {
-		List<Perfil> perfiles = servicePerfil.listar();		
+		List<Perfil> perfiles = servicePerfil.listar();
+		List<Perfil> perfilesActivos = new ArrayList<Perfil>();
+		for (Perfil p : perfiles) {
+			if (p.isEnabled() == true) {
+				perfilesActivos.add(p);
+			}
+		}
 		model.addAttribute("usuario", new Usuario());
-		model.addAttribute("perfiles", perfiles);
+		model.addAttribute("perfiles", perfilesActivos);
 		return ViewRouteHelper.FORM_USUARIO;
 	}
 	
 	@PostMapping("/save")
 	public String save(@Valid @ModelAttribute("usuario") Usuario u, BindingResult bindingResult, Model model ) {
 		String dni = String.valueOf(u.getDni());
-		System.out.println(dni);
 		List<Perfil> perfiles = servicePerfil.listar();
-		/*if (dni.matches("[0-9]{1,8}")==false) {
-			FieldError error = new FieldError("usuario", "dni", "Por favor, ingrese solo digitos en el campo Nro. de Documento.");
-			bindingResult.addError(error);
-		}*/
+		List<Perfil> perfilesActivos = new ArrayList<Perfil>();
+		for (Perfil p : perfiles) {
+			if (p.isEnabled() == true) {
+				perfilesActivos.add(p);
+			}
+		}
 		if(u.getDni()==0) {
 			FieldError error = new FieldError("usuario", "dni", "Por favor, ingrese el Nro. de Documento.");
 			bindingResult.addError(error);
-		}
-		if (dni.length() >= 7 ||  dni.length() <= 8) {
-			FieldError error = new FieldError("usuario", "dni", "Por favor, verifique la longitud del Nro. de Documento e Intente nuevamente");
-			bindingResult.addError(error);
-		}
+		}else {
+			if (dni.length() != 8) {
+				FieldError error = new FieldError("persona", "dni", "Por favor, verifique la longitud del Nro. de Documento e Intente nuevamente");
+				bindingResult.addError(error);
+			}
+		}		
 		if (service.findByDni(u.getDni())!=null ) {
 			FieldError error = new FieldError("usuario", "dni", "Ya existe Usuario con DNI: "+ u.getDni() + ". Intente nuevamente");
 			bindingResult.addError(error);
@@ -85,7 +94,7 @@ public class UsuarioController {
 		}
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("usuario", u);
-			model.addAttribute("perfiles", perfiles);
+			model.addAttribute("perfiles", perfilesActivos);
 			return ViewRouteHelper.FORM_USUARIO;
 		}else {
 			service.save(u);
@@ -99,7 +108,13 @@ public class UsuarioController {
 	public String editar(Model model, @PathVariable int id) {
 		Optional<Usuario> usuario = service.listarId(id);
 		List<Perfil> perfiles = servicePerfil.listar();
-		model.addAttribute("perfiles", perfiles);
+		List<Perfil> perfilesActivos = new ArrayList<Perfil>();
+		for (Perfil p : perfiles) {
+			if (p.isEnabled() == true) {
+				perfilesActivos.add(p);
+			}
+		}
+		model.addAttribute("perfiles", perfilesActivos);
 		model.addAttribute("usuario", usuario);
 		return ViewRouteHelper.FORM_USUARIO;
 	}
@@ -107,7 +122,9 @@ public class UsuarioController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/eliminar/{id}")
 	public RedirectView delete(Model model, @PathVariable int id) {
-		service.delete(id);
+		Usuario u = service.traerPorId(id);
+		u.setEnabled(false);
+		service.save(u);
 		return new RedirectView(ViewRouteHelper.USUARIOS);
 	}
 	

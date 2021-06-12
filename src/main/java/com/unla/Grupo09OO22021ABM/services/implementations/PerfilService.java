@@ -57,6 +57,11 @@ public class PerfilService implements IPerfilService{
 	    if (pat.matcher(tipo_perfil).matches()) valido = true;
 	    return valido;
 	}
+
+	@Override
+	public Perfil traerPorId(int id) {
+		return perfilRepository.traerPorId(id);
+	}
 		
 
 }
