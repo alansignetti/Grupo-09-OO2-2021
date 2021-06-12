@@ -11,5 +11,6 @@ public interface IPerfilService {
 	public Optional<Perfil> listarId(int id);
 	public int save(Perfil p);
 	public void delete (int id);
+	public boolean validaTipoPerfil(String tipo_perfil);
 
 }
