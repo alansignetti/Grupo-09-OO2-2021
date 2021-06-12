@@ -1,8 +1,12 @@
 package com.unla.Grupo09OO22021ABM.contollers;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.swing.ImageIcon;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.google.zxing.WriterException;
 import com.unla.Grupo09OO22021ABM.entities.Lugar;
 import com.unla.Grupo09OO22021ABM.entities.Permiso;
 import com.unla.Grupo09OO22021ABM.entities.PermisoDiario;
@@ -28,6 +33,7 @@ import com.unla.Grupo09OO22021ABM.services.IPermisoPeriodoService;
 import com.unla.Grupo09OO22021ABM.services.IPermisoService;
 import com.unla.Grupo09OO22021ABM.services.IPersonaService;
 import com.unla.Grupo09OO22021ABM.services.IRodadoService;
+import com.unla.Grupo09OO22021ABM.util.QRCodeGenerator;
 
 @Controller
 @RequestMapping
@@ -74,7 +80,7 @@ public class PermisoDiarioController {
 	public RedirectView save(Model model, @Validated PermisoDiario pd, RedirectAttributes attribute 
 			,@RequestParam(required = false) int desde,
 			   @RequestParam(required = false) int hasta
-			) 	{
+			) throws WriterException, IOException 	{
 		
 		
 		Set<Lugar> lugares = new HashSet<>();
@@ -83,7 +89,23 @@ public class PermisoDiarioController {
 		pd.setDesdeHasta(lugares);
 		servicePermisoDiario.save(pd);
 		attribute.addFlashAttribute("success","El Permiso se agrego con Exito");
-		return new RedirectView(ViewRouteHelper.HOME);
+		
+		 long dni= pd.getPedido().getDni();
+		 String apellido = pd.getPedido().getApellido();
+		 String nombre = pd.getPedido().getNombre();
+		 
+		
+		int width = 350;
+		int height = 350;
+		String URL =" https://alansignetti.github.io/Grupo-09-OO2-2021/?dni="+dni+"&apellido=" + apellido + "&nombre="+nombre ;
+		
+		
+		
+		byte[] png = QRCodeGenerator.getQRCodeImage(URL, width, height);
+		ImageIcon imageIcon = new ImageIcon(png);
+		System.out.println(imageIcon);
+		 
+		return new RedirectView(ViewRouteHelper.MOSTRAR_QR);
 	}
 	
 	
@@ -96,6 +118,11 @@ public class PermisoDiarioController {
 		return ViewRouteHelper.LISTA_PERMISO_DIARIO;
 	}
 
+	@GetMapping("qrpermiso/qrpermisodiario")
+	public String qrMostrar() {
+		return ViewRouteHelper.MOSTRAR_QR;
+	}
+	
 	
 	
 

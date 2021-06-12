@@ -1,7 +1,10 @@
 package com.unla.Grupo09OO22021ABM.contollers;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+
+import javax.swing.ImageIcon;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.zxing.WriterException;
 import com.unla.Grupo09OO22021ABM.entities.Lugar;
 import com.unla.Grupo09OO22021ABM.entities.Permiso;
 import com.unla.Grupo09OO22021ABM.entities.PermisoDiario;
@@ -20,6 +24,7 @@ import com.unla.Grupo09OO22021ABM.entities.PermisoPeriodo;
 import com.unla.Grupo09OO22021ABM.helpers.ViewRouteHelper;
 import com.unla.Grupo09OO22021ABM.services.ILugarService;
 import com.unla.Grupo09OO22021ABM.services.IPermisoService;
+import com.unla.Grupo09OO22021ABM.util.QRCodeGenerator;
 
 @Controller
 @RequestMapping
@@ -41,7 +46,7 @@ public class PermisoController {
 	
 	
 	@GetMapping("/permisos-fecha")
-	public String traerPermisosPorFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaDesde,  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaHasta, Model model,RedirectAttributes attribute) {
+	public String traerPermisosPorFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaDesde,  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaHasta, Model model,RedirectAttributes attribute) throws WriterException, IOException {
 		List<Permiso> permisos = servicePermiso.listar();
 		List<PermisoDiario> permisosDiario = servicePermiso.listarPermisosDiario(permisos);
 		List<PermisoPeriodo> permisosPeriodo = servicePermiso.listarPermisosPeriodo(permisos);
@@ -52,6 +57,7 @@ public class PermisoController {
 		model.addAttribute("diario", permisosDiarioPorFecha);
 		model.addAttribute("periodo", permisosPeriodoPorFecha);
 		
+
 		return ViewRouteHelper.RESULTADO_ENTRE_FECHAS;
 				
 	}

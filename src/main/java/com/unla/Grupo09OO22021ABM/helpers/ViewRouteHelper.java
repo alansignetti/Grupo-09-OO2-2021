@@ -50,6 +50,10 @@ public class ViewRouteHelper {
 	public final static String PERMISO_ENTRE_FECHAS_DESTINO = "/permiso/entre-fechas-destino";
 	public final static String RESULTADO_ENTRE_FECHAS_DESTINO = "/permiso/resultado-entre-fechas-destino";
 	
+	//QR DE PERMISOS
+	public final static String MOSTRAR_QR = "/qrpermiso/qrpermisodiario";
+	private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/QRCode.png";
+	
 	
 	/**** Redirects ****/
 	public final static String HOME = "/home"; // new RedirectView(ViewRouteHelper.HOME)
