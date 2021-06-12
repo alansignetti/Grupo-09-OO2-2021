@@ -20,7 +20,7 @@
 	
 	
 	<script type="text/javascript">
-
+// replace("%20", " ")
 		function getQueryVariable(variable) {
 			var query = window.location.search.substring(1);
 			var vars = query.split("&");
@@ -95,11 +95,11 @@
 					</th>
 
 					<th>
-						<script type="text/javascript">document.write(desde)</script>
+						<script type="text/javascript">document.write(desde.replace(/[^a-zA-Z ]/g, " "))</script>
 					</th>
 
 					<th>
-						<script type="text/javascript">document.write.replaceUrl(hasta)</script>
+						<script type="text/javascript">document.write(hasta.replace(/[^a-zA-Z ]/g, " "))</script> 
 					</th>
 				</tr>
 			</tbody>
