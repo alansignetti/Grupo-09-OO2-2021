@@ -2,6 +2,7 @@ package com.unla.Grupo09OO22021ABM.services.implementations;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -48,5 +49,14 @@ public class PerfilService implements IPerfilService{
 		perfilRepository.deleteById(id);
 		
 	}
+
+	@Override
+	public boolean validaTipoPerfil(String tipo_perfil) {
+		boolean valido = false;
+		Pattern pat = Pattern.compile("^(ROLE_)[A-Z]*{30}");
+	    if (pat.matcher(tipo_perfil).matches()) valido = true;
+	    return valido;
+	}
+		
 
 }

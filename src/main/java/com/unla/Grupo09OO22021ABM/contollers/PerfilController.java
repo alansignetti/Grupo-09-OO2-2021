@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,10 @@ public class PerfilController {
 	//, 
 	@PostMapping("/save-perfil")
 	public String save(@Valid @ModelAttribute("perfil") Perfil p, BindingResult bindingResult, Model model ) {
+		if (service.validaTipoPerfil(p.getTipo_perfil()) == false) {
+			FieldError error = new FieldError("perfil", "tipo_perfil", "El formato permitido es: ROLE_TIPOPERFIL, todo en Mayúsculas. Por favor, intente nuevamente.");
+			bindingResult.addError(error);
+		}
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("perfil", p);
 			return ViewRouteHelper.FORM_PERFIL;
