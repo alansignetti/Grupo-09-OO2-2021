@@ -50,11 +50,12 @@ public class PersonaController {
 		if(p.getDni()==0) {
 			FieldError error = new FieldError("persona", "dni", "Por favor, ingrese el Nro. de Documento");
 			bindingResult.addError(error);
-		}
-		if (dni.length() != 8) {
-			FieldError error = new FieldError("persona", "dni", "Por favor, verifique la longitud del Nro. de Documento e Intente nuevamente");
-			bindingResult.addError(error);
-		}
+		}else {
+			if (dni.length() != 8) {
+				FieldError error = new FieldError("persona", "dni", "Por favor, verifique la longitud del Nro. de Documento e Intente nuevamente");
+				bindingResult.addError(error);
+			}
+		}		
 		if (personaService.findByDni(p.getDni())!=null ) {
 			FieldError error = new FieldError("persona", "dni", "Ya existe una Persona registrada con DNI: "+ p.getDni() + ". Intente nuevamente");
 			bindingResult.addError(error);

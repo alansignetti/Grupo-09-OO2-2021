@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
 
@@ -36,22 +35,17 @@ public class ExportPDF extends AbstractPdfView{
 	@Override
 	protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
 		List<Usuario> usuarios = service.listar();
 		PdfPTable tablaUsuarios = new PdfPTable(5);
 		
 		usuarios.forEach(usuario ->{
-//			tablaUsuarios.addCell(Long.toString(usuario.getDni()));
 			tablaUsuarios.addCell(usuario.getNombre());
 			tablaUsuarios.addCell(usuario.getApellido());
 			tablaUsuarios.addCell(usuario.getTipo_dni());
 			tablaUsuarios.addCell(usuario.getEmail());
 			tablaUsuarios.addCell(usuario.getUsername());
-			tablaUsuarios.addCell(usuario.getPerfil().getTipo_perfil());
-//			tablaUsuarios.addCell(Boolean.toString(usuario.isEnabled()));			
+			tablaUsuarios.addCell(usuario.getPerfil().getTipo_perfil());		
 			});
-
-		
 		document.add(tablaUsuarios);
 	}
 

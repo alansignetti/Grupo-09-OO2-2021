@@ -32,13 +32,13 @@ public class Usuario {
 	@Column(name="nombre", nullable=false, length=45)
 	@NotEmpty
 	@Size(min=2, message="Por favor, ingrese el Nombre.")
-	@Pattern(regexp = "^[a-zA-Z]$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
+	@Pattern(regexp = "^[a-zA-Z]*$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
 	private String nombre;
 	
 	@Column(name="apellido", nullable=false, length=45)
 	@NotEmpty
 	@Size(min=2, message="Por favor, ingrese el Apellido.")
-	@Pattern(regexp = "^[a-zA-Z]$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
+	@Pattern(regexp = "^[a-zA-Z]*$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
 	private String apellido;
 	
 	@Column(name="tipo_dni")

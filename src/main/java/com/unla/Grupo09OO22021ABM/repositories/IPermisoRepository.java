@@ -12,6 +12,7 @@ import com.unla.Grupo09OO22021ABM.entities.Permiso;
 
 @Repository("permisoRepository")
 public interface IPermisoRepository extends JpaRepository<Permiso, Serializable>{
+	
 	@Query("SELECT p FROM Permiso p INNER JOIN FETCH p.pedido pr WHERE pr.id_persona = (:id_persona)")
 	public abstract List<Permiso> findByIdAndFetchPersonaEagerly(@Param("id_persona") int id_persona);
 	
