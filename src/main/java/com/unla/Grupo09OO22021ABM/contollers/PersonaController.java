@@ -56,7 +56,7 @@ public class PersonaController {
 				bindingResult.addError(error);
 			}
 		}		
-		if (personaService.findByDni(p.getDni())!=null ) {
+		if (personaService.findByDni(p.getDni())!=null && personaService.findByDni(p.getDni()).getId_persona() != p.getId_persona()) {
 			FieldError error = new FieldError("persona", "dni", "Ya existe una Persona registrada con DNI: "+ p.getDni() + ". Intente nuevamente");
 			bindingResult.addError(error);
 		}
