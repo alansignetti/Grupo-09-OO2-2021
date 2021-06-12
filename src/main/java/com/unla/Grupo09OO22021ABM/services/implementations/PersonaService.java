@@ -30,10 +30,16 @@ public class PersonaService implements IPersonaService{
 	public List<Persona> listarPersonas() {
 		return (List<Persona>)personaRepository.findAll();
 	}
+    
 
 	@Override
 	public Optional<Persona> listarIdPersona(int id) {
 		return personaRepository.findById(id);
+	}
+	
+	@Override
+	public Persona traerIdPersona(int id) {
+		return personaRepository.traerIdPersona(id);
 	}
 
 	@Override

@@ -22,8 +22,8 @@
 						</div>-->
 						<div class="form-group">
 						<label>Persona:</label>	
-							<select class="form-control form-control-sm" th:field="*{pedido.id_persona}" >
-							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.nombre}" name = "persona">
+							<select class="form-control form-control-sm" name = "personaId"  >
+							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.nombre +' ' + i.apellido}" >
                               </option>
 							</select>
 						</div>
