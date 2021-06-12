@@ -12,6 +12,14 @@
 	<h1>Permiso</h1>
 
 	<script type="text/javascript">
+		function replaceUrl(url) {
+			return url.replace(/%20|\+/g, " ");;
+		}
+
+	</script>
+	
+	
+	<script type="text/javascript">
 
 		function getQueryVariable(variable) {
 			var query = window.location.search.substring(1);
@@ -89,13 +97,10 @@
 					<th>
 						<script type="text/javascript">document.write(desde)</script>
 					</th>
-					
+
 					<th>
-						<script type="text/javascript">document.write(hasta)</script>
+						<script type="text/javascript">document.write.replaceUrl(hasta)</script>
 					</th>
-
-
-				</tr>
 				</tr>
 			</tbody>
 		</table>
