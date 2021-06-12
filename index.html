@@ -47,7 +47,7 @@
 
 		var lugar = getQueryVariable('lugar');
 
-		var fecha2 = getQueryVariable('fecha2');
+		var cantDias = getQueryVariable('cantDias');
 
 		var rodado = getQueryVariable('rodado');
 
@@ -118,6 +118,7 @@
 					<th>CANTIDAD DE DIAS</th>
 					<th>VACACIONES</th>
 					<th>FECHA</th>
+					<th> RODADO </th>
 					<th>ORIGEN - DESTINO</th>
 
 				</tr>
@@ -140,21 +141,20 @@
 					<th>
 						<script type="text/javascript">document.write(fecha)</script>
 					</th>
+					
+					<th>
+						<script type="text/javascript">document.write(rodado)</script>
+					</th>
 
 					<th>
 						<script type="text/javascript">document.write(lugar)</script>
 					</th>
 
 				</tr>
-				</tr>
+				
 			</tbody>
 		</table>
 	</div>
-
-
-
-
-
 
 
 	<script>
