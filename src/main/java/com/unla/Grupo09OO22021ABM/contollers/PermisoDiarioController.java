@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -80,7 +81,13 @@ public class PermisoDiarioController {
 	@PostMapping("/save-permiso-diario") //
 	public String save(@Valid @ModelAttribute("permisoDiario") PermisoDiario pd, BindingResult bindingResult,
 			Model model, RedirectAttributes attribute ,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta) throws WriterException, IOException {
+		if (pd == null) {
+			FieldError error = new FieldError("permisoDiario", "pedido.dni", "Por favor, Dar de alta a la Persona e Intente nuevamente");
+			bindingResult.addError(error);
+		}
+		
 		Persona pedido = servicePersona.findByDni(pd.getPedido().getDni());
+
 		if (pd.getFecha() == null) {
 			FieldError error = new FieldError("permisoDiario", "fecha", "Por favor, ingrese una fecha e Intente nuevamente");
 			bindingResult.addError(error);
@@ -90,10 +97,22 @@ public class PermisoDiarioController {
 				bindingResult.addError(error);
 			}
 		}
-		if (pedido == null) {
+		if (pedido == null || Objects.isNull(pedido)) {
 				FieldError error = new FieldError("permisoDiario", "pedido.dni", "Por favor, Dar de alta a la Persona e Intente nuevamente");
 				bindingResult.addError(error);
 		}
+		String dni = String.valueOf(pedido.getDni());
+		
+		if(pedido.getDni()==0) {
+			FieldError error = new FieldError("persona", "dni", "Por favor, ingrese el Nro. de Documento");
+			bindingResult.addError(error);
+		}
+
+		if (dni.length() != 8) {
+			FieldError error = new FieldError("persona", "dni", "Por favor, verifique la longitud del Nro. de Documento e Intente nuevamente");
+			bindingResult.addError(error);
+		}
+		
 		if (bindingResult.hasErrors()) {			
 			List<Lugar> lugares = serviceLugar.listarLugar();
 			model.addAttribute("permisoDiario", pd);
@@ -124,7 +143,7 @@ public class PermisoDiarioController {
 			//			QRCodeGenerator.generateQRCodeImage(url+"?apellido="+pd.getPedido().getApellido()+"&dni="+pd.getPedido().getDni()+"&"+pd.getPedido().getNombre(), 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
 			pd.setPedido(pedido);
 			servicePermisoDiario.save(pd);
-			return ViewRouteHelper.QR;
+			return ViewRouteHelper.VER_PERMISO;
 		}
 
 	}

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -36,8 +37,9 @@ public class Persona {
 	@Pattern(regexp = "^[a-zA-Z]*$", message ="Solo se permite Letras. Por favor, intente nuevamente.")
 	private String apellido;
 
-	@Column(name = "dni")
+	@Column(name = "dni", nullable = false)
 	@NotNull
+	//@Pattern(regexp = "^[0-9]*$", message ="Solo se permite Digitos. Por favor, intente nuevamente.")
 	private long dni;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido")

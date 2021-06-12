@@ -118,7 +118,7 @@ public class PermisoPeriodoController {
 		        pp.setPedido(pedido);
 		        pp.setRodado(rodado);
 		        servicePermisoPeriodo.save(pp);
-		        return ViewRouteHelper.HOME;
+		        return ViewRouteHelper.VER_PERMISO;
 		}       
     }
 	
