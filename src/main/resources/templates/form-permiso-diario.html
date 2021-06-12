@@ -22,8 +22,8 @@
 						</div>-->
 						<div class="form-group">
 						<label>Persona:</label>	
-							<select class="form-control form-control-sm" th:field="*{pedido.id_persona}">
-							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.nombre}">
+							<select class="form-control form-control-sm" th:field="*{pedido.id_persona}" >
+							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.nombre}" name = "persona">
                               </option>
 							</select>
 						</div>
@@ -48,7 +48,7 @@
 						</div>
 						<div class="form-group">
 							<label>Motivo:</label>
-							<input th:field="*{motivo}" type="text" class="form-control"/>
+							<input th:field="*{motivo}" type="text" class="form-control" name="motivo"/>
 							<p th:if="${#fields.hasErrors('motivo')}" style="color:red" th:errors="*{motivo}"></p>
 						</div>
 					<div class="card-footer">

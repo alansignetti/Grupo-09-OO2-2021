@@ -78,7 +78,7 @@ public class PermisoDiarioController {
 	
 	@PostMapping("/save-permiso-diario") //
 	public String save(@Valid @ModelAttribute("permisoDiario") PermisoDiario pd, BindingResult bindingResult,
-			Model model, RedirectAttributes attribute ,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta	) throws WriterException, IOException {
+			Model model, RedirectAttributes attribute ,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta, @RequestParam(required = false) String motivo,  @RequestParam(required = false) String persona) throws WriterException, IOException {
 		if (pd.getFecha() == null) {
 			FieldError error = new FieldError("permisoDiario", "fecha", "Por favor, ingrese una fecha e Intente nuevamente");
 			bindingResult.addError(error);
@@ -106,11 +106,12 @@ public class PermisoDiarioController {
 			// para ver la imagen del qr hay que actualizar la imagen (abrirla y cerrarla en eclipse) 
 			// Y despues recargar la pagina = http://localhost:8080/QR
 			// hardcodeado para entender como funciona
-			QRCodeGenerator.generateQRCodeImage(url+"?apellido=saassa&dni=14444&nombre=permisodiario", 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
+//			String nombrePersona = persona.getNombre();
+			QRCodeGenerator.generateQRCodeImage(url+"?permiso=1&apellido="+motivo+"&dni=14444&nombre="+persona, 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
 			// la idea es que cuando se guarda el permiso, se guarden esos datos en la url y se genera el qr coon esa url y despues se ve en la imagen
 			//			QRCodeGenerator.generateQRCodeImage(url+"?apellido="+pd.getPedido().getApellido()+"&dni="+pd.getPedido().getDni()+"&"+pd.getPedido().getNombre(), 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
 			servicePermisoDiario.save(pd);
-			return ViewRouteHelper.HOME;
+			return ViewRouteHelper.QR;
 		}
 
 	}
