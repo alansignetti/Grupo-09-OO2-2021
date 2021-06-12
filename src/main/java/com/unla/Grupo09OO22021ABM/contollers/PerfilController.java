@@ -54,6 +54,10 @@ public class PerfilController {
 			FieldError error = new FieldError("perfil", "tipo_perfil", "El formato permitido es: ROLE_TIPOPERFIL, todo en Mayúsculas. Por favor, intente nuevamente.");
 			bindingResult.addError(error);
 		}
+		if (service.traerPorTipoPerfil(p.getTipo_perfil()) != null && service.traerPorTipoPerfil(p.getTipo_perfil()).getId_perfil() != p.getId_perfil()) {
+			FieldError error = new FieldError("perfil", "tipo_perfil", "El Perfil: "+p.getTipo_perfil() +" ya existe.");
+			bindingResult.addError(error);
+		}
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("perfil", p);
 			return ViewRouteHelper.FORM_PERFIL;

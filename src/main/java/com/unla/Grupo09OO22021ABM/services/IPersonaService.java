@@ -15,4 +15,5 @@ public interface IPersonaService {
 	public void delete(int id);
 	public Persona findByDni(long dni);
 	public Persona traerPorDni(@Param("dni") long dni);
+	public Persona traerIdPersona(@Param("id_persona") int id_persona);
 }

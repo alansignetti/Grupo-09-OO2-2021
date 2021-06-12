@@ -13,5 +13,6 @@ public interface IPerfilService {
 	public void delete (int id);
 	public boolean validaTipoPerfil(String tipo_perfil);
 	public Perfil traerPorId(int id);
+	public Perfil traerPorTipoPerfil(String tipo_perfil);
 
 }
