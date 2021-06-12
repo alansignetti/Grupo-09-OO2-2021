@@ -25,11 +25,13 @@ public class UserDetailsServiceSecurity implements UserDetailsService {
 	@Autowired
 	IPerfilService perfilRepository;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		com.unla.Grupo09OO22021ABM.entities.Usuario appUser = usuarioRepository
 				.findByUsernameAndFetchPerfilEagerly(username);
 
+		@SuppressWarnings("rawtypes")
 		List grantList = new ArrayList();
 
 		GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(appUser.getPerfil().getTipo_perfil());
