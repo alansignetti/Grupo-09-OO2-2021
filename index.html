@@ -81,13 +81,13 @@
 						<script type="text/javascript">document.write(dni);</script>
 					</td>
 					<td>
-						<script type="text/javascript">document.write(nombre);</script>
+						<script type="text/javascript">document.write(nombre.replace(/[^a-zA-Z ]/g, " "));</script>
 					</td>
 					<td>
-						<script type="text/javascript">document.write(apellido);</script>
+						<script type="text/javascript">document.write(apellido.replace(/[^a-zA-Z ]/g, " "));</script>
 					</td>
 					<th>
-						<script type="text/javascript">document.write(motivo)</script>
+						<script type="text/javascript">document.write(motivo.replace(/[^a-zA-Z ]/g, " "))</script>
 					</th>
 
 					<th>
