@@ -79,7 +79,7 @@ public class PermisoDiarioController {
 	
 	@PostMapping("/save-permiso-diario") //
 	public String save(@Valid @ModelAttribute("permisoDiario") PermisoDiario pd, BindingResult bindingResult,
-			Model model, RedirectAttributes attribute ,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta, @RequestParam(required = false) String motivo,  @RequestParam(required = false) String persona) throws WriterException, IOException {
+			Model model, RedirectAttributes attribute ,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta) throws WriterException, IOException {
 		Persona pedido = servicePersona.findByDni(pd.getPedido().getDni());
 		if (pd.getFecha() == null) {
 			FieldError error = new FieldError("permisoDiario", "fecha", "Por favor, ingrese una fecha e Intente nuevamente");
@@ -107,12 +107,11 @@ public class PermisoDiarioController {
 			
 			String lugarDesde = serviceLugar.traerLugar(desde).getLugar() + "("+serviceLugar.traerLugar(desde).getCodigo_postal()+")";
 			String lugarHasta = serviceLugar.traerLugar(hasta).getLugar() + "("+serviceLugar.traerLugar(hasta).getCodigo_postal()+")";
-			Persona persona = servicePersona.traerIdPersona(personaId);
-			String nombre = persona.getNombre();
-			String apellido = persona.getApellido();
-			long DNI = persona.getDni();
-			
-			System.out.println(nombre);
+			String nombre = pedido.getNombre();
+			String apellido = pedido.getApellido();
+			long DNI = pedido.getDni();
+			LocalDate fecha = pd.getFecha();
+			String motivo = pd.getMotivo();
 			
 			// para ver la imagen del qr hay que actualizar la imagen (abrirla y cerrarla en eclipse) 
 			// Y despues recargar la pagina = http://localhost:8080/QR
