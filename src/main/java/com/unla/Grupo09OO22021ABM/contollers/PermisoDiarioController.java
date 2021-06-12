@@ -70,17 +70,17 @@ public class PermisoDiarioController {
 	
 	@GetMapping("/new-permiso-diario")
 	public String agregar(Model model) throws WriterException, IOException {
-		List<Persona> personas = servicePersona.listarPersonas();
 		List<Lugar> lugares = serviceLugar.listarLugar();
 		model.addAttribute("permisoDiario", new PermisoDiario());
-		model.addAttribute("personas", personas);
+		model.addAttribute("pedido", new Persona());
 		model.addAttribute("lugares", lugares);
-			return ViewRouteHelper.FORM_PERMISO_DIARIO;
+		return ViewRouteHelper.FORM_PERMISO_DIARIO;
 	}
 	
 	@PostMapping("/save-permiso-diario") //
 	public String save(@Valid @ModelAttribute("permisoDiario") PermisoDiario pd, BindingResult bindingResult,
-			Model model, RedirectAttributes attribute , @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta, @RequestParam(required = false) String motivo,  @RequestParam(required = false) int personaId) throws WriterException, IOException {
+			Model model, RedirectAttributes attribute ,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta, @RequestParam(required = false) String motivo,  @RequestParam(required = false) String persona) throws WriterException, IOException {
+		Persona pedido = servicePersona.findByDni(pd.getPedido().getDni());
 		if (pd.getFecha() == null) {
 			FieldError error = new FieldError("permisoDiario", "fecha", "Por favor, ingrese una fecha e Intente nuevamente");
 			bindingResult.addError(error);
@@ -89,12 +89,14 @@ public class PermisoDiarioController {
 				FieldError error = new FieldError("permisoDiario", "fecha", "Fecha no puede ser anterior al dia de hoy. Por favor, verifique la fecha e Intente nuevamente");
 				bindingResult.addError(error);
 			}
-		}		
+		}
+		if (pedido == null) {
+				FieldError error = new FieldError("permisoDiario", "pedido.dni", "Por favor, Dar de alta a la Persona e Intente nuevamente");
+				bindingResult.addError(error);
+		}
 		if (bindingResult.hasErrors()) {			
-			List<Persona> personas = servicePersona.listarPersonas();
 			List<Lugar> lugares = serviceLugar.listarLugar();
 			model.addAttribute("permisoDiario", pd);
-			model.addAttribute("personas", personas);
 			model.addAttribute("lugares", lugares);
 			return ViewRouteHelper.FORM_PERMISO_DIARIO;
 		}else {
@@ -121,6 +123,7 @@ public class PermisoDiarioController {
 			QRCodeGenerator.generateQRCodeImage(url.replaceAll("\\s+","%20"), 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
 			// la idea es que cuando se guarda el permiso, se guarden esos datos en la url y se genera el qr coon esa url y despues se ve en la imagen
 			//			QRCodeGenerator.generateQRCodeImage(url+"?apellido="+pd.getPedido().getApellido()+"&dni="+pd.getPedido().getDni()+"&"+pd.getPedido().getNombre(), 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
+			pd.setPedido(pedido);
 			servicePermisoDiario.save(pd);
 			return ViewRouteHelper.QR;
 		}
