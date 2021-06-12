@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 public class PermisoPeriodo extends Permiso{
 	
 	@Column(name = "cantDias", nullable=false)
+	@NotNull(message = "Por favor, ingrese la Cantidad de Dias deseada.")
 	private int cantDias;
 	
 	@Column(name = "vacaciones", nullable=false, columnDefinition = "boolean default true")

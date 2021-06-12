@@ -58,5 +58,10 @@ public class PersonaService implements IPersonaService{
 	public Persona traerPorDni(long dni) {
 		return personaRepository.findByDni(dni);
 	}
+
+	@Override
+	public Persona findByDni(@Param("dni") long dni) {
+		return personaRepository.findByDni(dni);
+	}
     
 }

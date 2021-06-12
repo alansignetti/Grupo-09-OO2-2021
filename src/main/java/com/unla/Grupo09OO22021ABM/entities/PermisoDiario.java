@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "permiso_diario")
@@ -13,6 +15,8 @@ import javax.persistence.Table;
 public class PermisoDiario extends Permiso{
 	
 	@Column(name = "motivo", nullable=false)
+	@NotEmpty
+	@Size(min=2, message="Por favor, ingrese el Motivo.")
 	private String motivo;
 	
 	public PermisoDiario() {}

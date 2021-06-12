@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "rodado")
@@ -20,9 +22,13 @@ public class Rodado {
 	private int id_rodado;
 
 	@Column(name = "dominio", nullable=false)
+	@NotEmpty
+	@Size(min=6, message="Por favor, ingrese un Dominio.")
 	private String dominio;
 	
 	@Column(name = "vehiculo", nullable=false)
+	@NotEmpty
+	@Size(min=2, message="Por favor, ingrese un Vehiculo.")
 	private String vehiculo;
 	
 	public Rodado() {}
@@ -31,7 +37,6 @@ public class Rodado {
 		super();
 		this.dominio = dominio;
 		this.vehiculo = vehiculo;
-		//this.permisos_periodos = new HashSet<PermisoPeriodo>();
 	}
 
 	public int getId_rodado() {

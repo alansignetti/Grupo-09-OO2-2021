@@ -13,7 +13,10 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 public class QRCodeGenerator {
 
+<<<<<<< HEAD
 	//Genera el codigo QR en forma de imagen
+=======
+>>>>>>> main
 		public static void generateQRCodeImage(String text, int width, int height, String filePath)
 	            throws WriterException, IOException {
 	        QRCodeWriter qrCodeWriter = new QRCodeWriter();
@@ -24,7 +27,11 @@ public class QRCodeGenerator {
 	       
 	    }
 		
+<<<<<<< HEAD
 		//Genera el codigo QR en forma de una matriz de bytes.
+=======
+		
+>>>>>>> main
 		public static byte[] getQRCodeImage(String text, int width, int height) throws WriterException, IOException {
 		    QRCodeWriter qrCodeWriter = new QRCodeWriter();
 		    BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);

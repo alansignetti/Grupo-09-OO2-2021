@@ -3,20 +3,22 @@ package com.unla.Grupo09OO22021ABM.contollers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-
 import com.unla.Grupo09OO22021ABM.entities.Perfil;
 import com.unla.Grupo09OO22021ABM.entities.Usuario;
 import com.unla.Grupo09OO22021ABM.helpers.ViewRouteHelper;
@@ -33,7 +35,7 @@ public class UsuarioController {
 	
 	@Autowired
 	@Qualifier("perfilService")
-	private IPerfilService service2;
+	private IPerfilService servicePerfil;
 	
 	@PreAuthorize("hasRole('ROLE_AUDITOR')|| hasRole('ROLE_ADMIN')  ")//
 	@GetMapping("/listar")	
@@ -42,30 +44,61 @@ public class UsuarioController {
 		model.addAttribute("usuarios", usuarios);
 		return ViewRouteHelper.INDEX;
 	}
-	
 
-	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/new")
 	public String agregar(Model model) {
-		List<Perfil> perfiles = service2.listar();		
+		List<Perfil> perfiles = servicePerfil.listar();		
 		model.addAttribute("usuario", new Usuario());
 		model.addAttribute("perfiles", perfiles);
 		return ViewRouteHelper.FORM_USUARIO;
 	}
 	
 	@PostMapping("/save")
-	public RedirectView save(Model model, @Validated Usuario u, RedirectAttributes attribute ) {
-		service.save(u);
-		attribute.addFlashAttribute("success","El usuario se agrego con Exito");
-		return new RedirectView(ViewRouteHelper.HOME);
+	public String save(@Valid @ModelAttribute("usuario") Usuario u, BindingResult bindingResult, Model model ) {
+		String dni = String.valueOf(u.getDni());
+		System.out.println(dni);
+		List<Perfil> perfiles = servicePerfil.listar();
+		/*if (dni.matches("[0-9]{1,8}")==false) {
+			FieldError error = new FieldError("usuario", "dni", "Por favor, ingrese solo digitos en el campo Nro. de Documento.");
+			bindingResult.addError(error);
+		}*/
+		if(u.getDni()==0) {
+			FieldError error = new FieldError("usuario", "dni", "Por favor, ingrese el Nro. de Documento.");
+			bindingResult.addError(error);
+		}
+		if (dni.length() >= 7 ||  dni.length() <= 8) {
+			FieldError error = new FieldError("usuario", "dni", "Por favor, verifique la longitud del Nro. de Documento e Intente nuevamente");
+			bindingResult.addError(error);
+		}
+		if (service.findByDni(u.getDni())!=null ) {
+			FieldError error = new FieldError("usuario", "dni", "Ya existe Usuario con DNI: "+ u.getDni() + ". Intente nuevamente");
+			bindingResult.addError(error);
+		}
+		if (service.findByEmail(u.getEmail())!=null ) {
+			FieldError error = new FieldError("usuario", "email", "Ya existe Usuario con Email: "+ u.getEmail() + ". Intente nuevamente");
+			bindingResult.addError(error);
+		}
+		if (service.findByUsername(u.getUsername())!=null ) {
+			FieldError error = new FieldError("usuario", "username", "Ya existe Usuario con Nombre de Usuario: "+ u.getUsername() + ". Intente nuevamente");
+			bindingResult.addError(error);
+		}
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("usuario", u);
+			model.addAttribute("perfiles", perfiles);
+			return ViewRouteHelper.FORM_USUARIO;
+		}else {
+			service.save(u);
+			return ViewRouteHelper.HOME;
+		}
+
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/editar/{id}")
 	public String editar(Model model, @PathVariable int id) {
 		Optional<Usuario> usuario = service.listarId(id);
-		List<Perfil> perfiles = service2.listar();
+		List<Perfil> perfiles = servicePerfil.listar();
 		model.addAttribute("perfiles", perfiles);
 		model.addAttribute("usuario", usuario);
 		return ViewRouteHelper.FORM_USUARIO;

@@ -30,6 +30,7 @@
 						<div class="form-group">
 							<label>Fecha:</label>
 							<input th:field="*{fecha}" type="date" class="form-control"/>
+							<p th:if="${#fields.hasErrors('fecha')}" style="color:red" th:errors="*{fecha}"></p>
 						</div>
 						<div class="form-group">
 						<label>Lugar Desde:</label>	
@@ -48,6 +49,7 @@
 						<div class="form-group">
 							<label>Cantidad de dias:</label>
 							<input th:field="*{cantDias}" type="text" class="form-control"/>
+							<p th:if="${#fields.hasErrors('cantDias')}" style="color:red" th:errors="*{cantDias}"></p>
 						</div>
 						<div class="form-group">
 							<label>Vacaciones:</label>

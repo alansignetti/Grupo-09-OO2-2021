@@ -60,17 +60,31 @@
 		</dependency>
 
 		<dependency>
+<<<<<<< HEAD
+=======
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+>>>>>>> main
 			<groupId>com.google.zxing</groupId>
 			<artifactId>core</artifactId>
 			<version>3.4.0</version>
 		</dependency>
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
 			<version>3.4.0</version>
 		</dependency>
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 	</dependencies>
 
 	<build>
