@@ -39,6 +39,9 @@ public class ViewRouteHelper {
 	public final static String PERMISO_PERIODO_POR_RODADO = "/BuscarPermisoPeriodoRodado";
 	public final static String LISTADO_PERMISO_RODADO = "/ListadoPermisoPeriodoRodado";
 	
+	//QR
+	public final static String QR = "/QrCode";
+	
 	
 	
 	//TRAER PERMISOS
