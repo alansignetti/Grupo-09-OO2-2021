@@ -39,7 +39,6 @@ public class Persona {
 
 	@Column(name = "dni", nullable = false)
 	@NotNull
-	//@Pattern(regexp = "^[0-9]*$", message ="Solo se permite Digitos. Por favor, intente nuevamente.")
 	private long dni;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido")

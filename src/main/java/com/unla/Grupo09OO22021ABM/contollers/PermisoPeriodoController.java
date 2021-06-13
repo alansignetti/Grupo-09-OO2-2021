@@ -83,6 +83,7 @@ public class PermisoPeriodoController {
     		Model model, @RequestParam(required=false) int desde, @RequestParam(required=false) int hasta) {
 		Persona pedido = servicePersona.findByDni(pp.getPedido().getDni());
 		Rodado rodado = serviceRodado.findByDominio(pp.getRodado().getDominio());
+		
 		if (pp.getFecha() == null) {
 			FieldError error = new FieldError("permisoDiario", "fecha", "Por favor, ingrese una fecha e Intente nuevamente");
 			bindingResult.addError(error);

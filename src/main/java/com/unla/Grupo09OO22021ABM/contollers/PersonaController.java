@@ -45,17 +45,7 @@ public class PersonaController {
 	}
 	
 	@PostMapping("/save-persona")
-	public String save(@Valid @ModelAttribute("persona") Persona p, BindingResult bindingResult) { 
-		String dni = String.valueOf(p.getDni());
-		if(p.getDni()==0) {
-			FieldError error = new FieldError("persona", "dni", "Por favor, ingrese el Nro. de Documento");
-			bindingResult.addError(error);
-		}else {
-			if (dni.length() != 8) {
-				FieldError error = new FieldError("persona", "dni", "Por favor, verifique la longitud del Nro. de Documento e Intente nuevamente");
-				bindingResult.addError(error);
-			}
-		}		
+	public String save(@Valid @ModelAttribute("persona") Persona p, BindingResult bindingResult) { 		
 		if (personaService.findByDni(p.getDni())!=null && personaService.findByDni(p.getDni()).getId_persona() != p.getId_persona()) {
 			FieldError error = new FieldError("persona", "dni", "Ya existe una Persona registrada con DNI: "+ p.getDni() + ". Intente nuevamente");
 			bindingResult.addError(error);

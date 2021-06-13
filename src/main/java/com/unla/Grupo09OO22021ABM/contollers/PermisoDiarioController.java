@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -81,11 +80,6 @@ public class PermisoDiarioController {
 	@PostMapping("/save-permiso-diario") //
 	public String save(@Valid @ModelAttribute("permisoDiario") PermisoDiario pd, BindingResult bindingResult,
 			Model model, RedirectAttributes attribute ,@RequestParam(required = false) int desde, @RequestParam(required = false) int hasta) throws WriterException, IOException {
-		if (pd == null) {
-			FieldError error = new FieldError("permisoDiario", "pedido.dni", "Por favor, Dar de alta a la Persona e Intente nuevamente");
-			bindingResult.addError(error);
-		}
-		
 		Persona pedido = servicePersona.findByDni(pd.getPedido().getDni());
 
 		if (pd.getFecha() == null) {
@@ -97,20 +91,9 @@ public class PermisoDiarioController {
 				bindingResult.addError(error);
 			}
 		}
-		if (pedido == null || Objects.isNull(pedido)) {
+		if (pedido == null) {
 				FieldError error = new FieldError("permisoDiario", "pedido.dni", "Por favor, Dar de alta a la Persona e Intente nuevamente");
 				bindingResult.addError(error);
-		}
-		String dni = String.valueOf(pedido.getDni());
-		
-		if(pedido.getDni()==0) {
-			FieldError error = new FieldError("persona", "dni", "Por favor, ingrese el Nro. de Documento");
-			bindingResult.addError(error);
-		}
-
-		if (dni.length() != 8) {
-			FieldError error = new FieldError("persona", "dni", "Por favor, verifique la longitud del Nro. de Documento e Intente nuevamente");
-			bindingResult.addError(error);
 		}
 		
 		if (bindingResult.hasErrors()) {			

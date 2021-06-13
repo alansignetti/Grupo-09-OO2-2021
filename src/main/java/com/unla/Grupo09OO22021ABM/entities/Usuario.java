@@ -166,8 +166,7 @@ public class Usuario {
 	}
 
 	public void setPassword(String password) {
-		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
-        this.password = pe.encode(password);
+        this.password = password;
 	}
 
 	public boolean isEnabled() {
