@@ -77,6 +77,7 @@ public class PersonaController {
 	}
 	
 	@GetMapping("/traerPermisoPorPersona")
+
 	public String traerPermisoPorPersona(@RequestParam long dni, Model model,RedirectAttributes attribute) {
 		List<Persona> personas = new ArrayList<Persona>();
 		Persona persona = personaService.traerPorDni(dni);
@@ -88,5 +89,6 @@ public class PersonaController {
 		model.addAttribute("personas", personas);
 		return ViewRouteHelper.PERMISO_PERSONA;
 	}
+
 
 }
