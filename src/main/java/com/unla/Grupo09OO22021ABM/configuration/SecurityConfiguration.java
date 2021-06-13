@@ -60,6 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		        .antMatchers("/permisos-fecha-destino").access("hasRole('AUDITOR')")	
 		        .antMatchers("/permisos-fecha").access("hasRole('AUDITOR')")	
 		        .antMatchers("/permiso-entre-fechas").access("hasRole('AUDITOR')")
+		        .antMatchers("/BuscarPermisoPeriodoRodado").access("hasRole('AUDITOR')")
 		        
 		        
 		        .antMatchers("/listar-personas").permitAll()	
