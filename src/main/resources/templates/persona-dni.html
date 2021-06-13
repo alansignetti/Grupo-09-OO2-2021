@@ -21,6 +21,7 @@
 						<label>Dni:</label>
 						<input th:name="dni" type="text" class="form-control" required value="0"
                                 placeholder="Introduzca su DNI" pattern="[0-9]{8}" title="Debe poner 8 números" />
+                                <p  th:text="${mensaje}" style="color:red"></p>
 					</div>
 
 

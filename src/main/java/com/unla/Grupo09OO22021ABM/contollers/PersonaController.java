@@ -77,16 +77,16 @@ public class PersonaController {
 	}
 	
 	@GetMapping("/traerPermisoPorPersona")
-	public String traerPermisoPorPersona(@RequestParam long dni, Model model,RedirectAttributes attribute) {
-		List<Persona> personas = new ArrayList<Persona>();
-		Persona persona = personaService.traerPorDni(dni);
-		if(persona==null) {
-			attribute.addFlashAttribute("success","Este dni no se encuentra en la base de datos");
-			return ViewRouteHelper.TRAER_PERSONA_DNI;
-		}
-		personas.add(persona);
-		model.addAttribute("personas", personas);
-		return ViewRouteHelper.PERMISO_PERSONA;
-	}
+    public String traerPermisoPorPersona(@RequestParam long dni, Model model,RedirectAttributes attribute) {
+        List<Persona> personas = new ArrayList<Persona>();
+        Persona persona = personaService.traerPorDni(dni);
+        if(persona==null) {
+            model.addAttribute("mensaje","El dni ingresado no se encuentra en la base de datos");
+            return ViewRouteHelper.PERSONA_DNI;
+        }
+        personas.add(persona);
+        model.addAttribute("personas", personas);
+        return ViewRouteHelper.PERMISO_PERSONA;
+    }
 
 }
