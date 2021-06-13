@@ -11,26 +11,32 @@
 <body>
 	<div class="container mt-4">
 		<div class="col -sm-6">
-			<form th:action="@{/traerPermisoPorPersona}"  method="GET"> <!-- th:object=${persona}-->
+			<form th:action="@{/traerPermisoPorPersona}" method="GET">
+				<!-- th:object=${persona}-->
 				<div class="card">
 					<div class="card-header">
 						<h3>Persona</h3>
-					
 
-					<div class="form-group">
-						<label>Dni:</label>
-						<input  th:name="dni"  type="number" class="form-control" /><!-- th:field="*{dni}"-->
+
+						<div class="form-group">
+							<label>Dni:</label>
+							<input th:name="dni" type="text" class="form-control" required value="0"
+								placeholder="Introduzca su DNI" pattern="[0-9]{8}" title="Debe poner 8 números" />
+							<!-- th:field="*{dni}"-->
+							<p  th:text="${mensaje}" style="color:red"></p>
+							
+
+						</div>
+
+
+						<!-- -->
+
+
+						<div class="card-footer">
+							<input type="submit" value="Buscar" class="btn btn-success" />
+							<a th:href="@{/home}" class="btn btn-secondary">Home</a>
+						</div>
 					</div>
-
-
-					<!-- -->
-
-
-					<div class="card-footer">
-						<input type="submit" value="Buscar" class="btn btn-success" />
-						<a th:href="@{/home}" class="btn btn-secondary">Home</a>
-					</div>
-				</div>
 			</form>
 
 		</div>
