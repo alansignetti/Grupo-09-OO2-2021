@@ -70,6 +70,27 @@ public class UsuarioController {
 				perfilesActivos.add(p);
 			}
 		}
+		if (u.getNombre() == "" ) {
+			FieldError error = new FieldError("usuario", "nombre", "Ingrese un nombre por favor. Intente nuevamente");
+			bindingResult.addError(error);		
+		}
+		if (u.getApellido() == "" ) {
+			FieldError error = new FieldError("usuario", "apellido", "Ingrese un apellido por favor. Intente nuevamente");
+			bindingResult.addError(error);		
+		}
+		if (u.getEmail() == "" ) {
+			FieldError error = new FieldError("usuario", "email", "Ingrese un email por favor. Intente nuevamente");
+			bindingResult.addError(error);		
+		}
+		if (u.getUsername() == "" ) {
+			FieldError error = new FieldError("usuario", "username", "Ingrese un username por favor. Intente nuevamente");
+			bindingResult.addError(error);		
+		}
+		if (u.getPassword() == "" ) {
+			FieldError error = new FieldError("usuario", "password", "Ingrese una clave por favor. Intente nuevamente");
+			bindingResult.addError(error);		
+		}
+		
 		if (service.traerPorId(u.getId_usuario()) == null) { //EL USUARIO ES NUEVO		
 			if (service.findByDni(u.getDni())!=null ) {
 				FieldError error = new FieldError("usuario", "dni", "Ya existe Usuario con DNI: "+ u.getDni() + ". Intente nuevamente");
