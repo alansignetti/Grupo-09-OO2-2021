@@ -33,6 +33,12 @@ public class RodadoService implements IRodadoService{
 	}
 	
 	@Override
+	public Rodado traerRodadoId(int id) {
+		return rodadoRepository.traerRodadoId(id);
+	}
+	
+	
+	@Override
 	public Rodado findByDominio(@Param("dominio") String dominio) {
 		return rodadoRepository.findByDominio(dominio);
 	};

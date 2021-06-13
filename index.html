@@ -47,11 +47,18 @@
 
 		var lugar = getQueryVariable('lugar');
 
-		var fecha2 = getQueryVariable('fecha2');
+		var cantDias = getQueryVariable('cantDias');
 
 		var rodado = getQueryVariable('rodado');
 
 		var vacaciones = getQueryVariable('vacaciones');
+		
+		if(vacaciones == "false"){
+			vacaciones = "NO";
+		}else{
+			if(vacaciones == "true"){
+				vacaciones="SI";}
+			}
 
 		var desde = getQueryVariable('desde');
 
@@ -71,9 +78,8 @@
 					<th>FECHA</th>
 					<th>DESDE</th>
 					<th>HASTA</th>
-
-
 				</tr>
+				
 			</thead>
 			<tbody>
 				<tr>
@@ -86,23 +92,23 @@
 					<td>
 						<script type="text/javascript">document.write(apellido.replace(/[^a-zA-Z ]/g, " "));</script>
 					</td>
-					<th>
-						<script type="text/javascript">document.write(motivo.replace(/[^a-zA-Z ]/g, " "))</script>
-					</th>
+					<td>
+						<script type="text/javascript">document.write(motivo.replace(/[+]/g, " "))</script>
+					</td>
 
-					<th>
+					<td>
 						<script type="text/javascript">document.write(fecha)</script>
-					</th>
+					</td>
 
-					<th>
+					<td>
 						<script
 							type="text/javascript">document.write(desde.replace("%28", " (").replace("%29", ")").replace(/[+]/g, " "))</script>
-					</th>
+					</td>
 
-					<th>
+					<td>
 						<script
 							type="text/javascript">document.write(hasta.replace("%28", " (").replace("%29", ")").replace(/[+]/g, " "))</script>
-					</th>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -111,6 +117,7 @@
 
 		<table id="periodo" class="table">
 			<thead>
+			
 				<tr>
 					<th>DNI</th>
 					<th>NOMBRE</th>
@@ -118,9 +125,11 @@
 					<th>CANTIDAD DE DIAS</th>
 					<th>VACACIONES</th>
 					<th>FECHA</th>
-					<th>ORIGEN - DESTINO</th>
-
+					<th> RODADO </th>
+					<th>DESDE</th>
+					<th>HASTA</th>
 				</tr>
+				
 			</thead>
 			<tbody>
 				<tr>
@@ -128,33 +137,44 @@
 						<script type="text/javascript">document.write(dni);</script>
 					</td>
 					<td>
-						<script type="text/javascript">document.write(nombre);</script>
+						<script type="text/javascript">document.write(nombre.replace(/[^a-zA-Z ]/g, " "));</script>
 					</td>
 					<td>
-						<script type="text/javascript">document.write(apellido);</script>
+						<script type="text/javascript">document.write(apellido.replace(/[^a-zA-Z ]/g, " "));</script>
 					</td>
-					<th>
-						<script type="text/javascript">document.write(motivo)</script>
-					</th>
+					<td>
+						<script type="text/javascript">document.write(cantDias)</script>
+					</td>
+					
+					<td>
+						<script type="text/javascript">document.write(vacaciones)</script>
+					</td>
 
-					<th>
+					<td>
 						<script type="text/javascript">document.write(fecha)</script>
-					</th>
+					</td>
+					
+					<td>
+					<script
+							type="text/javascript">document.write(rodado.replace("%28", " (").replace("%29", ")").replace(/[+]/g, " "))</script>
+					</td>
 
-					<th>
-						<script type="text/javascript">document.write(lugar)</script>
-					</th>
+					<td>
+							<script
+							type="text/javascript">document.write(desde.replace("%28", " (").replace("%29", ")").replace(/[+]/g, " "))</script>
+					</td>
+					
+					<td> 
+							<script
+							type="text/javascript">document.write(hasta.replace("%28", " (").replace("%29", ")").replace(/[+]/g, " "))</script>
+						
+					</td>
 
 				</tr>
-				</tr>
+				
 			</tbody>
 		</table>
 	</div>
-
-
-
-
-
 
 
 	<script>

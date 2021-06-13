@@ -14,5 +14,6 @@ public interface IRodadoService {
 	public int save(Rodado r);
 	public Rodado findByDominio(@Param("dominio") String dominio);
 	public boolean validarRodado(String dominio);
+	public  Rodado traerRodadoId(int id_rodado);
 	
 }

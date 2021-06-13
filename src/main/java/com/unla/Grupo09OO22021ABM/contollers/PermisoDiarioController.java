@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -110,7 +109,6 @@ public class PermisoDiarioController {
 			String apellido = persona.getApellido();
 			long DNI = persona.getDni();
 			
-			System.out.println(nombre);
 			
 			// para ver la imagen del qr hay que actualizar la imagen (abrirla y cerrarla en eclipse) 
 			// Y despues recargar la pagina = http://localhost:8080/QR

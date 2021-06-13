@@ -22,14 +22,14 @@
 						</div>-->
 						<div class="form-group">
 						<label>Persona:</label>	
-							<select class="form-control form-control-sm" th:field="*{pedido.id_persona}">
-							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.nombre}">
+							<select class="form-control form-control-sm" name="personaId">
+							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.nombre + ' ' + i.apellido}">
                               </option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Fecha:</label>
-							<input th:field="*{fecha}" type="date" class="form-control"/>
+							<input th:field="*{fecha}" type="date" class="form-control" name="fecha"/>
 							<p th:if="${#fields.hasErrors('fecha')}" style="color:red" th:errors="*{fecha}"></p>
 						</div>
 						<div class="form-group">
@@ -48,7 +48,7 @@
 						</div>
 						<div class="form-group">
 							<label>Cantidad de dias:</label>
-							<input th:field="*{cantDias}" type="text" class="form-control"/>
+							<input th:field="*{cantDias}" type="text" class="form-control" name="cantDias"/>
 							<p th:if="${#fields.hasErrors('cantDias')}" style="color:red" th:errors="*{cantDias}"></p>
 						</div>
 						<div class="form-group">
@@ -57,7 +57,7 @@
 						</div>
 						<div class="form-group">
 						<label>Rodado:</label>	
-							<select class="form-control form-control-sm" th:field="*{rodado.id_rodado}">
+							<select class="form-control form-control-sm"  name="rodadoId">
 							 <option th:each="i : ${rodados}" th:value="${i.id_rodado}" th:text="${i.dominio}">
                               </option>
 							</select>

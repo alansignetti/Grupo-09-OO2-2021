@@ -1,5 +1,6 @@
 package com.unla.Grupo09OO22021ABM.contollers;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.zxing.WriterException;
 import com.unla.Grupo09OO22021ABM.entities.Lugar;
 import com.unla.Grupo09OO22021ABM.entities.Permiso;
 import com.unla.Grupo09OO22021ABM.entities.PermisoPeriodo;
@@ -31,6 +34,7 @@ import com.unla.Grupo09OO22021ABM.services.IPermisoPeriodoService;
 import com.unla.Grupo09OO22021ABM.services.IPermisoService;
 import com.unla.Grupo09OO22021ABM.services.IPersonaService;
 import com.unla.Grupo09OO22021ABM.services.IRodadoService;
+import com.unla.Grupo09OO22021ABM.util.QRCodeGenerator;
 
 
 
@@ -82,7 +86,9 @@ public class PermisoPeriodoController {
 	
 	@PostMapping("/save-permiso-periodo") //,
     public String save(@Valid @ModelAttribute("permisoPeriodo") PermisoPeriodo pp, BindingResult bindingResult, 
-    		Model model, @RequestParam(required=false) int desde, @RequestParam(required=false) int hasta) {
+    		Model model, @RequestParam(required=false) int desde, @RequestParam(required=false) int hasta,@RequestParam(required=false) int personaId,
+    		@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha,@RequestParam(required=false) int cantDias,
+    		@RequestParam(required=false) boolean vacaciones,@RequestParam(required=false) int rodadoId ) throws WriterException, IOException {
 		if (pp.getFecha() == null) {
 			FieldError error = new FieldError("permisoDiario", "fecha", "Por favor, ingrese una fecha e Intente nuevamente");
 			bindingResult.addError(error);
@@ -112,8 +118,29 @@ public class PermisoPeriodoController {
 		        lugares.add(serviceLugar.traerLugar(hasta));
 		        pp.setDesdeHasta(lugares);
 		        servicePermisoPeriodo.save(pp);
-		        return ViewRouteHelper.HOME;
+		        
+		    	String lugarDesde = serviceLugar.traerLugar(desde).getLugar() + "("+serviceLugar.traerLugar(desde).getCodigo_postal()+")";
+				String lugarHasta = serviceLugar.traerLugar(hasta).getLugar() + "("+serviceLugar.traerLugar(hasta).getCodigo_postal()+")";
+				Persona persona = servicePersona.traerIdPersona(personaId);
+				String nombre = persona.getNombre();
+				String apellido = persona.getApellido();
+				long DNI = persona.getDni();
+				
+				System.out.println(rodadoId);
+				
+				Rodado rodadoObj = serviceRodado.traerRodadoId(rodadoId);
+				String rodado = rodadoObj.getVehiculo() + "(" + rodadoObj.getDominio() + ")";
+				
+				String url = "alansignetti.github.io/Grupo-09-OO2-2021"+"?permiso=2&apellido="+apellido+"&nombre="+nombre+"&dni="+DNI+"&vacaciones="+ vacaciones +"&cantDias="+cantDias+"&fecha="+fecha+"&desde="+lugarDesde+"&hasta="+lugarHasta+"&rodado="+rodado;
+				
+				QRCodeGenerator.generateQRCodeImage(url.replaceAll("\\s+","%20"), 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
+		
+		        return ViewRouteHelper.QR;
 		}       
+		
+	
+	
+		
     }
 	
 	
