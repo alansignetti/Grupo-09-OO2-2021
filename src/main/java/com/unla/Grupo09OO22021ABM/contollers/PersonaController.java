@@ -45,12 +45,21 @@ public class PersonaController {
 	}
 	
 	@PostMapping("/save-persona")
-	public String save(@Valid @ModelAttribute("persona") Persona p, BindingResult bindingResult) { 		
+	public String save(@Valid @ModelAttribute("persona") Persona p, BindingResult bindingResult,Model model) { 		
 		if (personaService.findByDni(p.getDni())!=null && personaService.findByDni(p.getDni()).getId_persona() != p.getId_persona()) {
 			FieldError error = new FieldError("persona", "dni", "Ya existe una Persona registrada con DNI: "+ p.getDni() + ". Intente nuevamente");
 			bindingResult.addError(error);
 		}
+		if (p.getNombre() == "" ) {
+			FieldError error = new FieldError("persona", "nombre", "Ingrese un nombre por favor. Intente nuevamente");
+			bindingResult.addError(error);		
+		}
+		if (p.getApellido() == "" ) {
+			FieldError error = new FieldError("persona", "apellido", "Ingrese un apellido por favor. Intente nuevamente");
+			bindingResult.addError(error);		
+		}
 		if(bindingResult.hasErrors()) {
+			model.addAttribute("persona", p);
 			return ViewRouteHelper.FORM_PERSONA;
 		}else {
 			personaService.save(p);
