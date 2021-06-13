@@ -34,7 +34,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/new").access("hasRole('ADMIN')")
 				.antMatchers("/new-perfil").access("hasRole('ADMIN')")
 		        .antMatchers("/listar-perfiles").access("hasAnyRole('AUDITOR', 'ADMIN')")   
-		        .antMatchers("/listar").access("hasAnyRole('AUDITOR', 'ADMIN')")    
+		        .antMatchers("/listar").access("hasAnyRole('AUDITOR', 'ADMIN')") 
+		        .antMatchers("/new-persona").access("anonymous")
+		        .antMatchers("/new-permiso-diario").access("anonymous")
+		        .antMatchers("/new-permiso-periodo").access("anonymous")
+		        .antMatchers("/new-rodado").access("anonymous")
+		        
 		        
 		        
 		        .antMatchers("/index").access("hasRole('ADMIN')")
@@ -64,6 +69,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		        .antMatchers("/BuscarPermisoPeriodoRodado").access("hasRole('AUDITOR')")
 		        
 		        
+		        
+		        
 		        .antMatchers("/listar-personas").permitAll()	
 		        .antMatchers("/home").permitAll()    
 		        
@@ -76,6 +83,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				
 				
 			.and()
+			//Con esta instruccion el Logout se hace correctamente
 			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
 		
 				/*.logout().logoutUrl("/logout").logoutSuccessUrl("/logout").disable().anonymous().
