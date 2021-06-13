@@ -41,6 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		        				// lista usuarios
 		        .antMatchers("/listar/?format=pdf").access("hasRole('AUDITOR')")	// ExportPDF
 		        
+		        .antMatchers("/listar-personas").access("hasRole('ADMIN')")  
 		        .antMatchers("/editar-persona").access("hasRole('ADMIN')")
 		        .antMatchers("/eliminar-persona").access("hasRole('ADMIN')")
 		        .antMatchers("/editar-persona/**").access("hasRole('ADMIN')")
@@ -50,13 +51,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		        .antMatchers("/editar-perfil").access("hasRole('ADMIN')")
 		        .antMatchers("/eliminar-perfil/**").access("hasRole('ADMIN')")
 		        .antMatchers("/editar-perfil/**").access("hasRole('ADMIN')")
+		        .antMatchers("/permiso-persona").access("hasRole('AUDITOR') or anonymous")
+		        
+		        
+		        .antMatchers("/permiso-entre-fechas-origen").access("hasRole('AUDITOR')")	
+		        .antMatchers("/permisos-fecha-origen").access("hasRole('AUDITOR')")	
+		        .antMatchers("/permiso-entre-fechas-destino").access("hasRole('AUDITOR')")	
+		        .antMatchers("/permisos-fecha-destino").access("hasRole('AUDITOR')")	
+		        .antMatchers("/permisos-fecha").access("hasRole('AUDITOR')")	
+		        .antMatchers("/permiso-entre-fechas").access("hasRole('AUDITOR')")
 		        
 		        
 		        .antMatchers("/listar-personas").permitAll()	
-		        .antMatchers("/home").permitAll()
-		        //Agregar lista de user.
-//		        .anyRequest().authenticated()
-		        
+		        .antMatchers("/home").permitAll()    
 		        
 		        
 
