@@ -19,7 +19,8 @@
 
 					<div class="form-group">
 						<label>Dni:</label>
-						<input  th:name="dni"  type="number" class="form-control" /><!-- th:field="*{dni}"-->
+						<input th:name="dni" type="text" class="form-control" required value="0"
+                                placeholder="Introduzca su DNI" pattern="[0-9]{8}" title="Debe poner 8 números" />
 					</div>
 
 

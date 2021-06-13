@@ -85,10 +85,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.and()
 			//Con esta instruccion el Logout se hace correctamente
 			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
-		
-				/*.logout().logoutUrl("/logout").logoutSuccessUrl("/logout").disable().anonymous().
-				.clearAuthentication(true).invalidateHttpSession(true)
-				.deleteCookies("JSESSIONID").permitAll();*/
+	
 				
 				
 		
