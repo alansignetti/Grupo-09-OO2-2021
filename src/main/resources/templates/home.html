@@ -16,8 +16,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
 		rel="stylesheet" />
 	<!-- Core theme CSS (includes Bootstrap)-->
-	<!--<link href="css/styles.css" rel="stylesheet" /> -->
-	<!--<link th:href="@{../css/styles.css}" href="../css/styles.css" rel="stylesheet" type="text/css" />-->
 	<link th:href="@{home/styles.css}" rel="stylesheet" />
 	<script type="text/javascript" th:src="@{home/scripts.js}"></script>
 </head>
@@ -40,7 +38,7 @@
 
 					<li class="nav-item"><a class="nav-link" href="/listar" 		 sec:authorize="hasAnyRole('AUDITOR', 'ADMIN')">Lista de Usuarios</a></li>					
 					<li class="nav-item"><a class="nav-link" href="/listar-perfiles" sec:authorize="hasAnyRole('AUDITOR', 'ADMIN')">Lista de Perfiles</a></li>
-					<li class="nav-item"><a class="nav-link" href="/listar-personas" >Lista de Personas</a></li>
+					<li class="nav-item"><a class="nav-link" href="/listar-personas" sec:authorize="hasRole('ADMIN')">Lista de Personas</a></li>
 
 					
 					
@@ -50,33 +48,22 @@
 					<li class="nav-item"><a class="nav-link" href="/new-permiso-periodo">Alta Permiso Periodo</a></li>
 					<li class="nav-item"><a class="nav-link" href="/new-rodado">Alta Rodado</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="/permiso-entre-fechas">Buscar Permisos Por Fechas</a></li>
-					<li class="nav-item"><a class="nav-link" href="/permiso-entre-fechas-origen">Buscar Permisos Por Fechas Y Origen</a></li>
-					<li class="nav-item"><a class="nav-link" href="/permiso-entre-fechas-destino">Buscar Permisos Por Fechas Y Destino</a></li>
+					<li class="nav-item"><a class="nav-link" href="/permiso-entre-fechas"		sec:authorize="hasRole('AUDITOR')">Buscar Permisos Por Fechas</a></li>
+					<li class="nav-item"><a class="nav-link" href="/permiso-entre-fechas-origen"sec:authorize="hasRole('AUDITOR')">Buscar Permisos Por Fechas Y Origen</a></li>
+					<li class="nav-item"><a class="nav-link" href="/permiso-entre-fechas-destino"sec:authorize="hasRole('AUDITOR')">Buscar Permisos Por Fechas Y Destino</a></li>
 					
 								
 
 
 
-					<li class="nav-item"><a class="nav-link" href="/buscar_por_dominio">Buscar Permisos Por Dominio</a></li>
-					<li class="nav-item"><a class="nav-link" href="/traerPersonaDNI">Traer Permiso Por Persona</a></li>
+					<li class="nav-item"><a class="nav-link" href="/buscar_por_dominio"  sec:authorize="hasRole('AUDITOR')">Buscar Permisos Por Dominio</a></li>
+					<li class="nav-item"><a class="nav-link" href="/traerPersonaDNI" sec:authorize="hasRole('AUDITOR') or anonymous">Traer Permiso Por Persona</a></li>
 
 
 					<li class="nav-item"><a class="nav-link" href="/login" 	sec:authorize="anonymous">Log In</a></li>
 					<li class="nav-item"><a class="nav-link" href="/logout"	sec:authorize="!anonymous">Log Out</a></li>
 
 
-					<!--
-					<a class="dropdown-item" href="/permiso/seleccionarDni">Traer Permiso Por Persona</a>
-					-->
-
-					
-					<!--
-					<a class="nav-link" href="/listar/?format=pdf" sec:authorize="hasAuthority('AUDITOR')"><i class="fas fa-file-pdf"></i>AUT</a>
-					
-					<a class="nav-link" href="/listar/?format=pdf" sec:authorize access="hasRole('AUDITOR')"><i class="fas fa-file-pdf"></i>hasro</a>
-					<li class="nav-item"><a class="nav-link" href="/listar-personas" sec:authorize access="hasRole('ROLE_ADMIN')">PRUEBA 1</a></li>
-					-->
 
 				</ul>
 			</div>

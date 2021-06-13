@@ -63,7 +63,6 @@ public class UsuarioController {
 	
 	@PostMapping("/save")
 	public String save(@Valid @ModelAttribute("usuario") Usuario u, BindingResult bindingResult, Model model ) {
-		String dni = String.valueOf(u.getDni());
 		List<Perfil> perfiles = servicePerfil.listar();
 		List<Perfil> perfilesActivos = new ArrayList<Perfil>();
 		for (Perfil p : perfiles) {
@@ -71,16 +70,7 @@ public class UsuarioController {
 				perfilesActivos.add(p);
 			}
 		}
-		if (service.traerPorId(u.getId_usuario()) == null) { //EL USUARIO ES NUEVO
-			if(u.getDni()==0) {
-				FieldError error = new FieldError("usuario", "dni", "Por favor, ingrese el Nro. de Documento.");
-				bindingResult.addError(error);
-			}else {
-				if (dni.length() != 8) {
-					FieldError error = new FieldError("persona", "dni", "Por favor, verifique la longitud del Nro. de Documento e Intente nuevamente");
-					bindingResult.addError(error);
-				}
-			}		
+		if (service.traerPorId(u.getId_usuario()) == null) { //EL USUARIO ES NUEVO		
 			if (service.findByDni(u.getDni())!=null ) {
 				FieldError error = new FieldError("usuario", "dni", "Ya existe Usuario con DNI: "+ u.getDni() + ". Intente nuevamente");
 				bindingResult.addError(error);
@@ -94,15 +84,6 @@ public class UsuarioController {
 				bindingResult.addError(error);
 			}
 		}else { //SE ESTA EDITANDO UN USUARIO PRE EXISTENTE
-			if(u.getDni()==0) {
-				FieldError error = new FieldError("usuario", "dni", "Por favor, ingrese el Nro. de Documento.");
-				bindingResult.addError(error);
-			}else {
-				if (dni.length() != 8) {
-					FieldError error = new FieldError("persona", "dni", "Por favor, verifique la longitud del Nro. de Documento e Intente nuevamente");
-					bindingResult.addError(error);
-				}
-			}
 			if (service.findByDni(u.getDni())!=null  && service.findByDni(u.getDni()).getId_usuario() != u.getId_usuario()){ // si el dni que quiere modificar es un dni que ya existe en la bd, que tire error
 				FieldError error = new FieldError("usuario", "dni", "Ya existe Usuario con DNI: "+ u.getDni() + ". Intente nuevamente");
 				bindingResult.addError(error);

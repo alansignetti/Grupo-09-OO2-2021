@@ -21,11 +21,11 @@
 							<input th:field="*{id_usuario}" type="text" class="form-control"/>
 						</div>-->
 						<div class="form-group">
-						<label>Persona:</label>	
-							<select class="form-control form-control-sm" name="personaId">
-							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.nombre + ' ' + i.apellido}">
-                              </option>
-							</select>
+							<label>Dni Persona:</label>
+							<input th:field="*{pedido.dni}" type="text" class="form-control" name="pedido.dni" required value="0" 
+							placeholder="Introduzca su DNI" pattern="[0-9]{8}" title="Debe poner 8 números"/>
+							<p th:if="${#fields.hasErrors('pedido.dni')}" style="color:red" th:errors="*{pedido.dni}"></p>
+
 						</div>
 						<div class="form-group">
 							<label>Fecha:</label>
@@ -56,11 +56,11 @@
 							 <input type="checkbox" name="vacaciones" value="vacaciones" th:field="*{vacaciones}"> <br>
 						</div>
 						<div class="form-group">
-						<label>Rodado:</label>	
-							<select class="form-control form-control-sm"  name="rodadoId">
-							 <option th:each="i : ${rodados}" th:value="${i.id_rodado}" th:text="${i.dominio}">
-                              </option>
-							</select>
+
+							<label>Dominio Rodado:</label>
+							<input th:field="*{rodado.dominio}" type="text" class="form-control" name="rodado.dominio"/>
+							<p th:if="${#fields.hasErrors('rodado.dominio')}" style="color:red" th:errors="*{rodado.dominio}"></p>
+
 						</div>
 					<div class="card-footer">
 						<input type="submit" value="Guardar" class="btn btn-success"/>

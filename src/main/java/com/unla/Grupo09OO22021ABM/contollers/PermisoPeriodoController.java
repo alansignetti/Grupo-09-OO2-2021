@@ -74,21 +74,21 @@ public class PermisoPeriodoController {
 	
 	@GetMapping("/new-permiso-periodo")
 	public String agregar(Model model) {
-		List<Persona> personas = servicePersona.listarPersonas();
 		List<Lugar> lugares = serviceLugar.listarLugar();
-		List<Rodado> rodados = serviceRodado.listar();
 		model.addAttribute("permisoPeriodo", new PermisoPeriodo());
-		model.addAttribute("personas", personas);
+		model.addAttribute("pedido", new Persona());
 		model.addAttribute("lugares", lugares);
-		model.addAttribute("rodados", rodados);
+		model.addAttribute("rodado", new Rodado());
 		return ViewRouteHelper.FORM_PERMISO_PERIODO;
 	}
 	
 	@PostMapping("/save-permiso-periodo") //,
     public String save(@Valid @ModelAttribute("permisoPeriodo") PermisoPeriodo pp, BindingResult bindingResult, 
-    		Model model, @RequestParam(required=false) int desde, @RequestParam(required=false) int hasta,@RequestParam(required=false) int personaId,
-    		@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha,@RequestParam(required=false) int cantDias,
-    		@RequestParam(required=false) boolean vacaciones,@RequestParam(required=false) int rodadoId ) throws WriterException, IOException {
+
+    		Model model, @RequestParam(required=false) int desde, @RequestParam(required=false) int hasta) throws WriterException, IOException {
+		Persona pedido = servicePersona.findByDni(pp.getPedido().getDni());
+		Rodado rodado = serviceRodado.findByDominio(pp.getRodado().getDominio());
+
 		if (pp.getFecha() == null) {
 			FieldError error = new FieldError("permisoDiario", "fecha", "Por favor, ingrese una fecha e Intente nuevamente");
 			bindingResult.addError(error);
@@ -102,14 +102,18 @@ public class PermisoPeriodoController {
 			FieldError error = new FieldError("permisoDiario", "cantDias", "Por favor, ingrese la Cantidad de Dias deseados e Intente nuevamente");
 			bindingResult.addError(error);
 		}
+		if (pedido == null) {
+			FieldError error = new FieldError("permisoPeriodo", "pedido.dni", "Por favor, Dar de alta a la Persona e Intente nuevamente");
+			bindingResult.addError(error);
+		}
+		if (rodado == null) {
+			FieldError error = new FieldError("permisoPeriodo", "rodado.dominio", "Por favor, Dar de alta el Dominio e Intente nuevamente");
+			bindingResult.addError(error);
+		}
 		if (bindingResult.hasErrors()) {
-			List<Persona> personas = servicePersona.listarPersonas();
 			List<Lugar> lugares = serviceLugar.listarLugar();
-			List<Rodado> rodados = serviceRodado.listar();
 			model.addAttribute("permisoPeriodo", pp);
-			model.addAttribute("personas", personas);
 			model.addAttribute("lugares", lugares);
-			model.addAttribute("rodados", rodados);
 			return ViewRouteHelper.FORM_PERMISO_PERIODO;
 			
 		}else {
@@ -117,25 +121,30 @@ public class PermisoPeriodoController {
 		        lugares.add(serviceLugar.traerLugar(desde));
 		        lugares.add(serviceLugar.traerLugar(hasta));
 		        pp.setDesdeHasta(lugares);
+		        pp.setPedido(pedido);
+		        pp.setRodado(rodado);
 		        servicePermisoPeriodo.save(pp);
+
 		        
 		    	String lugarDesde = serviceLugar.traerLugar(desde).getLugar() + "("+serviceLugar.traerLugar(desde).getCodigo_postal()+")";
 				String lugarHasta = serviceLugar.traerLugar(hasta).getLugar() + "("+serviceLugar.traerLugar(hasta).getCodigo_postal()+")";
-				Persona persona = servicePersona.traerIdPersona(personaId);
-				String nombre = persona.getNombre();
-				String apellido = persona.getApellido();
-				long DNI = persona.getDni();
 				
-				System.out.println(rodadoId);
+				String nombre = pedido.getNombre();
+				String apellido = pedido.getApellido();
+				long DNI = pedido.getDni();
 				
-				Rodado rodadoObj = serviceRodado.traerRodadoId(rodadoId);
-				String rodado = rodadoObj.getVehiculo() + "(" + rodadoObj.getDominio() + ")";
 				
-				String url = "alansignetti.github.io/Grupo-09-OO2-2021"+"?permiso=2&apellido="+apellido+"&nombre="+nombre+"&dni="+DNI+"&vacaciones="+ vacaciones +"&cantDias="+cantDias+"&fecha="+fecha+"&desde="+lugarDesde+"&hasta="+lugarHasta+"&rodado="+rodado;
+				
+		
+				String rodadoString= rodado.getVehiculo() + "(" + rodado.getDominio() + ")";
+				
+				String url = "alansignetti.github.io/Grupo-09-OO2-2021"+"?permiso=2&apellido="+apellido+"&nombre="+nombre+"&dni="+DNI+"&vacaciones="+pp.isVacaciones()+"&cantDias="+pp.getCantDias()+"&fecha="+pp.getFecha()+"&desde="+lugarDesde+"&hasta="+lugarHasta+"&rodado="+rodadoString;
 				
 				QRCodeGenerator.generateQRCodeImage(url.replaceAll("\\s+","%20"), 200, 200, ViewRouteHelper.QR_CODE_IMAGE_PATH);
 		
-		        return ViewRouteHelper.QR;
+		       
+		        return ViewRouteHelper.VER_PERMISO;
+
 		}       
 		
 	

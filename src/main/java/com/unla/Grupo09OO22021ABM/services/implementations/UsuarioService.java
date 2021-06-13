@@ -2,6 +2,7 @@ package com.unla.Grupo09OO22021ABM.services.implementations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +36,8 @@ public class UsuarioService implements IUsuarioService{
 	@Override
 	public int save(Usuario u) {
 		int res=0;
+		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+		u.setPassword(pe.encode(u.getPassword()));
 		Usuario usuario = usuarioRepository.save(u);
 		if (!usuario.equals(null)) {
 			res =1;

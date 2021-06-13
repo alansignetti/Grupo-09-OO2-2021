@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
 	<div class="container mt-4">
 		<div class="col -sm-6">
 			<form th:action="@{/save-permiso-diario}" th:object=${permisoDiario} method="POST">
@@ -16,16 +17,12 @@
 						<h3>Permiso Diario</h3>
 					</div>
 					<div class="card-body"></div>
-						<!--<div class="form-group" style="display:none">
-							<label>ID:</label>
-							<input th:field="*{id_usuario}" type="text" class="form-control"/>
-						</div>-->
 						<div class="form-group">
-						<label>Persona:</label>	
-							<select class="form-control form-control-sm" name = "personaId"  >
-							 <option th:each="i : ${personas}" th:value="${i.id_persona}" th:text="${i.nombre +' ' + i.apellido}" >
-                              </option>
-							</select>
+							<label>Dni Persona:</label>
+							<input th:field="*{pedido.dni}" type="text" class="form-control" name="pedido.dni" required value="0" 
+							placeholder="Introduzca su DNI" pattern="[0-9]{8}" title="Debe poner 8 números"/>
+							<p th:if="${#fields.hasErrors('pedido.dni')}" style="color:red" th:errors="*{pedido.dni}"></p>
+							
 						</div>
 						<div class="form-group">
 							<label>Fecha:</label>
